@@ -1,0 +1,258 @@
+
+$button-width: 60px;                    // The width of the button area
+$button-height: $button-width;          // The height of the button area
+$bar-thickness: $button-width * 0.08;   // The thickness of the button bars
+$button-pad: $button-width * 0.1875;    // The left/right padding between button area and bars.
+$button-bar-space: $button-width * 0.125; // The spacing between button bars
+$button-transistion-duration: 0.2s;     // The transition duration
+$hamburger-border-radius: 20px;
+
+.nav-positioning {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background: #75D89D;
+}
+
+.main-nav-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px $mobile-margin;
+    // background: tomato;
+    position: relative;
+    z-index: 2;
+    // prevents nav from changing sizes once hamburger is expanded
+    min-height: 60px;
+}
+
+.main-nav {
+    display: none;
+}
+
+.hamburger-nav-con {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s ease-out;
+}
+
+.hamburger-nav-con.slide-toggle {
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background: #75D89D;
+    padding: 10px $mobile-margin !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    text-align: center;
+    // // name, duration, delay, iteration count, 
+    animation: fade-in 0.3s 1 ease-out;
+}
+
+.hamburger {
+	color: #5C8B5D;
+    transition: all .2s ease-in-out;
+    align-self: flex-end;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: $button-width;
+    height: $button-height;
+    font-size: 0;
+    //handles weird spacing when expanded
+    min-height: $button-height;
+}
+
+// .hamburger.expanded {
+// 	-webkit-transform: rotate(90deg);
+// 	-ms-transform: rotate(90deg);
+//     transform: rotate(90deg);
+//     transform-origin: center center;
+//     opacity: 0.8;
+// }
+
+.main-nav.slide-toggle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// position: absolute;
+    height: 100vh;
+	padding: 50px;
+	right: 0;
+    ul {
+        margin-top: 60px;
+        li {
+            margin-bottom: 55px;
+        }
+    }
+    a {
+        font-size: 2em;
+        color: white;
+        font-family: ‘Nunito Sans’, sans-serif;
+        line-height: 2em;
+        // remember, mobile users need to see the effect immediately on click
+        transition: all ease-out;
+        &:focus {
+            color: $pink;
+        }
+        &:hover {
+            transition: all .3s ease-out;
+            color: $pink;
+        }
+    }
+}
+
+.logo {
+    max-width: 50px;
+}
+
+.main-social {
+    display: flex;
+    flex-direction: row;
+    div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        img {
+            box-sizing: border-box;
+            height: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: $tablet-size) {
+    .main-nav-con {
+        padding: 10px $tablet-margin;
+    }
+    .hamburger-nav-con.slide-toggle {
+        padding: 10px $tablet-margin !important;
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    // .nav-positioning {
+    //     // position: static;
+    //     border-bottom: 1px solid rgba(53, 193, 208, 0.4);
+    // }
+
+    .hamburger {
+        display: none;
+    }
+
+    .hamburger-nav-con {
+        flex: 1;
+    }
+
+    .main-nav-con {
+        padding: 10px $desktop-margin;
+        a {
+            transition: all .3s ease-out;
+            &:hover {
+                color: $pink;
+            }
+        }
+    }
+
+    .main-nav {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: space-between;
+            max-width: 400px;
+        }
+        a {
+            @include h5-class;
+            color: white;
+        }
+    }
+
+    .main-social {
+        display: none;
+    }
+
+    .logo {
+        align-self: center;
+        margin-right: 300px;
+    }
+}
+
+.c-hamburger span {
+  display: block;
+  position: absolute;
+  top: $button-width * 0.45833333;
+  left: $button-pad;
+  right: $button-pad;
+  height: $bar-thickness;
+  background: white;
+  border-radius: $hamburger-border-radius;
+}
+
+.c-hamburger span::before,
+.c-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: $bar-thickness;
+  background-color: white;
+  content: "";
+  border-radius: $hamburger-border-radius;
+}
+
+.c-hamburger span::before {
+  top: (-1) * $button-width * 0.2083333333;
+}
+
+.c-hamburger span::after {
+  bottom: (-1) * $button-width * 0.2083333333;
+}
+
+
+// X hamburger style and animation
+
+.c-hamburger--htx span::before,
+.c-hamburger--htx span::after {
+  transition-duration: $button-transistion-duration, $button-transistion-duration;
+  transition-delay: $button-transistion-duration, 0s;
+}
+
+.c-hamburger--htx span::before {
+  transition-property: top, transform;
+}
+
+.c-hamburger--htx span::after {
+  transition-property: bottom, transform;
+}
+
+.c-hamburger--htx.is-active span {
+  background: none;
+}
+
+.c-hamburger--htx.is-active span::before {
+  top: 0;
+  transform: rotate(45deg);
+  transform-origin: center center;
+}
+
+.c-hamburger--htx.is-active span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+  transform-origin: center center;
+}
+
+.c-hamburger--htx.is-active span::before,
+.c-hamburger--htx.is-active span::after {
+  transition-delay: 0s, $button-transistion-duration;
+}

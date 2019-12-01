@@ -1,0 +1,90 @@
+// sass --watch sass/main.scss:public/css/main.css --style compressed
+
+@import '_vars';
+@import 'modules/_main_nav';
+@import 'modules/_users';
+@import 'modules/_lightbox';
+@import 'modules/_footer';
+@import 'modules/_error';
+
+html, body {
+    scroll-behavior: smooth;
+    // lightbox scrolling
+    overflow: auto;
+    height: 100%;
+
+}
+
+img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+h2 {
+    @include h2-class;
+}
+
+h3 {
+    @include h3-class;
+}
+
+h4 {
+    @include h4-class;
+}
+
+p {
+    @include p-class;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.main-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    // background: gold;
+    // text-align: center;
+}
+
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    @include p-class;
+
+    padding: 20px 60px;
+    color: #fff;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+
+    &:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+}

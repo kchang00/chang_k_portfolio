@@ -1,0 +1,155 @@
+.lb-desc {
+    width: 90%;
+}
+
+.lightbox { 
+    display: none;
+    flex-direction: column;
+    padding: 0px $mobile-margin;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 3;
+    animation: fade-in 0.3s 1 ease-out;
+
+    .lightbox-scroll-con {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        overflow: scroll;
+        // padding: 20px;
+    }
+
+    background-color: rgba(250, 250, 250, 0.95);
+
+    img { 
+        max-width: 500px; 
+        margin-top: $mobile-margin;
+    }
+
+    .close {
+        cursor: pointer;
+        font-size: 2em;
+        margin: $mobile-margin 0px;
+        flex: 0;
+        // background: purple;
+        align-self: flex-end;
+        position: fixed;
+        background: white;
+        padding: 10px 12px;
+        border-radius: 40px;
+        color: #5C8B5D
+    }
+}
+
+.show-lb { 
+    display: flex !important; 
+}
+
+.u-social {
+    li { 
+        display: inline-block;
+        padding-right: 30px;
+    }
+}
+
+.video-con {
+    padding: 40px 0px;
+    margin: 0 auto;
+    flex: 0;
+    max-width: 1080px;
+}
+
+.embed-container { 
+    position: relative; 
+    padding-bottom: 56.25%; 
+    height: 0; 
+    overflow: hidden; 
+    max-width: 100%; 
+} 
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+}
+
+.pwork-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 40px;
+    max-width: 1080px;
+}
+
+.pwork-desc {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 90%;
+    margin-right: 3em;
+    margin-bottom: 2em;
+    h3 {
+        font-size: 2em;
+    }
+    h4 {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+}
+
+.pwork-sidebar {
+    h4 {
+        font-size: 1em;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: $tablet-size) {
+
+    .lightbox {
+        padding: 0px $tablet-margin;
+        img { 
+            margin-top: $tablet-margin;
+        }
+    }
+    .close {
+        margin: $tablet-margin 0px;
+    }
+}
+
+
+@media screen and (min-width: 800px) {
+
+    .pwork-con {
+        flex-direction: row;
+        // align-items: center;
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+
+    .lightbox {
+        padding: 0px $desktop-margin;
+        img { 
+            margin-top: $desktop-margin;
+        }
+    }
+    .close {
+        margin: $desktop-margin 0px;
+    }
+    .video-con {
+        padding: 60px 0px;
+    }
+    .pwork-con {
+        margin-top: 60px;
+    }
+}

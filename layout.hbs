@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- sets site size to equal the device width -->
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- reset before main css (reset, then rewrite) -->
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Raleway&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>My Favourites | Animation</title>
+</head>
+
+<body>
+    <div class="nav-positioning">
+        <div class="main-nav-con">
+            <a class="logo" href="/"><img src="images/logo.svg" alt="logo"/></a>
+            <div class="hamburger-nav-con">
+                <a class="c-hamburger c-hamburger--htx hamburger"><span>toggle menu</span></a>
+                <nav class="main-nav">
+                    <h2 class="hidden">Main Navigation</h2>
+                    <ul>
+                        <a href="#"><li>Portfolio</li></a>
+                        <a href="#"><li>About</li></a>
+                        <a href="index.php"><li>Contact</li></a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-con">
+        {{!-- tells the rendering engine, hbs, to put the data here --}}
+        {{{ body }}}
+    </div>
+
+    <footer>
+        <p>© Kayla Chang 2019. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/main_nav.js"></script>
+
+</body>
+
+</html>

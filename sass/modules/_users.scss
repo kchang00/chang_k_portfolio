@@ -1,0 +1,119 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #75D89D;
+    box-sizing: border-box;
+    padding: 30px;
+
+
+    h1 {
+        @include h2-class;
+        text-align: center;
+        color: #5C8B5D;
+        margin-bottom: 40px;
+        font-size: 3em;
+        margin-top: 200px;
+    }
+    i {
+        font-size: 3em;
+        position: relative;
+        margin-top: 100px;
+        color: white;
+    }
+    p {
+        margin-bottom: 70px;
+        color: white;
+    }
+}
+
+.things-lightbox-con {
+    display: flex;
+    flex: 1;
+}
+
+.team { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+    // background-color: #75d89d;
+    // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%235c8b5d' fill-opacity='0.4'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    box-sizing: border-box;
+
+    .user-panel {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        flex: 1 1 630px;
+        cursor: pointer;
+        transition: all 1s ease-out;
+        box-sizing: border-box;
+        position: relative;
+
+        .u-link { 
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: flex-end;
+            align-items: flex-start; 
+            text-decoration: none;
+            // background-color: rgba(47, 169, 190, 0.8);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            // background-color: rgba(117, 216, 157, 0.5);
+            // background: rgba(216, 141, 116, 0.8);
+            -webkit-backdrop-filter: blur(1px);
+            backdrop-filter: blur(1px);
+            transition: all 0.3s ease-out;
+            padding: $mobile-margin;
+            box-sizing: border-box;
+            border: white 1px solid;
+
+            h3, h4 {
+                color: white;
+            }
+
+        }
+    }
+}
+
+.u-social {
+    @include p-class;
+}
+
+@media screen and (min-width: $tablet-size) {
+    .hero {
+        h1 {
+            font-size: 6em;
+        }
+    }
+    .user-panel {
+        max-width: 50%;
+        // min-width: 0px;
+        flex: 1;
+        .u-link {
+            padding: $tablet-margin !important;
+        }
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    .user-panel {
+        .u-link {
+            padding: $desktop-margin !important;
+            opacity: 0;
+            &:focus, &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}

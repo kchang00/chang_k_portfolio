@@ -1,0 +1,38 @@
+<section class="hero">
+    <h1>Animation</h1>
+    <p>I like stories and things that move. Explore some of my favourite styles below!</p>
+    <i class="fa fa-angle-down"></i>
+</section>
+
+<section class="things-lightbox-con">
+    <section class="team">
+        <!-- loop through all our team members and put their info on the page -->
+        {{!-- work = a var in an sql query in index.js) --}}
+        {{!-- forEach result in the sql query (meaning for each row of data),
+        populate the team section according to these elements in the html --}}
+            <h2 class="hidden">Styles of Animation</h2>
+            {{#each work}} <!-- This is like a JS forEach loop - hbs has built in helpers -->
+                <div class="user-panel">
+                    <img src="images/{{Img}}" alt="Portfolio Image">
+                    <a class="u-link" href="{{ID}}">
+                        <h3>{{Title}}</h3>
+                        <h4>{{Info}}</h4>
+                    </a>
+                </div>
+            {{/each}}
+    </section>
+
+    <!-- this will be filled in on the client side when we render our AJAX data -->
+    <section class="lightbox">
+        <h2 class="hidden">Post</h2>
+            <div class="lightbox-scroll-con">
+                <i class="fa fa-close close"></i>
+                <img src="" alt="larger bio image">
+                {{!-- <h3></h3> --}}
+                <div class="lb-desc">
+                    {{!-- render the database content here --}}
+                    {{!-- used in main.js parseUserData function --}}
+                </div>
+            </div>
+    </section>
+</section>

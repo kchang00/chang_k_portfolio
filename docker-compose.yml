@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  php:
+    build: ./.docker/php/
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - 8010:80
+    environment:
+      IDP_ENVIRONMENT: docker
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+        - mysql:/var/lib/mysql
+        - ./data:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: docker_u
+        MYSQL_PASSWORD: docker_p
+        MYSQL_DATABASE: db_movies
+
+  phpmyadmin:
+    depends_on:
+        - mysql
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - 8011:80
+    environment:
+        PMA_HOSTS: mysql
+        PMA_USER: docker_u
+        PMA_PASSWORD: docker_p
+  email:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+volumes:
+  mysql:

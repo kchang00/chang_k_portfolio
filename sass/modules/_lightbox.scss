@@ -1,11 +1,12 @@
 .lb-desc {
-    width: 90%;
+    background: $white;
+    // match pwork-more section anchor height
+    margin-bottom: 60vh;
 }
 
 .lightbox { 
     display: none;
     flex-direction: column;
-    padding: 0px $mobile-margin;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -13,35 +14,66 @@
     bottom: 0px;
     z-index: 3;
     animation: fade-in 0.3s 1 ease-out;
+    // background-color: rgba(250, 250, 250, 0.95);
+    background: $white;
 
     .lightbox-scroll-con {
         display: flex;
         flex-direction: column;
-        align-items: center;
         height: 100%;
         overflow: scroll;
-        // padding: 20px;
-    }
-
-    background-color: rgba(250, 250, 250, 0.95);
-
-    img { 
-        max-width: 500px; 
-        margin-top: $mobile-margin;
     }
 
     .close {
-        cursor: pointer;
-        font-size: 2em;
-        margin: $mobile-margin 0px;
-        flex: 0;
-        // background: purple;
+        transition: all .2s ease-in-out;
         align-self: flex-end;
         position: fixed;
-        background: white;
-        padding: 10px 12px;
-        border-radius: 40px;
-        color: #5C8B5D
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        width: $button-width;
+        height: $button-height;
+        font-size: 0;
+        //handles weird spacing when expanded
+        min-height: $button-height;
+        border-radius: 50px;
+    }
+
+    .c-close {
+        position: relative;
+        span {
+            display: block;
+            position: absolute;
+            top: $button-width * 0.45833333;
+            left: $button-pad;
+            right: $button-pad;
+            height: $bar-thickness;
+            background: none;
+            border-radius: $hamburger-border-radius;
+
+            &::before,
+            &::after {
+                position: absolute;
+                display: block;
+                left: 0;
+                width: 100%;
+                height: $bar-thickness;
+                background: $salmon;
+                content: "";
+                border-radius: $hamburger-border-radius;
+                transform-origin: center center;
+            }
+
+            &::before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                bottom: 0;
+                transform: rotate(-45deg);
+            }
+        }
     }
 }
 
@@ -84,64 +116,178 @@
 .pwork-con {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-top: 40px;
-    max-width: 1080px;
+    justify-content: center;
+    // same as sidebar
+    max-width: 950px;
+    padding: 160px $mobile-gutter 0px $mobile-gutter;
+    margin: 0 auto;
 }
 
 .pwork-desc {
     display: flex;
     flex-direction: column;
-    flex: 1 1 90%;
-    margin-right: 3em;
-    margin-bottom: 2em;
-    h3 {
-        font-size: 2em;
+    flex: 1;
+    max-width: 550px;
+    h2 {
+        margin-bottom: $mobile-margin;
     }
-    h4 {
-        font-size: 1em;
-        margin-bottom: 20px;
+    h3 {
+        margin-bottom: $mobile-margin * 2;
+    }
+    p {
+        margin-bottom: $mobile-margin * 2;
     }
 }
 
 .pwork-sidebar {
-    h4 {
-        font-size: 1em;
+    margin-bottom: $mobile-margin * 2;
+    max-width: $tablet-size;
+
+    h5 {
+        @include h5-class;
+        line-height: 0;
+        margin-bottom: 1em;
     }
-    p {
-        margin-bottom: 20px;
+    ul {
+        margin-bottom: $mobile-margin * 2;
+        li {
+            font-size: 0.9em;
+            color: $teal;
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7em;
+            text-align: justify;
+        }
+    }
+}
+
+.pwork-img {
+    // min-height: 340px;
+    // min-width: 340px;
+    flex: 1;
+    // px value = 15px + 10px <- not sure why it's 10px
+    width: calc(100% - 25px);
+    padding-bottom: calc(100% - 25px);
+    border-radius: 20px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    margin: 15px;
+    background: $teal;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.pwork-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: $mobile-margin * 3;
+    text-align: center;
+    min-height: 60vh;
+    h2 {
+        line-height: 1.5em;
+        margin-bottom: $mobile-margin * 2;
+        font-weight: 400;
+    }
+}
+
+.pwork-more {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    a {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 60vh;
+        padding: $mobile-gutter;
+        justify-content: flex-end;
+
+        p{
+            font-size: 0.9em;
+            color: $white;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        img {
+            max-width: 70px;
+            margin-bottom: $mobile-margin;
+        }
+        
+        &:first-child {
+            background: $salmon;
+            align-items: flex-start;
+        }
+        &:last-child {
+            background: $teal;
+            align-items: flex-end;
+            img {
+                transform: rotate(180deg);
+            }
+        }
     }
 }
 
 @media screen and (min-width: $tablet-size) {
-
-    .lightbox {
-        padding: 0px $tablet-margin;
-        img { 
-            margin-top: $tablet-margin;
-        }
+    .lb-desc {
+        margin-bottom: 30vh;
     }
     .close {
         margin: $tablet-margin 0px;
     }
+    .pwork-con {
+        padding: 180px 130 0px 130px;
+        align-items: center;
+    }
+    .pwork-sidebar {
+        display: flex;
+        justify-content: space-between;
+        // same as pwork-desc
+        min-width: 550px;
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ul {
+                align-self: flex-start;
+            }
+        }
+    }
+    .pwork-contact {
+        min-height: 50vh;
+    }
+    .pwork-more {
+        a {
+            height: 30vh;
+        }
+    }
+
+
 }
 
-
 @media screen and (min-width: 800px) {
-
-    .pwork-con {
-        flex-direction: row;
-        // align-items: center;
+    .pwork-img {
+        width: auto;
+        //reset padding hack
+        padding-bottom: 0;
+        height: 80vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 15px 0;
     }
 }
 
 @media screen and (min-width: $desktop-size) {
-
-    .lightbox {
-        padding: 0px $desktop-margin;
-        img { 
-            margin-top: $desktop-margin;
-        }
+    .lb-desc {
+        margin-bottom: 50vh;
     }
     .close {
         margin: $desktop-margin 0px;
@@ -150,6 +296,38 @@
         padding: 60px 0px;
     }
     .pwork-con {
-        margin-top: 60px;
+        flex-direction: row;
+        padding: 200px $desktop-gutter 0px $desktop-gutter;
+        // aligns sidebar items to top
+        align-items: flex-start;
+        .btn-small {
+            margin-bottom: 100px;
+        }
+    }
+    .pwork-sidebar {
+        order: -1;
+        flex-wrap: wrap;
+        flex: 1;
+        max-width: 200px;
+        justify-content: flex-end;
+        margin-right: $desktop-gutter;
+        // reset tablet min-width for sidebar
+        min-width: 0;
+
+        div:nth-child(2) {
+            // alignment fix - align with deliverables
+            margin-right: 33px;
+        }
+
+        div:last-child {
+            order: -1;
+            margin-right: 40px;
+        }
+    }
+
+    .pwork-more {
+        a {
+            height: 50vh;
+        }
     }
 }

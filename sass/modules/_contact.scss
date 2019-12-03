@@ -1,0 +1,90 @@
+.contact-con {
+    h2, h3 {
+        margin-bottom: $mobile-margin * 2;
+    }
+    h3 {
+        line-height: 1.6em;
+        font-size: 1.15em;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        label {
+            font-size: 0.9em;
+            color: $salmon;
+            font-family: 'Josefin Sans', sans-serif;
+            line-height: 1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        input, textarea {
+            background: $pearl;
+            border: none;
+            padding: 20px;
+            font-size: 0.8em;
+            transition: 0.3s;
+            color: $salmon;
+            font-family: 'Josefin Sans', sans-serif;
+            line-height: 1.5em;
+            font-weight: 400;
+            &::placeholder {
+                color: #FABCA9;
+                font-family: 'Josefin Sans', sans-serif;
+                line-height: 1em;
+                font-weight: 400;
+                margin-bottom: 20px;
+                margin-top: 20px;
+            }
+        }
+        input {
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            resize: none;
+            height: 40vh;
+        }
+        button {
+            max-width: auto;
+            max-height: auto;
+            padding: 20px 50px 30px 50px;
+            margin: 60px 0px 100px 0px;
+            cursor: pointer;
+        }
+    }
+
+    .form-con {
+        display: flex;
+        flex-direction: column;
+        div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    .contact-con {
+        h2{
+            margin-bottom: $mobile-margin;
+        }
+        form {
+            textarea {
+                height: 280.7px;
+            }
+        }
+        .form-con {
+            flex-direction: row;
+            div:first-child {
+                max-width: 320px;
+            }
+
+            div:last-child {
+                margin-left: 45px;
+            }
+        }
+    }
+}

@@ -2,17 +2,21 @@
 
 @import '_vars';
 @import 'modules/_main_nav';
-@import 'modules/_users';
+@import 'modules/_home';
 @import 'modules/_lightbox';
 @import 'modules/_footer';
 @import 'modules/_error';
+@import 'modules/_contact';
 
 html, body {
     scroll-behavior: smooth;
     // lightbox scrolling
     overflow: auto;
-    height: 100%;
+    // height: 100%;
+}
 
+body {
+    background: $white;
 }
 
 img {
@@ -21,12 +25,21 @@ img {
     max-height: 100%;
 }
 
+::selection {
+    background: $salmon; /* WebKit/Blink Browsers */
+    color: $white;
+  }
+::-moz-selection {
+background: $salmon; /* Gecko Browsers */
+color: $white;
+}
+
 h2 {
-    @include h2-class;
+    @include title-font;
 }
 
 h3 {
-    @include h3-class;
+    @include subtitle-font;
 }
 
 h4 {
@@ -42,6 +55,12 @@ a {
     cursor: pointer;
 }
 
+a, input, textarea, button {
+    &:focus {
+        outline: 3px double $salmon;
+     }
+}
+
 .hidden {
     display: none;
 }
@@ -55,9 +74,78 @@ a {
     // text-align: center;
 }
 
+// this class is similar pwork-con in that it controls the spacing between the content and the nav
+.main-con-nav-po {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 160px $mobile-gutter 0px $mobile-gutter;
+    // same width as desc-wrap on home.php
+    max-width: 770px;
+}
+
 @keyframes fade-in {
     0%   { opacity: 0; }
     100% { opacity: 1; }
+}
+
+.btn-small {
+    display: flex;
+    max-width: 200px;
+    height: 45px;
+    font-size: 0.9em;
+    color: $white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: $mobile-margin * 2;
+    div:first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 130px;
+        max-width: 130px;
+        background: $salmon;
+    }
+
+    div:nth-child(2) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        background: #F27F60;
+        transition: 0.3s all ease;
+        img {
+            max-width: 25px;
+            transition: 0.3s all ease-in-out;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        div:nth-child(2) {
+            width: 55px;
+            background: #F27F60;
+            img {
+                transform: translate(5px, 0px);
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.btn-large {
+    display: flex;
+    max-width: 180px;
+    max-height: 45px;
+    padding: 20px 50px;
+    font-size: 0.9em;
+    color: $white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    background: $salmon;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn {
@@ -86,5 +174,21 @@ a {
         -o-transition: all .4s ease-in-out;
         -webkit-transition: all .4s ease-in-out;
         transition: all .4s ease-in-out;
+    }
+}
+
+@media screen and (min-width: $tablet-size) {
+    .main-con-nav-po {
+        padding: 180px 130 0px 130px;
+        // same width as portfolio info, welcome desc
+        max-width: 550px;
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    .main-con-nav-po {
+        padding: 200px $desktop-gutter 0px $desktop-gutter;
+        // same width as portfolio info, welcome desc
+        max-width: 770px;
     }
 }

@@ -6,13 +6,13 @@
 
 	function swapDate() {
 		if (h <= 11) { // before or at 11 o'clock
-			greeting.innerHTML = " Good Morning";
+			greeting.innerHTML = " Good Morning! ";
 		}
 		else if (h <= 16) { // before or at 4 o'clock
-			greeting.innerHTML = " Good Afternoon";
+			greeting.innerHTML = " Good Afternoon! ";
 		}
 		else if (h <= 24) { // before or at 12 o'clock
-			greeting.innerHTML = " Good Evening";
+			greeting.innerHTML = " Good Evening! ";
 		}
 	}
 

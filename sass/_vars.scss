@@ -4,51 +4,62 @@ $tablet-size: 670px;
 $tablet-margin: 30px;
 $mobile-margin: 20px;
 $desktop-margin: 50px;
+$desktop-gutter: 120px;
+$mobile-gutter: 35px;
+$tablet-gutter: 80px;
 
 // colours
 $pink: #5C8B5D;
 $light-blue: #35c0d0;
 $grey:#555;
 
-@mixin h2-class {
-    font-size: 3em;
-    color: $pink;
-    font-family: 'Nunito Sans', sans-serif;
+$teal: #3DADBD;
+$salmon: #FA8565;
+$navy: #1F5269;
+$pearl: #F9F4ED;
+$white: #FFFDFD;
+
+@mixin title-font {
+    font-size: 1.95em;
+    color: $teal;
+    font-family: 'Josefin Sans', sans-serif;
     line-height: 1em;
-    text-transform: uppercase;
+    letter-spacing: .1rem;
     font-weight: 600;
+    // bold = 700
 }
 
-@mixin h3-class {
-    font-size: 2em;
-    color: $pink;
-    font-family: 'Nunito Sans', sans-serif;
+@mixin subtitle-font {
+    font-size: 1.25em;
+    color: $salmon;
+    font-family: 'Josefin Sans', sans-serif;
     line-height: 1.2em;
-    text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 @mixin h4-class {
     font-size: 1em;
-    color: $pink;
-    font-family: 'Nunito Sans', sans-serif;
+    color: $salmon;
+    font-family: 'Josefin Sans', sans-serif;
     line-height: 3em;
-    text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 @mixin h5-class {
-    font-size: 1.2em;
-    color: $pink;
-    font-family: 'Nunito Sans', sans-serif;
-    line-height: 2em;
+    font-size: 0.7em;
+    color: $teal;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+    line-height: 3em;
+    font-weight: 700;
+    letter-spacing: .05rem;
 }
 
 @mixin p-class {
-    font-size: 1em;
-    color: $grey;
-    font-family: 'Raleway', sans-serif;
-    line-height: 1.5em;
+    font-size: 0.9em;
+    color: $navy;
+    font-family: 'Crimson Text', serif;
+    line-height: 1.7em;
     text-align: justify;
 }
 

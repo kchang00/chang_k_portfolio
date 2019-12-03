@@ -1,5 +1,5 @@
 
-$button-width: 60px;                    // The width of the button area
+$button-width: 50px;                    // The width of the button area
 $button-height: $button-width;          // The height of the button area
 $bar-thickness: $button-width * 0.08;   // The thickness of the button bars
 $button-pad: $button-width * 0.1875;    // The left/right padding between button area and bars.
@@ -12,7 +12,7 @@ $hamburger-border-radius: 20px;
     left: 0;
     right: 0;
     z-index: 3;
-    background: #75D89D;
+    // background: #75D89D;
 }
 
 .main-nav-con {
@@ -20,7 +20,7 @@ $hamburger-border-radius: 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px $mobile-margin;
+    padding: $mobile-gutter;
     // background: tomato;
     position: relative;
     z-index: 2;
@@ -44,8 +44,9 @@ $hamburger-border-radius: 20px;
     left: 0;
     bottom: 0;
     position: fixed;
-    background: #75D89D;
-    padding: 10px $mobile-margin !important;
+    background: $white;
+    // hamburger alignment
+    padding: $mobile-gutter !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +57,6 @@ $hamburger-border-radius: 20px;
 }
 
 .hamburger {
-	color: #5C8B5D;
     transition: all .2s ease-in-out;
     align-self: flex-end;
     position: relative;
@@ -68,6 +68,100 @@ $hamburger-border-radius: 20px;
     font-size: 0;
     //handles weird spacing when expanded
     min-height: $button-height;
+    border-radius: 50px;
+
+    &.hamburger-scroll-menu span {
+        background: $salmon;
+        &::before,
+        &::after {
+            background: $salmon;
+        }
+    }
+}
+
+.hamburger-bg {
+    background-color: $white;
+}
+
+// need to keep this class for animation to work - don't move into hamburger
+.c-hamburger {
+    span {
+        display: block;
+        position: absolute;
+        top: $button-width * 0.45833333;
+        left: $button-pad;
+        right: $button-pad;
+        height: $bar-thickness;
+        background: $white;
+        border-radius: $hamburger-border-radius;
+
+        &::before,
+        &::after {
+            position: absolute;
+            display: block;
+            left: 0;
+            width: 100%;
+            height: $bar-thickness;
+            background-color: white;
+            content: "";
+            border-radius: $hamburger-border-radius;
+        }
+
+        &::before {
+            top: (-1) * $button-width * 0.2083333333;
+        }
+
+        &::after {
+            bottom: (-1) * $button-width * 0.2083333333;
+        }
+    }
+}
+
+
+
+// X hamburger style and animation
+
+.c-hamburger--htx {
+    span {
+        &::before, 
+        &::after {
+            transition-duration: $button-transistion-duration, $button-transistion-duration;
+            transition-delay: $button-transistion-duration, 0s;
+        }
+
+        &::before {
+            transition-property: top, transform;
+        }
+
+        &::after {
+            transition-property: bottom, transform;
+        }
+    }
+}
+
+.c-hamburger--htx.is-active {
+    span {
+        background: none;
+
+        &::before,
+        &::after {
+            transition-delay: 0s, $button-transistion-duration;
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+            transform-origin: center center;
+            background: $salmon;
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+            transform-origin: center center;
+            background: $salmon;
+        }
+    }
 }
 
 // .hamburger.expanded {
@@ -93,24 +187,33 @@ $hamburger-border-radius: 20px;
         }
     }
     a {
-        font-size: 2em;
-        color: white;
-        font-family: ‘Nunito Sans’, sans-serif;
+        @include title-font;
+        font-weight: 400;
         line-height: 2em;
         // remember, mobile users need to see the effect immediately on click
         transition: all ease-out;
         &:focus {
-            color: $pink;
+            color: $salmon;
         }
         &:hover {
             transition: all .3s ease-out;
-            color: $pink;
+            color: $salmon;
         }
     }
 }
 
 .logo {
+    // accounts for weird spacing with logo-bg
+    display:flex;
+    justify-content: center;
+    align-items: center;
     max-width: 50px;
+    transition: all $button-transistion-duration ease;
+}
+
+.logo-bg {
+    background: $white;
+    border-radius: 50px;
 }
 
 .main-social {
@@ -127,14 +230,11 @@ $hamburger-border-radius: 20px;
     }
 }
 
-@media screen and (min-width: $tablet-size) {
-    .main-nav-con {
-        padding: 10px $tablet-margin;
-    }
-    .hamburger-nav-con.slide-toggle {
-        padding: 10px $tablet-margin !important;
-    }
-}
+// @media screen and (min-width: $tablet-size) {
+//     .hamburger-nav-con.slide-toggle {
+//         padding: $mobile-gutter !important;
+//     }
+// }
 
 @media screen and (min-width: $desktop-size) {
     // .nav-positioning {
@@ -151,11 +251,11 @@ $hamburger-border-radius: 20px;
     }
 
     .main-nav-con {
-        padding: 10px $desktop-margin;
+        padding: 40px 80px;
         a {
             transition: all .3s ease-out;
             &:hover {
-                color: $pink;
+                color: $salmon;
             }
         }
     }
@@ -174,7 +274,19 @@ $hamburger-border-radius: 20px;
         }
         a {
             @include h5-class;
-            color: white;
+            color: $white;
+        }
+
+        &.scroll-menu a {
+            line-height: 1em;
+            background: $white;
+            padding: 10px 10px 7px 10px;
+            border-radius: 20px;
+            color: $teal;
+                &:hover,
+                &:focus {
+                    color: $salmon;
+                }
         }
     }
 
@@ -186,73 +298,4 @@ $hamburger-border-radius: 20px;
         align-self: center;
         margin-right: 300px;
     }
-}
-
-.c-hamburger span {
-  display: block;
-  position: absolute;
-  top: $button-width * 0.45833333;
-  left: $button-pad;
-  right: $button-pad;
-  height: $bar-thickness;
-  background: white;
-  border-radius: $hamburger-border-radius;
-}
-
-.c-hamburger span::before,
-.c-hamburger span::after {
-  position: absolute;
-  display: block;
-  left: 0;
-  width: 100%;
-  height: $bar-thickness;
-  background-color: white;
-  content: "";
-  border-radius: $hamburger-border-radius;
-}
-
-.c-hamburger span::before {
-  top: (-1) * $button-width * 0.2083333333;
-}
-
-.c-hamburger span::after {
-  bottom: (-1) * $button-width * 0.2083333333;
-}
-
-
-// X hamburger style and animation
-
-.c-hamburger--htx span::before,
-.c-hamburger--htx span::after {
-  transition-duration: $button-transistion-duration, $button-transistion-duration;
-  transition-delay: $button-transistion-duration, 0s;
-}
-
-.c-hamburger--htx span::before {
-  transition-property: top, transform;
-}
-
-.c-hamburger--htx span::after {
-  transition-property: bottom, transform;
-}
-
-.c-hamburger--htx.is-active span {
-  background: none;
-}
-
-.c-hamburger--htx.is-active span::before {
-  top: 0;
-  transform: rotate(45deg);
-  transform-origin: center center;
-}
-
-.c-hamburger--htx.is-active span::after {
-  bottom: 0;
-  transform: rotate(-45deg);
-  transform-origin: center center;
-}
-
-.c-hamburger--htx.is-active span::before,
-.c-hamburger--htx.is-active span::after {
-  transition-delay: 0s, $button-transistion-duration;
 }

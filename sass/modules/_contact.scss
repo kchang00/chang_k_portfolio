@@ -64,6 +64,28 @@
             flex: 1;
         }
     }
+
+    .lightbox {
+        outline: 3px solid #fff;
+        outline-offset: -13px;
+        background: $pearl;
+        .logo {
+            display: none;
+        }
+        img {
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+        .thank-you-con {
+            display: flex;
+            flex-direction: column;
+            // background:gold;
+            flex: 1;
+            justify-content: center;
+            align-items:center;
+            padding: $mobile-margin;
+        }
+    }
 }
 
 @media screen and (min-width: $desktop-size) {

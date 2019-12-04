@@ -12,20 +12,25 @@
     background: white;
     flex: 1;
     justify-content: center;
-    align-items: center;
-    padding: 3em 3em 3em $mobile-margin;
+    padding: 40px $mobile-gutter $mobile-gutter $mobile-gutter ;
 
 
     h2 {
         margin-bottom: 1em;
     }
 
-    p {
-        margin-bottom: 4em; 
+    h3 {
+        margin-bottom: 40px; 
+        line-height: 1.7em;
     }
 
     a {
         align-self: flex-start;
+    }
+    .btn-small {
+        div:first-child {
+        max-width: 140px;
+        }
     }
 }
 
@@ -39,10 +44,10 @@
     order: -1;
 
     img {
-        max-width: 400px;
-        flex: 1 1 400px;
+        max-width: 300px;
+        flex: 1 1 300px;
         left: 0;
-        margin-top: 73px;
+        margin-top: 130px;
     }
 }
 
@@ -52,9 +57,11 @@
     }
 
     .error-message-con {
-        padding: $tablet-margin;
-        a {
-            align-self: center;
+        padding: 0px $tablet-gutter;
+        align-self: center;
+        .error-message-po-con{
+            // needsmore visual sp
+            margin-top: 100px;
         }
     }
 
@@ -65,10 +72,26 @@
 
         img {
         max-width: 400px;
+        margin-top: 100px;
         -webkit-transform: rotate(90deg) translate( 0, 4.5%);
         -ms-transform: rotate(90deg)translate(0, 4.5%);
         transform: rotate(90deg)translate(0, 4.5%);
         transform-origin: center center;
+        }
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    .error-img-con {
+        max-width: none;
+    }
+
+    .error-message-con {
+        // reset padding
+        padding: 0;
+        padding-left: $desktop-gutter * 1.5;
+        h3 {
+            padding-right: 60px;
         }
     }
 }

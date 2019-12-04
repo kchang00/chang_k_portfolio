@@ -15,7 +15,7 @@
                     <h2 class="hidden">Main Navigation</h2>
                     <ul>
                         <a href="#portfolio-lightbox-con"><li>Portfolio</li></a>
-                        <a href="#"><li>About</li></a>
+                        <a href="about.php"><li>About</li></a>
                         <a href="contact.php"><li>Contact</li></a>
                     </ul>
                 </nav>
@@ -67,16 +67,36 @@
                         </a>
                     </div>
                 {{/each}} -->
-                <div class="user-panel">
-                    <img src="public/images/botw.jpg" alt="Portfolio Image">
-                    <a class="u-link" href="">
-                        <h3>Test Porfolio Title</h3>
-                        <h4>Test Subtitle</h4>
-                    </a>
+                <?php
+                //include database and object files
+                include_once './config/database.php';
+                include_once './objects/portfolio_item_data.php';
+
+                // instantiate database and portfolio_item_data object
+                // vars found in config/database.php
+                $database = new Database();
+                $db = $database->getConnection();
+                // var found in objects/portfolio_item_data.php
+                $pitem = new PItem($db);
+                // referencing the getWorks function in portfolio_item_data.php - this is how the table is being selected
+                $stmt = $pitem->getHomeWorks();
+
+
+                $num = $stmt->rowCount();
+
+                if($num>0):?>
+
+                <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)):?>
+                <!-- uncomment when the php is working -->
+                <!-- <div class="user-panel" style="background:url(../../public/images/<?php echo $row['Imgs'];?>) no-repeat center;"> -->
+                <div class="user-panel" style="background:url(../../public/images/botw.jpg) no-repeat center;">
+                    <div class="u-link">
+                        <h3><?php echo $row['Title'];?></h3>
+                        <h4><?php echo $row['Medium'];?></h4>
+                    </div>
                 </div>
             </section>
-
-            <!-- this will be filled in on the client side when we render our AJAX data -->
+            
             <section class="lightbox">
                 <div class="lightbox-scroll-con">
                     <div class="nav-positioning">
@@ -89,53 +109,57 @@
                     </div>
                     <div class="lb-desc">
                         <!-- render the database content here -->
-                        <!-- used in main.js parseUserData function -->
-                        <div class="pwork-con">
-                            <div class="pwork-desc">
-                                <h2>Work Title</h2>
-                                
-                                <h3>What is It?</h3>
-                                <p>Work Description I’m an Interactive Media Designer — a versatile artist who makes websites, games, graphics, and animation. I believe in creating intuitive design that exudes personality, while staying authentic to brand vision. I’m based in London, Ontario! </p>
-                                <a href="#" class="btn-small">
-                                    <div>See project</div>
-                                    <div><img src="public/images/arrow_right_small.svg" alt="Right Arrow"></div>
-                                </a>
+                            <div class="pwork-con">
+                                <div class="pwork-desc">
+                                    <h2><?php echo $row['Title'];?></h2>
+                                    
+                                    <h3><?php echo $row['Subtitle'];?></h3>
+                                    <p><?php echo $row['Description'];?></p>
+                                    <a href="#" class="btn-small">
+                                        <div>See project</div>
+                                        <div><img src="public/images/arrow_right_small.svg" alt="Right Arrow"></div>
+                                    </a>
+                                </div>
+                                <div class="pwork-sidebar">
+                                    <div>
+                                        <h5>Deliverables</h5>
+                                        <ul>
+                                            <li><?php echo $row['Deliverables'];?></li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h5>Partners</h5>
+                                        <ul>
+                                            <li><?php echo $row['Team'];?></li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h5>Year</h5>
+                                        <!-- loop through tools here -->
+                                        <ul>
+                                            <li><?php echo $row['Year'];?></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="pwork-sidebar">
-                                <div>
-                                    <h5>Deliverables</h5>
-                                    <ul>
-                                        <li>Deliverable1</li>
-                                    </ul>
-                                </div>
+                            <div class="pwork-img"></div>
+                            <div class="pwork-img"></div>
+                            <div class="pwork-img"></div>
 
-                                <div>
-                                    <h5>Partners</h5>
-                                    <ul>
-                                        <li>Name1</li>
-                                    </ul>
-                                </div>
-                                
-                                <div>
-                                    <h5>Year</h5>
-                                    <!-- loop through tools here -->
-                                    <ul>
-                                        <li>2019</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pwork-img"></div>
-                        <div class="pwork-img"></div>
-                        <div class="pwork-img"></div>
+                            <!-- can include video here -->
 
-                        <!-- can include video here -->
+                            <section class="pwork-contact">
+                                <h2>Want to make something like this?</h2>
+                                <a href="#" class="btn-large">Yeah!</a>
+                            </section>
+                        </div> <!-- end of main database content -->
+                    <?php endwhile;
 
-                        <section class="pwork-contact">
-                            <h2>Want to make something like this?</h2>
-                            <a href="#" class="btn-large">Yeah!</a>
-                        </section>
-                    </div> <!-- end of main database content -->
+                    else:?>
+                    <h3>Coming Soon</h3>
+                    <?php endif;?>
                     <section class="pwork-more">
                         <a href="#">
                             <img src="public/images/arrow_left_long.svg" alt="Previous">

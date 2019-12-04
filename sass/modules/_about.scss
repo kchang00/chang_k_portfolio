@@ -1,0 +1,259 @@
+.about-con {
+    h3 {
+        margin-bottom: $mobile-margin * 2;
+    }
+
+    .main-con-nav-po {
+        padding-top: 0;
+    }
+    .quote {
+        padding: 80px 0px;
+        font-size: 0.9em;
+        color: $teal;
+        font-family: 'Josefin Sans', sans-serif;
+        line-height: 2.1em;
+        font-weight: 400;
+        letter-spacing: .025rem;
+        text-align: center;
+        position: relative;
+
+        .quote-highlight {
+            color: $salmon;
+        }
+
+        img {
+            max-width: 90px;
+            position: absolute;
+            opacity: 0.1;
+            top: 23%;
+            left: -5%;
+        }
+    }
+
+    .skills {
+        margin-bottom: 60px;
+        h2 {
+            margin-bottom: 45px;
+        }
+        h3 {
+            margin-bottom: $mobile-margin;
+            line-height: 1.6em;
+            font-size: 1.15em;
+        }
+        .skills-lists{
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1;
+            // background:gold;
+            justify-content: space-between;
+            max-width: 300px;
+            div {
+                margin-right: 50px;
+            }
+        }
+        ul {
+            margin-bottom: $mobile-margin * 2;
+            li {
+                font-size: 0.9em;
+                color: $navy;
+                font-family: 'Crimson Text', serif;
+                line-height: 1.7em;
+                text-align: justify;
+            }
+        }
+    }
+
+    .services {
+        background: #fff;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+        margin-right: $mobile-gutter*2;
+
+        .services-img {
+            // NOTE: the services-img outside of the service con is currently visible on the page
+            display: none;
+        }
+
+        h2 {
+            margin-bottom: 40px;
+        }
+
+        .services-con {
+            // based on main-nav-con-po
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 60px $mobile-gutter;
+            // same width as desc-wrap on home.php
+            max-width: 770px;
+            ul {
+                font-size: 0.9em;
+                color: $teal;
+                font-family: 'Josefin Sans', sans-serif;
+                line-height: 2.1em;
+                font-weight: 400;
+                letter-spacing: .025rem;
+            }
+        }
+    }
+    .services-img {
+        flex:1;
+        max-width: 200px;
+        margin: 100px auto;
+    }
+    .process {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 80px;
+        h2 {
+            margin-bottom: 60px;
+        }
+        h3 {
+            line-height: auto;
+            font-size: 1.15em;
+        }
+        .steps-con {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-step {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: $mobile-margin * 2;
+            div:first-child {
+                font-size: 2.4em;
+                color: $salmon;
+                font-family: 'Crimson Text', sans-serif;
+                font-weight: 600;
+                line-height: 0.7em;
+                margin-right: 40px;
+            }
+            div:last-child {
+                h3 {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+.about-desc {
+    // based on welcome-desc in _home.scss, index.php
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+    padding: 160px $mobile-gutter 0px $mobile-gutter;
+    // same width as desc-wrap on home.php
+    max-width: 770px;
+
+    .desc-wrap {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: $tablet-size) {
+    .about-con {
+        .services {
+            h2 {
+                margin-bottom: 45px;
+            }
+            .services-con{
+                padding: 80px 130px;
+                // same width as portfolio info, welcome desc
+                max-width: 550px;
+            }
+        }
+    }
+    .about-desc {
+        padding: 180px 130 0px 130px;
+        // same width as portfolio info, welcome desc
+        max-width: 550px;
+    }
+}
+
+@media screen and (min-width: $desktop-size) {
+    .about-con {
+        h2{
+            margin-bottom: $mobile-margin;
+        }
+        .skills {
+            .skills-lists {
+                max-width: none;
+                div {
+                    &:last-child {
+                        margin-right: 0px;
+                    }
+                }
+            }
+        }
+        .services {
+            background: none;
+            box-shadow:none;
+            margin-right: 0;
+            .services-img {
+                // NOTE: the services-img outside of the service con is currently hidden on the page
+                display: flex;
+                flex:1;
+                max-width: none;
+                margin: 0px;
+                max-height: 276px;
+                img {
+                    flex:0;
+                }
+            }
+            .services-con{
+                padding: 0px;
+                // same width as portfolio info, welcome desc
+                max-width: 770px;
+                ul {
+                    // lines up list with Services title
+                    transform: translate(0, -75px);
+                    background: #fff;
+                    box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+                    align-self: flex-end;
+                    padding: 85px 65px 85px 80px;
+                    // list-style-type: circle;
+                    font-size: 1.15em;
+                    color: $teal;
+                    font-family: 'Josefin Sans', sans-serif;
+                    line-height: 2.6em;
+                    font-weight: 400;
+                    letter-spacing: .025rem;
+                    li {
+                        // makes sure bullet points line up with process steps
+                        // padding-left: 60px;
+                    }
+                }
+                .img-list-wrap {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+        }
+        .services-img {
+            display: none;
+        }
+        .process {
+            .steps-con{
+                flex-direction: row;
+            }
+            .process-column{
+                // makes them flex equally - gives them same width
+                flex: 1;
+                &:first-child {
+                    margin-right: 150px;
+                }
+            }
+        }
+    }
+    .about-desc {
+        padding: 200px $desktop-gutter 0px $desktop-gutter;
+        // same width as portfolio info, welcome desc
+        max-width: 770px;
+    }
+}

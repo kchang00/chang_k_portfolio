@@ -17,9 +17,9 @@ services:
     restart: always
     environment:
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_USER: docker_u
-        MYSQL_PASSWORD: docker_p
-        MYSQL_DATABASE: db_movies
+        MYSQL_USER: portfolio_u
+        MYSQL_PASSWORD: p0rtf0li0_p!!
+        MYSQL_DATABASE: db_portfolio_u
 
   phpmyadmin:
     depends_on:
@@ -29,8 +29,8 @@ services:
         - 8011:80
     environment:
         PMA_HOSTS: mysql
-        PMA_USER: docker_u
-        PMA_PASSWORD: docker_p
+        PMA_USER: portfolio_u
+        PMA_PASSWORD: p0rtf0li0_p!!
   email:
     image: mailhog/mailhog
     ports:

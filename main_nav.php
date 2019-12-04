@@ -7,7 +7,7 @@
                 <h2 class="hidden">Main Navigation</h2>
                 <ul>
                     <a href="index.php#portfolio-lightbox-con"><li>Portfolio</li></a>
-                    <a href="#"><li>About</li></a>
+                    <a href="about.php"><li>About</li></a>
                     <a href="contact.php"><li>Contact</li></a>
                 </ul>
             </nav>

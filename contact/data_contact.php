@@ -16,7 +16,7 @@ $name = '';
 $email = '';
 $subject = '';
 $message = '';
-$recipient = 'k_chang@fanshaweonline.ca';
+$recipient = 'hello@kaylachang.ca';
 
 // to make a field required, kill the function if the value is "empty"
 //Use GET to pass along message ?=true or ?=false to redirect users after form is sent + make thank you message pop up in JS
@@ -51,11 +51,29 @@ if (isset($_POST['message'])) {
 
 // if(mail($recipient, $subject, $message, $headers)){
 if(mail($recipient, $subject, $message)){
-    echo '<p>Thank you for contacting us, '.$name.'</p>';
+    // echo '<p>Thank you for contacting us, '.$name.'</p>';
+    echo '
+    <section class="lightbox show-lb">
+        <div class="lightbox-scroll-con">
+            <div class="nav-positioning">
+                <div class="main-nav-con">
+                    <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
+                    <div class="hamburger-nav-con">
+                        <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="thank-you-con">
+                <img src="public/images/submit_character.svg" alt="Submit Thank You">
+                <h2>You are awesome, ' .$name.'.</h2>
+                <h3>Thanks for reaching out. I will get back to you soon!</h3>
+            </div>
+        </div>
+    </section>
+
+    ';
 }else{
     echo '<p>We are sorry but the mail did not go through</p>';
 }
-
-
 
 ?>

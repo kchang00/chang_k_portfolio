@@ -53,20 +53,6 @@
         <section id="portfolio-lightbox-con">
             <section class="team">
                 <h2 class="hidden">Portfolio Work</h2>
-                <!-- loop through all our team members and put their info on the page -->
-                <!-- work = a var in an sql query in index.js) -->
-                <!-- forEach result in the sql query (meaning for each row of data),
-                populate the team section according to these elements in the html -->
-                <!-- This is like a JS forEach loop - hbs has built in helpers -->
-                <!-- {{#each work}}
-                    <div class="user-panel">
-                        <img src="images/{{Img}}" alt="Portfolio Image">
-                        <a class="u-link" href="{{ID}}">
-                            <h3>{{Title}}</h3>
-                            <h4>{{Info}}</h4>
-                        </a>
-                    </div>
-                {{/each}} -->
                 <?php
                 //include database and object files
                 include_once './config/database.php';
@@ -79,24 +65,28 @@
                 // var found in objects/portfolio_item_data.php
                 $pitem = new PItem($db);
                 // referencing the getWorks function in portfolio_item_data.php - this is how the table is being selected
-                $stmt = $pitem->getHomeWorks();
-
+                $stmt = $pitem->getWorks();
 
                 $num = $stmt->rowCount();
 
                 if($num>0):?>
 
-                <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)):?>
-                <!-- uncomment when the php is working -->
-                <!-- <div class="user-panel" style="background:url(../../public/images/<?php echo $row['Imgs'];?>) no-repeat center;"> -->
-                <div class="user-panel" style="background:url(../../public/images/botw.jpg) no-repeat center;">
-                    <div class="u-link">
-                        <h3><?php echo $row['Title'];?></h3>
-                        <h4><?php echo $row['Medium'];?></h4>
+                <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+                    var_dump($row);
+                        // REPLACE WITH CORRECT VARIABLE
+                        $all_tools = $row["Tools"];
+                        $separate_tools = explode(",", $row["Tools"]);
+
+                        var_dump($separate_tools);
+                    ?>
+                    <div class="user-panel" style="background:url(../../public/images/botw.jpg) no-repeat center;">
+                        <div class="u-link">
+                            <h3><?php echo $row['Title'];?></h3>
+                            <h4><?php echo $row['Medium'];?></h4>
+                        </div>
                     </div>
-                </div>
-            </section>
-            
+                </section>
+
             <section class="lightbox">
                 <div class="lightbox-scroll-con">
                     <div class="nav-positioning">
@@ -111,6 +101,7 @@
                         <!-- render the database content here -->
                             <div class="pwork-con">
                                 <div class="pwork-desc">
+                                    <!-- REPLACE WITH CORRECT VARIABLES -->
                                     <h2><?php echo $row['Title'];?></h2>
                                     
                                     <h3><?php echo $row['Subtitle'];?></h3>
@@ -124,7 +115,11 @@
                                     <div>
                                         <h5>Deliverables</h5>
                                         <ul>
-                                            <li><?php echo $row['Deliverables'];?></li>
+                                        <!-- REPLACE WITH CORRECT VARIABLES -->
+                                        <?php foreach ($separate_tools as $tools) {
+                                            // $separate_imgs as $imgs
+                                            echo '<li>' . $tools . '</li>';
+                                        } ?>
                                         </ul>
                                     </div>
 
@@ -155,11 +150,13 @@
                                 <a href="#" class="btn-large">Yeah!</a>
                             </section>
                         </div> <!-- end of main database content -->
+
                     <?php endwhile;
 
                     else:?>
                     <h3>Coming Soon</h3>
-                    <?php endif;?>
+                    <?php endif; ?>
+
                     <section class="pwork-more">
                         <a href="#">
                             <img src="public/images/arrow_left_long.svg" alt="Previous">

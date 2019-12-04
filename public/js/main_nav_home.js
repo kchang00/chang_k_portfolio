@@ -66,7 +66,6 @@
     
     
     hamburger.addEventListener('click', hamburgerMenu);
-    debugger;
     mainNavA.addEventListener('click', closeMenu);
 
 

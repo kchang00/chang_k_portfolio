@@ -3,7 +3,7 @@
 // this is an object
 class Database{
     private $host = 'localhost';
-    private $db_name = 'db_movies';
+    private $db_name = 'db_portfolio_u';
     private $password = '';
 
     //people outside of object have access to public
@@ -23,8 +23,8 @@ class Database{
         //For docker (IDP_ENVIRONMENT = var in docker.yml)
         if(getenv('IDP_ENVIRONMENT')==='docker'){
             $db_dsn['host'] = 'mysql';
-            $this->username = 'docker_u';
-            $this->password = 'docker_p';
+            $this->username = 'portfolio_u';
+            $this->password = 'p0rtf0li0_p!!';
         }
 
         //Catches and handles errors - inspect these lines of code

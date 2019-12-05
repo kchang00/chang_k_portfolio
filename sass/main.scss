@@ -5,7 +5,7 @@
 @import 'modules/_home';
 @import 'modules/_lightbox';
 @import 'modules/_footer';
-@import 'modules/_error';
+@import 'modules/_404';
 @import 'modules/_contact';
 @import 'modules/_about';
 
@@ -91,6 +91,8 @@ a, input, textarea, button {
     100% { opacity: 1; }
 }
 
+// hides buttons if there is no link
+
 .btn-small {
     display: flex;
     max-width: 200px;
@@ -100,6 +102,7 @@ a, input, textarea, button {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
     margin-bottom: $mobile-margin * 2;
+
     div:first-child {
         display: flex;
         justify-content: center;

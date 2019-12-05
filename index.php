@@ -51,7 +51,7 @@
         </section>
 
         <section id="portfolio-lightbox-con">
-            <section class="team">
+            <section class="portfolio-works">
                 <h2 class="hidden">Portfolio Work</h2>
                 <?php
                 //include database and object files
@@ -72,22 +72,33 @@
                 if($num>0):?>
 
                 <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
-                    var_dump($row);
-                        // REPLACE WITH CORRECT VARIABLE
-                        $all_tools = $row["Tools"];
-                        $separate_tools = explode(",", $row["Tools"]);
+                    // var_dump($row);
+                        // don't need this -> row is already grabbing all the data
+                        // $all_deliverables = $row["Deliverables"];
+                        $separate_deliverables = explode(",", $row["Deliverables"]);
+                        $separate_images = array_map('trim', explode(",", $row["Imgs"]));
+                        $separate_team = explode(",", $row["Team"]);
+                        $next_title = $row["Title"];
 
-                        var_dump($separate_tools);
+
+                        // var_dump($separate_deliverables);
+                        // echo $separate_deliverables[0];
+                        // exit;
                     ?>
-                    <div class="user-panel" style="background:url(../../public/images/botw.jpg) no-repeat center;">
-                        <div class="u-link">
+                    <div class="portfolio-card" style="background:url(../../public/images/<?php echo $separate_images[0];?>) no-repeat center;" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-nextproject="<?php echo htmlspecialchars(json_encode($row));?>">
+                        <div class="p-link">
                             <h3><?php echo $row['Title'];?></h3>
                             <h4><?php echo $row['Medium'];?></h4>
                         </div>
                     </div>
+                <?php endwhile;
+
+                else:?>
+                <h3>Coming Soon</h3>
+                <?php endif; ?>
                 </section>
 
-            <section class="lightbox">
+            <article class="lightbox">
                 <div class="lightbox-scroll-con">
                     <div class="nav-positioning">
                         <div class="main-nav-con">
@@ -101,12 +112,12 @@
                         <!-- render the database content here -->
                             <div class="pwork-con">
                                 <div class="pwork-desc">
-                                    <!-- REPLACE WITH CORRECT VARIABLES -->
-                                    <h2><?php echo $row['Title'];?></h2>
-                                    
-                                    <h3><?php echo $row['Subtitle'];?></h3>
-                                    <p><?php echo $row['Description'];?></p>
-                                    <a href="#" class="btn-small">
+                                    <!-- Hook it up to database -->
+                                    <!-- calling elements in JS and populating them from JSON object -->
+                                    <h2 class="project-title"></h2>
+                                    <h3 class="project-subtitle"></h3>
+                                    <p class="project-desc"></p>
+                                    <a href="" class="project-url btn-small">
                                         <div>See project</div>
                                         <div><img src="public/images/arrow_right_small.svg" alt="Right Arrow"></div>
                                     </a>
@@ -115,18 +126,18 @@
                                     <div>
                                         <h5>Deliverables</h5>
                                         <ul>
-                                        <!-- REPLACE WITH CORRECT VARIABLES -->
-                                        <?php foreach ($separate_tools as $tools) {
-                                            // $separate_imgs as $imgs
-                                            echo '<li>' . $tools . '</li>';
+                                        <?php foreach ($separate_deliverables as $deliverables) {
+                                            echo '<li>' . $deliverables . '</li>';
                                         } ?>
                                         </ul>
                                     </div>
 
                                     <div>
-                                        <h5>Partners</h5>
+                                        <h5>Team</h5>
                                         <ul>
-                                            <li><?php echo $row['Team'];?></li>
+                                        <?php foreach ($separate_team as $team) {
+                                            echo '<li>' . $team . '</li>';
+                                        } ?>
                                         </ul>
                                     </div>
                                     
@@ -134,41 +145,36 @@
                                         <h5>Year</h5>
                                         <!-- loop through tools here -->
                                         <ul>
-                                            <li><?php echo $row['Year'];?></li>
+                                            <!-- calling elements in JS and populating them from JSON object -->
+                                            <li class="project-year"></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="pwork-img"></div>
-                            <div class="pwork-img"></div>
-                            <div class="pwork-img"></div>
+                            <?php foreach ($separate_images as $img) {
+                                echo '<div class="pwork-img" style="background:url(../../public/images/'.$img.') no-repeat center"></div>';
+                            } ?>
+                            </ul>
 
                             <!-- can include video here -->
 
                             <section class="pwork-contact">
                                 <h2>Want to make something like this?</h2>
-                                <a href="#" class="btn-large">Yeah!</a>
+                                <a href="contact.php" class="btn-large">Yeah!</a>
                             </section>
                         </div> <!-- end of main database content -->
-
-                    <?php endwhile;
-
-                    else:?>
-                    <h3>Coming Soon</h3>
-                    <?php endif; ?>
-
                     <section class="pwork-more">
-                        <a href="#">
+                        <a href="" class="project-previous-url">
                             <img src="public/images/arrow_left_long.svg" alt="Previous">
-                            <p>Previous Project</p>
+                            <p class="project-previous-title">Previous Project</p>
                         </a>
-                        <a href="#">
+                        <a href="" class="project-next-url">
                             <img src="public/images/arrow_left_long.svg" alt="Next">
-                            <p>Next Project</p>
+                            <p class="project-next-title">Next Project</p>
                         </a>
                     </section>
                 </div>
-            </section>
+            </article>
         </section>
 
         <section class="thanks-footer">

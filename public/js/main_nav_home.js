@@ -6,7 +6,7 @@
           logo          = document.querySelector('.logo').getElementsByTagName('img')[0];
           mainNavA      = document.querySelector('.main-nav').getElementsByTagName('a')[0];
 
-    console.log("hamburger working");
+    // console.log("hamburger working");
 
 	function hamburgerMenu() {
         mainNav.classList.toggle('slide-toggle');

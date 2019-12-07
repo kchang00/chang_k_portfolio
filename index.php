@@ -71,7 +71,11 @@
 
                 if($num>0):?>
 
-                <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+                <?php
+                // used to define project-index class and data-index data attribute
+                // set to 1 to match row ID, IDs start at 1
+                $row_index = 1;
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
                     // var_dump($row);
                         // don't need this -> row is already grabbing all the data
                         // $all_deliverables = $row["Deliverables"];
@@ -85,13 +89,16 @@
                         // echo $separate_deliverables[0];
                         // exit;
                     ?>
-                    <div class="portfolio-card" style="background:url(../../public/images/<?php echo $separate_images[0];?>) no-repeat center;" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-nextproject="<?php echo htmlspecialchars(json_encode($row));?>">
+                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background:url(./public/images/<?php echo $separate_images[0];?>) no-repeat center;" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
                         <div class="p-link">
                             <h3><?php echo $row['Title'];?></h3>
                             <h4><?php echo $row['Medium'];?></h4>
                         </div>
                     </div>
-                <?php endwhile;
+                <?php
+            // sets project-index class number data-index attribute number (first project card = 0, second = 1 etc.) 
+            $row_index++;    
+            endwhile;
 
                 else:?>
                 <h3>Coming Soon</h3>
@@ -109,6 +116,7 @@
                         </div>
                     </div>
                     <div class="lb-desc">
+                        <div class="lb-desc-con">
                         <!-- render the database content here -->
                             <div class="pwork-con">
                                 <div class="pwork-desc">
@@ -152,7 +160,7 @@
                                 </div>
                             </div>
                             <?php foreach ($separate_images as $img) {
-                                echo '<div class="pwork-img" style="background:url(../../public/images/'.$img.') no-repeat center"></div>';
+                                echo '<div class="pwork-img" style="background:url(./public/images/'.$img.') no-repeat center"></div>';
                             } ?>
                             </ul>
 
@@ -162,17 +170,18 @@
                                 <h2>Want to make something like this?</h2>
                                 <a href="contact.php" class="btn-large">Yeah!</a>
                             </section>
-                        </div> <!-- end of main database content -->
-                    <section class="pwork-more">
-                        <a href="" class="project-previous-url">
-                            <img src="public/images/arrow_left_long.svg" alt="Previous">
-                            <p class="project-previous-title">Previous Project</p>
-                        </a>
-                        <a href="" class="project-next-url">
-                            <img src="public/images/arrow_left_long.svg" alt="Next">
-                            <p class="project-next-title">Next Project</p>
-                        </a>
-                    </section>
+                        </div> <!-- end of lb-desc-con - white background-->
+                        <section class="pwork-more">
+                            <button class="project-previous-url">
+                                <img src="public/images/arrow_left_long.svg" alt="Previous">
+                                <p class="project-previous-title">Previous Project</p>
+                            </button>
+                            <button class="project-next-url">
+                                <img src="public/images/arrow_left_long.svg" alt="Next">
+                                <p class="project-next-title">Next Project</p>
+                            </button>
+                        </section>
+                    </div> <!-- end of lightbox database content -->
                 </div>
             </article>
         </section>

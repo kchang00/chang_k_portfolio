@@ -5,7 +5,7 @@
           mainNavCon    = document.querySelector('.main-nav-con');
           logo          = document.querySelector('.logo').getElementsByTagName('img')[0];
 
-    console.log("hamburger working");
+    // console.log("hamburger working");
 
     mainNav.classList.add("scroll-menu");
     hamburger.classList.add("hamburger-scroll-menu");

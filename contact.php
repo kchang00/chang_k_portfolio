@@ -21,6 +21,9 @@ $recipient = 'hello@kaylachang.ca';
 // to make a field required, kill the function if the value is "empty"
 //Use GET to pass along message ?=true or ?=false to redirect users after form is sent + make thank you message pop up in JS
 
+//$_POST is an an array which holds information submitted through HTML forms via POST method
+// holds keys and values. keys = name of form controls (in HTML), values =  input data from the users.
+
 if (isset($_POST['name'])) {
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 }
@@ -44,49 +47,19 @@ if (isset($_POST['message'])) {
 //This makes sure internet sees that the email is coming from your server, and your domain, and that they match (they are not suspicious)
 
 //SEND OUT EMAIL
-// $headers = array(
-//     'From'=>'noreply@domainname.ca',
-//     'Reply=To'=>$name.'<'.$email.'>'
-// );
+$headers = array(
+    'From'=>'hello@kaylachang.ca',
+    'Reply=To'=>$name.'<'.$email.'>'
+);
 
-// if(mail($recipient, $subject, $message, $headers)){
-if(mail($recipient, $subject, $message)){
-    $submit_msg = 
-    '<div class="lightbox">
-        <div class="lightbox-scroll-con">
-            <div class="nav-positioning">
-                <div class="main-nav-con">
-                    <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
-                    <div class="hamburger-nav-con">
-                        <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="thank-you-con">
-                <img src="public/images/submit_character.svg" alt="Submit Thank You">
-                <h2>You are awesome, ' .$name.'.</h2>
-                <h3>Thanks for reaching out. I will get back to you soon!</h3>
-            </div>
-        </div>
-    </div>';
+//mail() is a PHP function that sends out an email
+//if mail is sent, $is_success = true. Otherwise, mail did not send, and $is_success = false.
+
+if(mail($recipient, $subject, $message, $headers)){
+// if(mail($recipient, $subject, $message)){
+    $is_success = True;
 }else{
-    $submit_msg =
-    '<div class="lightbox">
-    <div class="lightbox-scroll-con">
-        <div class="nav-positioning">
-            <div class="main-nav-con">
-                <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
-                <div class="hamburger-nav-con">
-                    <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="thank-you-con">
-            <h2>Oops!</h2>
-            <h3>We are sorry,' .$name.'. Your message did not go through.</h3>
-        </div>
-    </div>
-</div>';
+    $is_success = False;
 }
 
 ?>
@@ -104,7 +77,7 @@ if(mail($recipient, $subject, $message)){
             <h2>Let's Connect.</h2>
             <h3>Ready to start a project? I’ll do my best to get in touch within the week.</h3>
             <!-- <form action="contact/data_contact.php" method="post"> -->
-            <form id="contact-form" action="contact.php" method="post">
+            <form id="contact-form" action="" method="post">
                 <!-- method="get" makes data in contact form visible in url. use method="post" for sensitive data like password -->
                 <!-- action is the reciever -->
                 <!-- for attribute must be same as id of input to link them together -->
@@ -132,11 +105,39 @@ if(mail($recipient, $subject, $message)){
                     </div>
                 </div>
 
-                <button type="submit" class="btn-large">Submit</button>
+                <!-- name = for PHP _POST method to track if button is clicked - is set to 'submit' -->
+                <button type="submit" class="btn-large" name="submit">Submit</button>
 
             </form>
         </div>
-        <div id="submit-msg"><?php if(isset($submit_msg)){ echo $submit_msg;}?></div>
+        <?php if(isset($_POST['submit']))
+            echo '<div id="submit-msg">'
+        ?>
+                <div class="lightbox">
+                    <div class="lightbox-scroll-con">
+                        <div class="nav-positioning">
+                            <div class="main-nav-con">
+                                <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
+                                <div class="hamburger-nav-con">
+                                    <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="thank-you-con">
+                            <?php if($is_success == True):?>
+                                <img src="public/images/submit_character.svg" alt="Submit Thank You">
+                                <h2>You're awesome, <?php echo $name?>.</h2>
+                                <h3>Thanks for reaching out. I'll get back to you soon!</h3>
+                            <?php else:?>
+                                <h2>Oops! Sorry, <?php echo $name?>.</h2>
+                                <h3>Your message did not go through. Please try again!</h3>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+        <?php if(isset($_POST['submit']))
+            echo '</div>'
+        ?>
     </div>
 
     <?php include 'footer.php';?>

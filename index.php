@@ -77,8 +77,6 @@
                 $row_index = 1;
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
                     // var_dump($row);
-                        // don't need this -> row is already grabbing all the data
-                        // $all_deliverables = $row["Deliverables"];
                         $separate_deliverables = explode(",", $row["Deliverables"]);
                         $separate_images = array_map('trim', explode(",", $row["Imgs"]));
                         $separate_team = explode(",", $row["Team"]);

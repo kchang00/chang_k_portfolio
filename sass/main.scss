@@ -56,6 +56,12 @@ a {
     cursor: pointer;
 }
 
+button {
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+}
+
 a, input, textarea, button {
     &:focus {
         outline: 3px double $salmon;
@@ -93,7 +99,7 @@ a, input, textarea, button {
 
 .btn-small {
     display: flex;
-    max-width: 200px;
+    max-width: 185px;
     height: 45px;
     font-size: 0.9em;
     color: $white;
@@ -150,34 +156,35 @@ a, input, textarea, button {
     justify-content: center;
 }
 
-.btn {
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    @include p-class;
+// gradient button
+// .btn {
+//     display: flex;
+//     justify-content: center;
+//     align-items:center;
+//     @include p-class;
 
-    padding: 20px 60px;
-    color: #fff;
-    border: none;
-    background-size: 300% 100%;
+//     padding: 20px 60px;
+//     color: #fff;
+//     border: none;
+//     background-size: 300% 100%;
 
-    border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+//     border-radius: 50px;
+//     moz-transition: all .4s ease-in-out;
+//     -o-transition: all .4s ease-in-out;
+//     -webkit-transition: all .4s ease-in-out;
+//     transition: all .4s ease-in-out;
 
-    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
-    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+//     background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+//     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
 
-    &:hover {
-        background-position: 100% 0;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
-}
+//     &:hover {
+//         background-position: 100% 0;
+//         moz-transition: all .4s ease-in-out;
+//         -o-transition: all .4s ease-in-out;
+//         -webkit-transition: all .4s ease-in-out;
+//         transition: all .4s ease-in-out;
+//     }
+// }
 
 @media screen and (min-width: $tablet-size) {
     .main-con-nav-po {

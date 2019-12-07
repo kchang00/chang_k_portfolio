@@ -1,0 +1,17 @@
+# # Use PHP5.4 as default
+# AddHandler application/x-httpd-php54 .php
+
+# # Enable gzip for compression
+# <ifmodule mod_deflate.c>
+
+# Hide PHP file extension
+Options +Multiviews
+
+# Disable directory browsing
+Options -Indexes
+
+# error handling
+ErrorDocument 404 /404.php
+ErrorDocument 400 /404.php
+ErrorDocument 403 /404.php
+ErrorDocument 500 /404.php

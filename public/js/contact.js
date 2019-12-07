@@ -2,25 +2,23 @@
 
 let form = document.querySelector('#contact-form'),
     submitPopup = document.querySelector('#submit-msg'),
-    lightBox = submitPopup.querySelector('.lightbox');
+    lightBox = submitPopup.querySelector('.lightbox'),
+    close = lightBox.querySelector('.close');
 
-// form.onsubmit = function () {
-//     lightBox.classList.add('show-lb');
-// }
+    function closePopup() {
+        submitPopup.classList.add('hidden');
+    }
 
-function processForm(e) {
-    if (e.preventDefault) e.preventDefault();
-    lightBox.classList.add('show-lb');
-    /* do what you want with the form */
+    function showLightbox()  {
+        lightBox.classList.add('show-lb');
+    }
 
-    // You must return false to prevent the default form behavior
-    return false;
-}
+    form.onsubmit = function () {
+        // if (submitPopup != 'undefined' && submitPopup != null){
+        //     showLightbox();
+        // }
+        showLightbox();
+    }
 
-if (form.attachEvent) {
-    form.attachEvent("submit", processForm);
-} else {
-    form.addEventListener("submit", processForm);
-}
-
+    close.addEventListener('click', closePopup);
 })();

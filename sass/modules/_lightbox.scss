@@ -1,7 +1,15 @@
 .lb-desc {
-    background: $white;
+    // background: $white;
     // match pwork-more section anchor height
-    margin-bottom: 60vh;
+    // has to be padding, not margin, to ensure scrolling
+    padding-bottom: 60vh;
+    // set above links at bottom
+    z-index: 1;
+
+    .lb-desc-con {
+        // background prevents user from seeing and clicking absolutely positioned links in pwork-more underneath
+        background: $white;
+    }
 }
 
 .lightbox { 
@@ -74,6 +82,12 @@
                 transform: rotate(-45deg);
             }
         }
+    }
+}
+
+#submit-msg {
+    .lightbox {
+        display: flex !important; 
     }
 }
 
@@ -186,7 +200,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: $mobile-margin * 3;
+    padding: $mobile-margin * 3;
     text-align: center;
     min-height: 60vh;
     h2 {
@@ -205,43 +219,51 @@
     left: 0;
     right: 0;
     bottom: 0;
-    a {
+
+    //anchor tag is in lb-desc, divs are just the background in a duplicate p-more section outside of lb-desc
+    button, div {
         display: flex;
         flex-direction: column;
         flex: 1;
         height: 60vh;
         padding: $mobile-gutter;
         justify-content: flex-end;
+    }
 
-        p{
-            font-size: 0.9em;
-            color: $white;
-            font-family: 'Josefin Sans', sans-serif;
-            font-weight: 400;
-        }
+    button {
+        z-index: -1;
+    }
 
+    button:last-child{
+        align-items: flex-end;
         img {
-            max-width: 70px;
-            margin-bottom: $mobile-margin;
+            transform: rotate(180deg);
         }
-        
-        &:first-child {
-            background: $salmon;
-            align-items: flex-start;
-        }
-        &:last-child {
-            background: $teal;
-            align-items: flex-end;
-            img {
-                transform: rotate(180deg);
-            }
-        }
+    }
+    
+    button:first-child {
+        background: $salmon;
+    }
+    button:last-child {
+        background: $teal;
+    }
+
+    p{
+        font-size: 1em;
+        color: $white;
+        font-family: 'Josefin Sans', sans-serif;
+        font-weight: 400;
+    }
+
+    img {
+        max-width: 70px;
+        margin-bottom: $mobile-margin;
     }
 }
 
 @media screen and (min-width: $tablet-size) {
     .lb-desc {
-        margin-bottom: 30vh;
+        padding-bottom: 30vh;
     }
     .close {
         margin: $tablet-margin 0px;
@@ -268,7 +290,7 @@
         min-height: 50vh;
     }
     .pwork-more {
-        a {
+        button, div{
             height: 30vh;
         }
     }
@@ -290,7 +312,7 @@
 
 @media screen and (min-width: $desktop-size) {
     .lb-desc {
-        margin-bottom: 50vh;
+        padding-bottom: 50vh;
     }
     .close {
         margin: $desktop-margin 0px;
@@ -329,8 +351,11 @@
     }
 
     .pwork-more {
-        a {
+        button,div {
             height: 50vh;
+        }
+        p {
+            font-size: 1.3em;
         }
     }
 }

@@ -123,7 +123,7 @@
                                     <h2 class="project-title"></h2>
                                     <h3 class="project-subtitle"></h3>
                                     <p class="project-desc"></p>
-                                    <a href="" class="project-url btn-small">
+                                    <a href="" target="_blank" class="project-url btn-small">
                                         <div>See project</div>
                                         <div><img src="public/images/arrow_right_small.svg" alt="Right Arrow"></div>
                                     </a>
@@ -131,10 +131,12 @@
                                 <div class="pwork-sidebar">
                                     <div>
                                         <h5>Deliverables</h5>
+                                        <!-- for when I attempted to set the li with the JS split instead of PHP explode -->
+                                        <!-- <ul class="project-deliverables"> -->
                                         <ul>
-                                        <?php foreach ($separate_deliverables as $deliverables) {
-                                            echo '<li>' . $deliverables . '</li>';
-                                        } ?>
+                                            <?php foreach ($separate_deliverables as $deliverables) {
+                                                echo '<li class="project-deliverables">' . $deliverables . '</li>';
+                                            } ?>
                                         </ul>
                                     </div>
 
@@ -186,7 +188,7 @@
 
         <section class="thanks-footer">
             <h2>Thanks for visiting!</h2>
-            <img src="public/images/monster.gif" alt="Thanks">
+            <img src="public/images/footer_plant.svg" alt="Thanks">
         </section>
     </div>
 

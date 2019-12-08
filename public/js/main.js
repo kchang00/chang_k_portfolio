@@ -41,53 +41,69 @@
                 // used to do math later (+(for next) or - 1(for previous) portfolio index)
                 projectIndexObj = JSON.parse(projectIndex);
 
+                lightBox.querySelector('.project-title').innerHTML      = projectObj['Title'];
+                lightBox.querySelector('.project-subtitle').innerHTML   = projectObj['Subtitle'];
+                lightBox.querySelector('.project-desc').innerHTML       = projectObj['Description'];
+                lightBox.querySelector('.project-year').innerHTML       = projectObj['Year'];
+                lightBox.querySelector('.project-url').href             = projectObj['ProjectURL'];
+
+                //php explode function was not changing values, I tried to do it in JS here
+                // var separateDeliverables = projectObj['Deliverables'].split(',');
+                // separateDeliverables.forEach(deliverable => {
+                //     let deliverablesList = lightBox.querySelector('.project-deliverables');
+                //     var li = document.createElement('li');
+                //     var deliverableListItem = deliverablesList.appendChild(li);
+                //     deliverableListItem.innerHTML = deliverable;
+                // })
+
             //looping through all portfolio works with a class containing project-index
-            indexClass.forEach(index => {
-                // grabbing data from each work containing class
-                let indexInfo = index.dataset.project,
-                    indexObj = JSON.parse(indexInfo),
-                    currentProjectInfo = projectObj,
-                    nextProjectIndexObj = projectIndexObj + 1, 
-                    previousProjectIndexObj = projectIndexObj - 1;
+            // indexClass.forEach(index => {
+            //     // grabbing data from each work containing class
+            //     let indexInfo = index.dataset.project,
+            //         indexObj = JSON.parse(indexInfo),
+            //         currentProjectInfo = projectObj,
+            //         nextProjectIndexObj = projectIndexObj + 1, 
+            //         previousProjectIndexObj = projectIndexObj - 1;
+                    
 
-                    function updateProjectInfo() {
-                        lightBox.querySelector('.project-title').innerHTML      = currentProjectInfo['Title'];
-                        lightBox.querySelector('.project-subtitle').innerHTML   = currentProjectInfo['Subtitle'];
-                        lightBox.querySelector('.project-desc').innerHTML       = currentProjectInfo['Description'];
-                        lightBox.querySelector('.project-year').innerHTML       = currentProjectInfo['Year'];
-                        lightBox.querySelector('.project-url').href             = currentProjectInfo['ProjectURL'];
-                        projectObj = currentProjectInfo;
-                        console.log('updated info', currentProjectInfo);
-                    }
+            //         function updateProjectInfo() {
+            //             lightBox.querySelector('.project-title').innerHTML      = currentProjectInfo['Title'];
+            //             lightBox.querySelector('.project-subtitle').innerHTML   = currentProjectInfo['Subtitle'];
+            //             lightBox.querySelector('.project-desc').innerHTML       = currentProjectInfo['Description'];
+            //             lightBox.querySelector('.project-year').innerHTML       = currentProjectInfo['Year'];
+            //             lightBox.querySelector('.project-url').href             = currentProjectInfo['ProjectURL'];
+            //             projectObj = currentProjectInfo;
+            //             console.log('updated info', currentProjectInfo);
+            //         }
 
-                    function setProjectInfo() {
-                        currentProjectInfo = indexObj;
-                        console.log('setting projects', currentProjectInfo);
-                    }
+            //         function setProjectInfo() {
+            //             currentProjectInfo = indexObj;
+            //             console.log('setting projects', currentProjectInfo);
+            //         }
 
-                    // grabs single number returned from projectIndexObj
-                    if (indexObj['ID'] == projectIndexObj) {
-                        // sets project info to corresponding current id
-                        setProjectInfo();
-                        updateProjectInfo();
-                    }else if (indexObj['ID'] == nextProjectIndexObj) {
-                        // sets project info to corresponding next id on btn click
-                        nextProjectBtn.addEventListener('click', function(e) {
-                            console.log('next btn clicked');
-                            setProjectInfo();
-                            updateProjectInfo();
-                            scrollTopLightbox();
-                        });
-                    }else if (indexObj['ID'] == previousProjectIndexObj) {
-                        // sets project info to corresponding previous id
-                        previousProjectBtn.addEventListener('click', function(e) {
-                            console.log('previous btn clicked');
-                            setProjectInfo();
-                            updateProjectInfo();
-                            scrollTopLightbox();
-                        });
-                    }
-            });
+            //         // grabs single number returned from projectIndexObj
+            //         if (indexObj['ID'] == projectIndexObj) {
+            //             // sets project info to corresponding current id
+            //             setProjectInfo();
+            //             updateProjectInfo();
+            //         }else if (indexObj['ID'] == nextProjectIndexObj) {
+            //             // sets project info to corresponding next id on btn click
+            //             nextProjectBtn.addEventListener('click', function(e) {
+            //                 console.log('next btn clicked');
+            //                 setProjectInfo();
+            //                 updateProjectInfo();
+            //                 scrollTopLightbox();
+            //             });
+            //         }else if (indexObj['ID'] == previousProjectIndexObj) {
+            //             // sets project info to corresponding previous id
+            //             previousProjectBtn.addEventListener('click', function(e) {
+            //                 console.log('previous btn clicked');
+            //                 setProjectInfo();
+            //                 updateProjectInfo();
+            //                 scrollTopLightbox();
+            //             });
+            //         }
+            // });
 
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');

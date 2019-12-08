@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Dec 03, 2019 at 08:27 PM
--- Server version: 5.7.26
--- PHP Version: 7.3.8
+-- Host: mysql
+-- Generation Time: Dec 08, 2019 at 07:58 PM
+-- Server version: 5.7.28
+-- PHP Version: 7.2.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -36,18 +38,24 @@ CREATE TABLE `tbl_p_info` (
   `Deliverables` varchar(100) NOT NULL,
   `Team` varchar(100) NOT NULL,
   `Year` varchar(100) NOT NULL,
-  `Imgs` text NOT NULL
+  `Imgs` text NOT NULL,
+  `ProjectURL` text NOT NULL,
+  `Video` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_p_info`
 --
 
-INSERT INTO `tbl_p_info` (`ID`, `Title`, `Subtitle`, `Description`, `Medium`, `Category`, `Deliverables`, `Team`, `Year`, `Imgs`) VALUES
-(1, 'Traditional Animation', 'Traditional animation subtitle.', 'Traditional animation, sometimes referred to as cel animation, is one of the older forms of animation, in it the animator draws every frame to create the animation sequence. Just like they used to do in the old days of Disney. If you’ve ever had one of those flip-books when you were a kid, you’ll know what I mean. Sequential drawings screened quickly one after another create the illusion of movement.', 'Website', 'Lifestyle', 'TVPaint, Toon Boom Harmony, Photoshop', 'Mariam Khalifa', '2018', 'botw.jpg, howl.jpg, rotoscope.jpg'),
-(2, '3D Animation', '3d animation subtitle', '3D animation works in a completely different way than traditional animation. They both require an understanding of the same principles of movement and composition, but the technical skill set is very different for each task. While traditional animation requires you to be an amazing draftsman, computer animation doesn’t. 3D animation is more similar to playing with puppets rather than drawing.\r\n', 'Mobile App', 'Music', 'Autodesk Maya, Autodesk 3DS Max, Cinema 4D, Blender', 'Sandra Tsao', '2013', 'rotoscope.jpg, botw.jpg'),
-(3, 'Motion Graphics', 'motion graphics subtitle', 'While still considered a form of animation, motion graphics is quite different from the other types of animation. Unlike the other types on our list it is not character or story driven. It’s the art of creatively moving graphic elements or texts, usually for commercial or promotional purposes.', 'VR app', 'Food', 'Adobe After Effects, Cinema 4D', 'Kahani Gajjar', '2014', 'howl.jpg, botw.jpg'),
-(4, 'Rotoscoping Animation', 'rotoscoping subtitle', 'Rotoscoping is defined as an animation technique through which animators trace over footage within a software program using a rotoscoping tool. This technique goes back to the early days of cinema when animators used to project photographed live-action movie images onto a glass panel and trace over the image.\r\n\r\nThat projection equipment was called a rotoscope. As modern animation progressed into the 21st century this device was eventually replaced by computers. Anyways, the process is still called rotoscoping.', 'Website', 'Music', 'Adobe After Effects, Blender, Autodesk, Silhouette', 'Luisa Valero, Mariam Khalifa', '2019', 'motion.jpg, botw.jpg, howl.jpg, rotoscope.jpg');
+INSERT INTO `tbl_p_info` (`ID`, `Title`, `Subtitle`, `Description`, `Medium`, `Category`, `Deliverables`, `Team`, `Year`, `Imgs`, `ProjectURL`, `Video`) VALUES
+(1, 'Shopon', 'Making an online furniture ad.', 'For this project, I was told to create an animated commercial with 3D models that morph into frame. I came up with the concept of an imaginary online furniture store. The message I wanted to convey was that the large variety and online medium makes it easy for consumers to shop for whatever they want, wherever they want. With the online products and services, the character in the ad is able to make furniture appear at will.\r\n\r\nMade using Cinema4D, Mixamo, and After Effects.', 'Animation', 'Marketing', 'Visual Design, Creative Direction, Animation, Video Editing\r\n', 'Kayla Chang', '2019', 'morphing_frame.jpg, morphing_frame2.jpg, morphing_frame3.jpg, morphing_frame4.jpg, morphing_frame.jpg', 'https://youtu.be/YLCKrRU9gYU', 'https://youtu.be/YLCKrRU9gYU'),
+(2, 'ReMade', 'A marketing campaign for organ transplantation.', 'We were challenged to bring awareness to  the transplantation of laboratory organs. More specifically, the revolutionary recellularization process developed by Harald Ott and his researchers at Harvard Medical. It was crucial that we explain the organ regeneration process, the benefits, and why it should become a part of mainstream medicine. Our solution was a three part marketing outreach strategy, complete with branding, a video, and a brochure to establish a fictional web presence to target investors.\r\n\r\n', 'Branding/Video', 'Marketing', 'Branding, Website, Video, Brochure', 'Mariam Khalifa, Luisa Valero', '2019', 'organs_remade_apple_devices.jpg, organs_remade_trifold_brochure_mockup.jpg, organs_remade_outside_brochure_mockup.jpg, organs_remade_inside_brochure_mockup.jpg', 'https://youtu.be/RpdePQsD8Is', 'https://youtu.be/RpdePQsD8Is'),
+(3, 'Digital Lights', 'Branding for an imaginary advertising agency.', 'We were tasked with branding ourselves as if we were an agency. After brainstorming, Digital Lights was born. Their mission statement is as follows: \"We are a group of passionate creatives who are committed to bringing a special shine to all of our work. As a full-service advertising agency, we target local businesses and organizations to highlight their brand, products, and services to solve problems and spark innovation. We believe that big or small, each creative solution will collectively form a bigger, brighter community.\"', 'Website/Video', 'Branding', 'Logo, Website, Video', 'Lân Lê, Julia Kandych, Vira Romanko', '2019', 'digital_lights_kayla.jpg, digital_lights_lan.jpg, digital_lights_julia.jpg, digital_lights_vira.jpg', 'https://youtu.be/Q7Y3nqdh-Ss', 'https://youtu.be/Q7Y3nqdh-Ss'),
+(4, 'Sportsnet', 'A video intro for a sports network.', 'As an end of term project, we were asked to create a video intro that could be used for a sports network. All the modelling, texturing, and animation was done by myself in Cinema4D. I edited the video in Premier Pro and After Effects.', 'Animation', 'Sports', 'Creative Direction, Video Editing', 'Kayla Chang', '2019', 'sportsnet_frame1.jpg, sportsnet_frame2.jpg, sportsnet_frame3.jpg, sportsnet_frame4.jpg, sportsnet_frame5.jpg ', 'https://youtu.be/WxWxkg0Okvc', 'https://youtu.be/WxWxkg0Okvc'),
+(5, 'TRAA', 'New website for the TRAA.', 'The TRAA is a “hands on” environmental organization that works with the surrounding communities to advocate for the health of the Thames River watershed and its inhabitants. We were asked to remake their site to improve brand coherence and site functionality. Site launch is coming soon!\r\n\r\nThe primary objectives of the site are to educate the public about the TRAA and get new members. We hope the site will be used by current TRAA members and fish enthusiasts alike to get information on the TRAA, look at upcoming events, become a member, donate, and look at the results of efforts.', 'Website', 'Lifestyle', 'UX, Branding, Website, Video', 'Mariam Khalifa', '2018', 'traa_mobile_mockups.jpg, traa_desktop_tablet_mockups.jpg', '', 'https://youtu.be/oForjCxs_9A, https://youtu.be/ZP_D_ODfYDg, https://youtu.be/bDPViDIiOlc'),
+(6, 'Animal Tracks', 'Making a music mixer for kids.', 'We were asked to make a game where you could take different sounds and put them together to make a song. Our solution was Animal Tracks - a game for kids to drag and drop different animal sounds to make your own beat, accompanied by different background tracks. All graphics (characters, environments, icons) were created by me. Animated entirely with CSS3 and SVG animations.', 'Website', 'Music', 'Creative Direction, Character Design, Animation, Audio, Website', 'Mariam Khalifa', '2018', 'mixer_group_v2.svg, mixer_enviro1.svg, mixer_enviro2.svg, mixer_enviro3.svg, mixer_enviro4.svg', 'https://github.com/kchang00/chang_k_khalifa_m_musicMixer.git', ''),
+(7, 'Ivey History', 'Creating Ivey\'s virtual history site.', 'The Learning to Lead: History of the Ivey Business School site is a collection of historic archives based on the second edition of Learning to Lead, which highlights the development of Ivey Business School. I was tasked with designing and populating the site via the Umbraco CMS, including the landing page video. Visitors can scroll through detailed records of now digitized archives, or submit their own records to the School.', 'Website/Content', 'Education', 'Website, Video', 'Kayla Chang', '2019', 'ivey_history_bg.jpg', 'https://www.ivey.uwo.ca/about/history/virtual-history/', ''),
+(8, 'Discover Ivey', 'Revamping the Discover Ivey site.', 'The Discover Ivey site handles branded stories for the Ivey Business School at Western University. I was asked to revamp the site to give it a fresh look and feel. The site\'s design reinforces Ivey\'s innovation and forward thinking.', 'Website', 'Education', 'Website', 'Kayla Chang', '2019', 'ivey_discover_mobile_mockup.jpg, ivey_discover_tablet_mockup.jpg, ivey_discover_desktop_mockup.jpg', '', '');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +75,8 @@ ALTER TABLE `tbl_p_info`
 -- AUTO_INCREMENT for table `tbl_p_info`
 --
 ALTER TABLE `tbl_p_info`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

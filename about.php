@@ -73,7 +73,7 @@
                 <h2>Services</h2>
                 <div class="img-list-wrap">
                     <div class="services-img">
-                        <img src="public/images/monster.gif" alt="Services">
+                        <img src="public/images/about_girl.svg" alt="Services">
                     </div>
                     <ul>
                         <li>Animation</li>
@@ -87,7 +87,7 @@
             </div>
         </section>
         <div class="services-img">
-            <img src="public/images/monster.gif" alt="Services">
+            <img src="public/images/about_girl.svg" alt="Services">
         </div>
         <div class="main-con-nav-po">
             <section class="process">

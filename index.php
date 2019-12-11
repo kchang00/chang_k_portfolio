@@ -77,10 +77,9 @@
                 $row_index = 1;
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
                     // var_dump($row);
-                        $separate_deliverables = explode(",", $row["Deliverables"]);
+                        // $separate_deliverables = explode(",", $row["Deliverables"]);
                         $separate_images = array_map('trim', explode(",", $row["Imgs"]));
-                        $separate_team = explode(",", $row["Team"]);
-                        $next_title = $row["Title"];
+                        // $separate_team = explode(",", $row["Team"]);
 
 
                         // var_dump($separate_deliverables);
@@ -131,21 +130,13 @@
                                 <div class="pwork-sidebar">
                                     <div>
                                         <h5>Deliverables</h5>
-                                        <!-- for when I attempted to set the li with the JS split instead of PHP explode -->
-                                        <!-- <ul class="project-deliverables"> -->
-                                        <ul>
-                                            <?php foreach ($separate_deliverables as $deliverables) {
-                                                echo '<li class="project-deliverables">' . $deliverables . '</li>';
-                                            } ?>
-                                        </ul>
+                                        <ul class="project-deliverables"></ul>
                                     </div>
 
                                     <div>
                                         <h5>Team</h5>
                                         <ul>
-                                        <?php foreach ($separate_team as $team) {
-                                            echo '<li>' . $team . '</li>';
-                                        } ?>
+                                            <li></li>
                                         </ul>
                                     </div>
                                     
@@ -159,10 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php foreach ($separate_images as $img) {
-                                echo '<div class="pwork-img" style="background:url(./public/images/'.$img.') no-repeat center"></div>';
-                            } ?>
-                            </ul>
+                            <div class="pwork-img project-image" style="background: no-repeat center"></div>
 
                             <!-- can include video here -->
 
@@ -172,11 +160,11 @@
                             </section>
                         </div> <!-- end of lb-desc-con - white background-->
                         <section class="pwork-more">
-                            <button class="project-previous-url">
+                            <button class="project-nav-button project-previous-url" data-nav="previous">
                                 <img src="public/images/arrow_left_long.svg" alt="Previous">
                                 <p class="project-previous-title">Previous Project</p>
                             </button>
-                            <button class="project-next-url">
+                            <button class="project-nav-button project-next-url" data-nav="next">
                                 <img src="public/images/arrow_left_long.svg" alt="Next">
                                 <p class="project-next-title">Next Project</p>
                             </button>

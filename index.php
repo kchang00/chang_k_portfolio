@@ -135,9 +135,7 @@
 
                                     <div>
                                         <h5>Team</h5>
-                                        <ul>
-                                            <li></li>
-                                        </ul>
+                                        <ul class="project-team"></ul>
                                     </div>
                                     
                                     <div>
@@ -150,9 +148,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pwork-img project-image" style="background: no-repeat center"></div>
 
-                            <!-- can include video here -->
+                            <!-- video -->
+
+                            <div class="video-con project-videos">
+                            </div>
+
+                            <section class="project-images">
+                                <h3 class="hidden">Project Images</h3>
+                            </section>
 
                             <section class="pwork-contact">
                                 <h2>Want to make something like this?</h2>

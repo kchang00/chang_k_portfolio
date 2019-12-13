@@ -6,7 +6,12 @@
         lightBoxScroll = document.querySelector('.lightbox-scroll-con'),
         indexClass = document.querySelectorAll('[class*="project-index"]'),
         close = lightBox.querySelector('.close'),
-        projectNavBtns = lightBox.querySelectorAll('.project-nav-button');
+        projectNavBtns = lightBox.querySelectorAll('.project-nav-button'), 
+        deliverablesList = lightBox.querySelector('.project-deliverables'),
+        teamList = lightBox.querySelector('.project-team'),
+        imagesSection = lightBox.querySelector('.project-images'),
+        lightBoxDesc = lightBox.querySelector('.lb-desc'),
+        videosSection = lightBox.querySelector('.project-videos');
 
 
     function closeStop() {
@@ -15,14 +20,19 @@
 
     function scrollTopLightbox() {
         TweenMax.to(lightBoxScroll, 1, { scrollTo: 0 });
-        console.log('scrolled!');
+        lightBoxDesc.style.opacity = '0';
+        setTimeout(function() { 
+            lightBoxDesc.classList.remove('fade-in');
+            void lightBoxDesc.offsetWidth;
+            lightBoxDesc.classList.add('fade-in');
+            lightBoxDesc.style.opacity = '1';
+        }, 950);
     }
 
     // makes sure lightbox loads at top every time
     function scrollTopLightbox2() {
         // set value higher than 0
         TweenMax.to(lightBoxScroll, 0.01, { scrollTo: 0 });
-        console.log('scrolled!');
     }
 
     portfolioLinks.forEach(link => {
@@ -38,6 +48,7 @@
                 // grabbing data associated with data-index attribute
                 projectIndex = projectRoot.dataset.index;
 
+            clearInfo();
             updateProjectInfo(projectObj, projectIndex);
 
             projectNavBtns.forEach(ele => {
@@ -51,8 +62,6 @@
                         futureIndex = futureIndex > indexClass.length ? 1 : futureIndex,
                         futureIndex = futureIndex < 1 ? indexClass.length : futureIndex,
                         futureProject = document.querySelector('.project-index-' + futureIndex);
-                    console.log(currentIndex);
-                    console.log(futureIndex);
 
                     //Verify if the future index exists
                     if (futureProject) {
@@ -61,8 +70,7 @@
                             // grabbing data associated with data-index attribute
                             projectIndex = futureProject.dataset.index;
 
-                        console.log(projectObj);
-                        console.log(projectIndex);
+                        clearInfo();
                         updateProjectInfo(projectObj, projectIndex);
                         scrollTopLightbox();
                     }else{
@@ -71,33 +79,70 @@
                 });
             });
 
+            function clearInfo() {
+                deliverablesList.innerHTML = '';
+                teamList.innerHTML = '';
+                imagesSection.innerHTML = '';
+                videosSection.innerHTML = '';
+            }
+
             function updateProjectInfo(currentProjectInfo, projectIndex) {
                 lightBox.dataset.currentIndex = projectIndex;
-                lightBox.querySelector('.project-title').innerHTML = currentProjectInfo['Title'];
-                lightBox.querySelector('.project-subtitle').innerHTML = currentProjectInfo['Subtitle'];
-                lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
-                lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
-                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+                // separate columns with multiple comma separated values
+                var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
+                    separateTeam = currentProjectInfo['Team'].split(','),
+                    separateImages = currentProjectInfo['Imgs'].split(','),
+                    separateVideos = currentProjectInfo['Video'].split(','),
+                    separateStripImages = separateImages.map(str => str.replace(/\s/g, '')),
+                    separateStripVideos = separateVideos.map(str => str.replace(/\s/g, ''));
 
-                // php explode function was not changing values, I tried to do it in JS here
-                var separateDeliverables = projectObj['Deliverables'].split(',');
                 separateDeliverables.forEach(deliverable => {
-                    let deliverablesList = lightBox.querySelector('.project-deliverables');
                     var li = document.createElement('li');
                     var deliverableListItem = deliverablesList.appendChild(li);
                     deliverableListItem.innerHTML = deliverable;
                 })
 
-                // var separateImages = projectObj['Imgs'].split(',');
-                // separateImages.forEach(img => {
-                //     let projectImg = lightBox.querySelector('.project-image');
-                //     projectImg.style.background = './public/images/', img;
-                // })
+                separateTeam.forEach(team => {
+                    var li = document.createElement('li');
+                    var teamListItem = teamList.appendChild(li);
+                    teamListItem.innerHTML = team;
+                })
+
+                separateStripImages.forEach(img => {
+                    var div = document.createElement('div');
+                    div.classList.add('pwork-img');
+                    div.style.backgroundImage = "url('./public/images/" + img + "')";
+                    imagesSection.appendChild(div);
+                })
+
+                separateStripVideos.forEach(video => {
+
+                    if (video) {
+                        var div = document.createElement('div');
+                        var iframe = document.createElement('iframe');
+                        div.classList.add('embed-container');
+                        iframe.innerHTML = '';
+                        iframe.src = video;
+                        videosSection.appendChild(div);
+                        div.appendChild(iframe);
+                    }else {
+                        videosSection.innerHTML = '';
+                    }
+                })
+
+                lightBox.querySelector('.project-title').innerHTML = currentProjectInfo['Title'];
+                lightBox.querySelector('.project-subtitle').innerHTML = currentProjectInfo['Subtitle'];
+                lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
+                lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
+                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+                // set up next image
+                // lightBox.querySelector('.project-next-url').style.backgroundImage = "url('./public/images/" + separateStripImages[0] + "')";
 
                 // resetting lightbox info value
                 projectObj = currentProjectInfo;
-                console.log('updated info', currentProjectInfo);
             }
+
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');
         })

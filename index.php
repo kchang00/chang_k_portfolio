@@ -86,7 +86,7 @@
                         // echo $separate_deliverables[0];
                         // exit;
                     ?>
-                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background:url(./public/images/<?php echo $separate_images[0];?>) no-repeat center;" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
+                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background-image:url(./public/images/<?php echo $separate_images[0];?>);" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
                         <div class="p-link">
                             <h3><?php echo $row['Title'];?></h3>
                             <h4><?php echo $row['Medium'];?></h4>

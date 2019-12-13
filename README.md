@@ -1,11 +1,27 @@
-#### Docker
+# Kayla Chang | Portfolio
+
+<img src="/public/imgs/logo_colour.svg" width="150">
+
+#### A little bit about me:
+
+My name is Kayla Chang. I'm an Interactive Media Designer, and this is my portfolio. Visit the live site [here](https://www.kaylachang.ca/).
+
+## Built with
+* **HTML5**
+* **SASS/CSS3**
+* **JavaScript**
+* **PHP**
+* **MySQL**
+
+
+## Docker
 This is the Docker environment set up for my Portfolio.
 
 #### Prerequisites
 1. Install `Docker` from [https://docs.docker.com/install/] 
 2. If you are in Linux, install `docker-compose` from [https://docs.docker.com/install/]
 
-#### Set up
+#### Set Up
 1. Clone the repo
    ```
    git clone https://github.com/kchang00/chang_k_portfolio.git
@@ -14,7 +30,7 @@ This is the Docker environment set up for my Portfolio.
    ```
    docker-compose up
    ```
-3. When you finished work, you can turn if off by doing 
+3. When you're finished, you can turn docker off by doing 
    ```
    docker-compose down
    ```

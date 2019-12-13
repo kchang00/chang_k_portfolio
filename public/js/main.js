@@ -6,27 +6,37 @@
         lightBoxScroll = document.querySelector('.lightbox-scroll-con'),
         indexClass = document.querySelectorAll('[class*="project-index"]'),
         close = lightBox.querySelector('.close'),
-        nextProjectBtn = lightBox.querySelector('.project-next-url'),
-        previousProjectBtn = lightBox.querySelector('.project-previous-url');
+        projectNavBtns = lightBox.querySelectorAll('.project-nav-button'), 
+        deliverablesList = lightBox.querySelector('.project-deliverables'),
+        teamList = lightBox.querySelector('.project-team'),
+        imagesSection = lightBox.querySelector('.project-images'),
+        lightBoxDesc = lightBox.querySelector('.lb-desc'),
+        videosSection = lightBox.querySelector('.project-videos');
+
 
     function closeStop() {
         lightBox.classList.remove('show-lb');
     }
 
     function scrollTopLightbox() {
-        TweenMax.to(lightBoxScroll, 1, {scrollTo:0});
-        console.log('scrolled!');
+        TweenMax.to(lightBoxScroll, 1, { scrollTo: 0 });
+        lightBoxDesc.style.opacity = '0';
+        setTimeout(function() { 
+            lightBoxDesc.classList.remove('fade-in');
+            void lightBoxDesc.offsetWidth;
+            lightBoxDesc.classList.add('fade-in');
+            lightBoxDesc.style.opacity = '1';
+        }, 950);
     }
 
     // makes sure lightbox loads at top every time
     function scrollTopLightbox2() {
         // set value higher than 0
-        TweenMax.to(lightBoxScroll, 0.01, {scrollTo:0});
-        console.log('scrolled!');
+        TweenMax.to(lightBoxScroll, 0.01, { scrollTo: 0 });
     }
 
     portfolioLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             // all data for single portfolio page
             // linking to root, then grabbing data attribute, converting to JSON
             var link = e.currentTarget,
@@ -36,74 +46,102 @@
                 projectInfo = projectRoot.dataset.project,
                 projectObj = JSON.parse(projectInfo),
                 // grabbing data associated with data-index attribute
-                projectIndex = projectRoot.dataset.index,
-                // changes data from a string to an array
-                // used to do math later (+(for next) or - 1(for previous) portfolio index)
-                projectIndexObj = JSON.parse(projectIndex);
+                projectIndex = projectRoot.dataset.index;
 
-                lightBox.querySelector('.project-title').innerHTML      = projectObj['Title'];
-                lightBox.querySelector('.project-subtitle').innerHTML   = projectObj['Subtitle'];
-                lightBox.querySelector('.project-desc').innerHTML       = projectObj['Description'];
-                lightBox.querySelector('.project-year').innerHTML       = projectObj['Year'];
-                lightBox.querySelector('.project-url').href             = projectObj['ProjectURL'];
+            clearInfo();
+            updateProjectInfo(projectObj, projectIndex);
 
-                //php explode function was not changing values, I tried to do it in JS here
-                // var separateDeliverables = projectObj['Deliverables'].split(',');
-                // separateDeliverables.forEach(deliverable => {
-                //     let deliverablesList = lightBox.querySelector('.project-deliverables');
-                //     var li = document.createElement('li');
-                //     var deliverableListItem = deliverablesList.appendChild(li);
-                //     deliverableListItem.innerHTML = deliverable;
-                // })
+            projectNavBtns.forEach(ele => {
+                ele.addEventListener('click', function (e) {
+                    var currentBtn = e.currentTarget,
+                        currentIndex = lightBox.dataset.currentIndex,
+                        navDirection = currentBtn.dataset.nav,
+                        // setting next and previous btns
+                        // shorthand if else statement
+                        futureIndex = navDirection === 'next' ? ++currentIndex : --currentIndex,
+                        futureIndex = futureIndex > indexClass.length ? 1 : futureIndex,
+                        futureIndex = futureIndex < 1 ? indexClass.length : futureIndex,
+                        futureProject = document.querySelector('.project-index-' + futureIndex);
 
-            //looping through all portfolio works with a class containing project-index
-            // indexClass.forEach(index => {
-            //     // grabbing data from each work containing class
-            //     let indexInfo = index.dataset.project,
-            //         indexObj = JSON.parse(indexInfo),
-            //         currentProjectInfo = projectObj,
-            //         nextProjectIndexObj = projectIndexObj + 1, 
-            //         previousProjectIndexObj = projectIndexObj - 1;
-                    
+                    //Verify if the future index exists
+                    if (futureProject) {
+                        var projectInfo = futureProject.dataset.project,
+                            projectObj = JSON.parse(projectInfo),
+                            // grabbing data associated with data-index attribute
+                            projectIndex = futureProject.dataset.index;
 
-            //         function updateProjectInfo() {
-            //             lightBox.querySelector('.project-title').innerHTML      = currentProjectInfo['Title'];
-            //             lightBox.querySelector('.project-subtitle').innerHTML   = currentProjectInfo['Subtitle'];
-            //             lightBox.querySelector('.project-desc').innerHTML       = currentProjectInfo['Description'];
-            //             lightBox.querySelector('.project-year').innerHTML       = currentProjectInfo['Year'];
-            //             lightBox.querySelector('.project-url').href             = currentProjectInfo['ProjectURL'];
-            //             projectObj = currentProjectInfo;
-            //             console.log('updated info', currentProjectInfo);
-            //         }
+                        clearInfo();
+                        updateProjectInfo(projectObj, projectIndex);
+                        scrollTopLightbox();
+                    }else{
+                        //TODO: what if we don't find it??
+                    }
+                });
+            });
 
-            //         function setProjectInfo() {
-            //             currentProjectInfo = indexObj;
-            //             console.log('setting projects', currentProjectInfo);
-            //         }
+            function clearInfo() {
+                deliverablesList.innerHTML = '';
+                teamList.innerHTML = '';
+                imagesSection.innerHTML = '';
+                videosSection.innerHTML = '';
+            }
 
-            //         // grabs single number returned from projectIndexObj
-            //         if (indexObj['ID'] == projectIndexObj) {
-            //             // sets project info to corresponding current id
-            //             setProjectInfo();
-            //             updateProjectInfo();
-            //         }else if (indexObj['ID'] == nextProjectIndexObj) {
-            //             // sets project info to corresponding next id on btn click
-            //             nextProjectBtn.addEventListener('click', function(e) {
-            //                 console.log('next btn clicked');
-            //                 setProjectInfo();
-            //                 updateProjectInfo();
-            //                 scrollTopLightbox();
-            //             });
-            //         }else if (indexObj['ID'] == previousProjectIndexObj) {
-            //             // sets project info to corresponding previous id
-            //             previousProjectBtn.addEventListener('click', function(e) {
-            //                 console.log('previous btn clicked');
-            //                 setProjectInfo();
-            //                 updateProjectInfo();
-            //                 scrollTopLightbox();
-            //             });
-            //         }
-            // });
+            function updateProjectInfo(currentProjectInfo, projectIndex) {
+                lightBox.dataset.currentIndex = projectIndex;
+                // separate columns with multiple comma separated values
+                var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
+                    separateTeam = currentProjectInfo['Team'].split(','),
+                    separateImages = currentProjectInfo['Imgs'].split(','),
+                    separateVideos = currentProjectInfo['Video'].split(','),
+                    separateStripImages = separateImages.map(str => str.replace(/\s/g, '')),
+                    separateStripVideos = separateVideos.map(str => str.replace(/\s/g, ''));
+
+                separateDeliverables.forEach(deliverable => {
+                    var li = document.createElement('li');
+                    var deliverableListItem = deliverablesList.appendChild(li);
+                    deliverableListItem.innerHTML = deliverable;
+                })
+
+                separateTeam.forEach(team => {
+                    var li = document.createElement('li');
+                    var teamListItem = teamList.appendChild(li);
+                    teamListItem.innerHTML = team;
+                })
+
+                separateStripImages.forEach(img => {
+                    var div = document.createElement('div');
+                    div.classList.add('pwork-img');
+                    div.style.backgroundImage = "url('./public/images/" + img + "')";
+                    imagesSection.appendChild(div);
+                })
+
+                separateStripVideos.forEach(video => {
+
+                    if (video) {
+                        var div = document.createElement('div');
+                        var iframe = document.createElement('iframe');
+                        div.classList.add('embed-container');
+                        iframe.innerHTML = '';
+                        iframe.src = video;
+                        videosSection.appendChild(div);
+                        div.appendChild(iframe);
+                    }else {
+                        videosSection.innerHTML = '';
+                    }
+                })
+
+                lightBox.querySelector('.project-title').innerHTML = currentProjectInfo['Title'];
+                lightBox.querySelector('.project-subtitle').innerHTML = currentProjectInfo['Subtitle'];
+                lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
+                lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
+                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+                // set up next image
+                // lightBox.querySelector('.project-next-url').style.backgroundImage = "url('./public/images/" + separateStripImages[0] + "')";
+
+                // resetting lightbox info value
+                projectObj = currentProjectInfo;
+            }
 
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');

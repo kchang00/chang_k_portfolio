@@ -107,6 +107,10 @@
     margin: 0 auto;
     flex: 0;
     max-width: 1080px;
+
+    &:empty {
+        display: none;
+    }
 }
 
 .embed-container { 
@@ -178,6 +182,8 @@
     }
 }
 
+
+
 .pwork-img {
     // min-height: 340px;
     // min-width: 340px;
@@ -188,7 +194,10 @@
     border-radius: 20px;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     margin: 15px;
-    background: $teal;
+    background-color: $teal;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     &:last-child {
         margin-bottom: 0;

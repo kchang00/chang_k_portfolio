@@ -97,6 +97,10 @@ a, input, textarea, button {
     100% { opacity: 1; }
 }
 
+.fade-in {
+    animation: fade-in 0.4s 1 ease-out;
+}
+
 .btn-small {
     display: flex;
     max-width: 185px;
@@ -155,36 +159,6 @@ a, input, textarea, button {
     align-items: center;
     justify-content: center;
 }
-
-// gradient button
-// .btn {
-//     display: flex;
-//     justify-content: center;
-//     align-items:center;
-//     @include p-class;
-
-//     padding: 20px 60px;
-//     color: #fff;
-//     border: none;
-//     background-size: 300% 100%;
-
-//     border-radius: 50px;
-//     moz-transition: all .4s ease-in-out;
-//     -o-transition: all .4s ease-in-out;
-//     -webkit-transition: all .4s ease-in-out;
-//     transition: all .4s ease-in-out;
-
-//     background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
-//     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
-
-//     &:hover {
-//         background-position: 100% 0;
-//         moz-transition: all .4s ease-in-out;
-//         -o-transition: all .4s ease-in-out;
-//         -webkit-transition: all .4s ease-in-out;
-//         transition: all .4s ease-in-out;
-//     }
-// }
 
 @media screen and (min-width: $tablet-size) {
     .main-con-nav-po {

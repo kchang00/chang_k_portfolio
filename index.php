@@ -77,17 +77,16 @@
                 $row_index = 1;
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
                     // var_dump($row);
-                        $separate_deliverables = explode(",", $row["Deliverables"]);
+                        // $separate_deliverables = explode(",", $row["Deliverables"]);
                         $separate_images = array_map('trim', explode(",", $row["Imgs"]));
-                        $separate_team = explode(",", $row["Team"]);
-                        $next_title = $row["Title"];
+                        // $separate_team = explode(",", $row["Team"]);
 
 
                         // var_dump($separate_deliverables);
                         // echo $separate_deliverables[0];
                         // exit;
                     ?>
-                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background:url(./public/images/<?php echo $separate_images[0];?>) no-repeat center;" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
+                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background-image:url(./public/images/<?php echo $separate_images[0];?>);" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
                         <div class="p-link">
                             <h3><?php echo $row['Title'];?></h3>
                             <h4><?php echo $row['Medium'];?></h4>
@@ -131,22 +130,12 @@
                                 <div class="pwork-sidebar">
                                     <div>
                                         <h5>Deliverables</h5>
-                                        <!-- for when I attempted to set the li with the JS split instead of PHP explode -->
-                                        <!-- <ul class="project-deliverables"> -->
-                                        <ul>
-                                            <?php foreach ($separate_deliverables as $deliverables) {
-                                                echo '<li class="project-deliverables">' . $deliverables . '</li>';
-                                            } ?>
-                                        </ul>
+                                        <ul class="project-deliverables"></ul>
                                     </div>
 
                                     <div>
                                         <h5>Team</h5>
-                                        <ul>
-                                        <?php foreach ($separate_team as $team) {
-                                            echo '<li>' . $team . '</li>';
-                                        } ?>
-                                        </ul>
+                                        <ul class="project-team"></ul>
                                     </div>
                                     
                                     <div>
@@ -159,12 +148,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php foreach ($separate_images as $img) {
-                                echo '<div class="pwork-img" style="background:url(./public/images/'.$img.') no-repeat center"></div>';
-                            } ?>
-                            </ul>
 
-                            <!-- can include video here -->
+                            <!-- video -->
+
+                            <div class="video-con project-videos">
+                            </div>
+
+                            <section class="project-images">
+                                <h3 class="hidden">Project Images</h3>
+                            </section>
 
                             <section class="pwork-contact">
                                 <h2>Want to make something like this?</h2>
@@ -172,11 +164,11 @@
                             </section>
                         </div> <!-- end of lb-desc-con - white background-->
                         <section class="pwork-more">
-                            <button class="project-previous-url">
+                            <button class="project-nav-button project-previous-url" data-nav="previous">
                                 <img src="public/images/arrow_left_long.svg" alt="Previous">
                                 <p class="project-previous-title">Previous Project</p>
                             </button>
-                            <button class="project-next-url">
+                            <button class="project-nav-button project-next-url" data-nav="next">
                                 <img src="public/images/arrow_left_long.svg" alt="Next">
                                 <p class="project-next-title">Next Project</p>
                             </button>

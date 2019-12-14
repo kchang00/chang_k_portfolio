@@ -128,14 +128,16 @@
                                     </a>
                                 </div>
                                 <div class="pwork-sidebar">
-                                    <div>
-                                        <h5>Deliverables</h5>
-                                        <ul class="project-deliverables"></ul>
-                                    </div>
+                                    <div class="pwork-sidebar-con">
+                                        <div>
+                                            <h5>Deliverables</h5>
+                                            <ul class="project-deliverables"></ul>
+                                        </div>
 
-                                    <div>
-                                        <h5>Team</h5>
-                                        <ul class="project-team"></ul>
+                                        <div>
+                                            <h5>Team</h5>
+                                            <ul class="project-team"></ul>
+                                        </div>
                                     </div>
                                     
                                     <div>
@@ -149,13 +151,13 @@
                                 </div>
                             </div>
 
-                            <!-- video -->
+                            <section class="pwork-visuals">
+                                <h2 class="hidden">Project Visuals</h2>
+                                <div class="video-con project-videos">
+                                </div>
 
-                            <div class="video-con project-videos">
-                            </div>
-
-                            <section class="project-images">
-                                <h3 class="hidden">Project Images</h3>
+                                <div class="project-images">
+                                </div>
                             </section>
 
                             <section class="pwork-contact">

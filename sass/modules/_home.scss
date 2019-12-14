@@ -66,7 +66,7 @@
 
 .desc-wrap {
     max-width: 1100px;
-    margin: 60px $mobile-gutter;
+    margin: 60px $mobile-gutter 100px $mobile-gutter;
     flex-wrap: wrap;
     h2 {
         margin-bottom: $mobile-margin;
@@ -99,13 +99,13 @@
 
 .portfolio-works { 
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     flex: 1;
     // background-color: #75d89d;
     // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%235c8b5d' fill-opacity='0.4'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     box-sizing: border-box;
+    padding: 0px $mobile-margin;
 
     .portfolio-card {
 
@@ -113,15 +113,26 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 350px;
-        flex: 1 1 630px;
         cursor: pointer;
         transition: all 1s ease-out;
         box-sizing: border-box;
         position: relative;
+        flex: 1;
+        // px value = 15px + 10px <- not sure why it's 10px
+        width: calc(100% - 25px);
+        padding-bottom: calc(100% - 25px);
+        border-radius: 10px;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+        margin: 15px;
+        background-color: $teal;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        transition: all .2s ease;
+
+        &:focus, &:hover {
+            transform: scale(0.98);
+        }
 
         .p-link { 
             display: flex;
@@ -171,15 +182,25 @@
     }
 
     .desc-wrap {
-        margin: 80px $tablet-gutter;
+        margin: 100px $tablet-gutter;
     }
 
     .portfolio-card {
-        max-width: 50%;
-        // min-width: 0px;
-        flex: 1;
         .p-link {
             padding: $tablet-margin !important;
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .portfolio-works {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0px 15px;
+        .portfolio-card {
+            //reset padding hack
+            padding-bottom: calc(40% - 25px);
+            padding-right: calc(49% - 25px);
         }
     }
 }
@@ -201,7 +222,7 @@
             opacity: 0;
 
             &:focus, &:hover {
-                background: linear-gradient(rgba(61,173,189,0.5) 0%, rgba(61,173,189,0.5) 100%);
+                // background: linear-gradient(rgba(61,173,189,0.5) 0%, rgba(61,173,189,0.5) 100%);
                 opacity: 1;
             }
         }
@@ -209,7 +230,7 @@
 
     .desc-wrap {
         max-width: 770px;
-        margin: 80px 0px;
+        margin: 110px 0px;
         .desc-columns {
             flex-direction: row;
             p {

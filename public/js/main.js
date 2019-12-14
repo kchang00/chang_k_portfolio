@@ -16,6 +16,7 @@
 
     function closeStop() {
         lightBox.classList.remove('show-lb');
+        videosSection.innerHTML = '';
     }
 
     function scrollTopLightbox() {

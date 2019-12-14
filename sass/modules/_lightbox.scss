@@ -30,6 +30,7 @@
         flex-direction: column;
         height: 100%;
         overflow: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     .close {
@@ -103,10 +104,10 @@
 }
 
 .video-con {
-    padding: 40px 0px;
     margin: 0 auto;
     flex: 0;
-    max-width: 1080px;
+    border-radius: 10px;
+    margin: 15px;
 
     &:empty {
         display: none;
@@ -116,9 +117,16 @@
 .embed-container { 
     position: relative; 
     padding-bottom: 56.25%; 
+    border-radius: 10px;
     height: 0; 
     overflow: hidden; 
     max-width: 100%; 
+    margin: 15px 0px;
+    background-color: $teal;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    &:last-child {
+        margin-bottom: 0;
+    }
 } 
 
 .embed-container iframe,
@@ -140,8 +148,12 @@
     padding: 160px $mobile-gutter 0px $mobile-gutter;
     margin: 0 auto;
     // VERY IMPORTANT, PREVENTS SITE FROM BREAKING - hides buttons if there is no link
+
     a[href=""] {
         display: none !important;
+    }
+    .btn-small {
+        margin-bottom: 65px;
     }
 }
 
@@ -191,7 +203,7 @@
     // px value = 15px + 10px <- not sure why it's 10px
     width: calc(100% - 25px);
     padding-bottom: calc(100% - 25px);
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     margin: 15px;
     background-color: $teal;
@@ -223,7 +235,8 @@
     display: flex;
     flex: 1;
     align-items: center;
-    position: absolute;
+    // absolute positioning behaviour is strange on mobile
+    position: fixed;
     z-index: -1;
     left: 0;
     right: 0;
@@ -294,6 +307,14 @@
                 align-self: flex-start;
             }
         }
+        .pwork-sidebar-con {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            div:nth-child(2){
+                margin: 0 auto;
+            }
+        }
     }
     .pwork-contact {
         min-height: 50vh;
@@ -317,6 +338,15 @@
         box-shadow: none;
         margin: 15px 0;
     }
+    .video-con {
+        border-radius: 0;
+        box-shadow: none;
+        margin: 15px 0;
+    }
+    .embed-container {
+        border-radius: 0;
+        margin: 15px 0;
+    }
 }
 
 @media screen and (min-width: $desktop-size) {
@@ -326,37 +356,39 @@
     .close {
         margin: $desktop-margin 0px;
     }
-    .video-con {
-        padding: 60px 0px;
-    }
     .pwork-con {
         flex-direction: row;
         padding: 200px $desktop-gutter 0px $desktop-gutter;
         // aligns sidebar items to top
         align-items: flex-start;
         .btn-small {
-            margin-bottom: 100px;
+            margin-bottom: 0;
         }
     }
+    
     .pwork-sidebar {
         order: -1;
         flex-wrap: wrap;
         flex: 1;
         max-width: 200px;
-        justify-content: flex-end;
+        // justify-content: flex-end;
         margin-right: $desktop-gutter;
         // reset tablet min-width for sidebar
         min-width: 0;
 
-        div:nth-child(2) {
+        .pwork-sidebar-con {
             // alignment fix - align with deliverables
-            margin-right: 33px;
+            order: 1;
+            flex-direction: column;
+            margin-left: 40px;
+            div:nth-child(2){
+                margin: 0;
+            }
         }
+    }
 
-        div:last-child {
-            order: -1;
-            margin-right: 40px;
-        }
+    .pwork-visuals {
+        margin-top: 100px;
     }
 
     .pwork-more {

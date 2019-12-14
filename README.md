@@ -1,8 +1,6 @@
 # Kayla Chang | Portfolio
 
-<img src="/public/imgs/logo_colour.svg" width="150">
-
-#### A little bit about me:
+<img src="/public/images/logo_colour.svg" width="150">
 
 My name is Kayla Chang. I'm an Interactive Media Designer, and this is my portfolio. Visit the live site [here](https://www.kaylachang.ca/).
 

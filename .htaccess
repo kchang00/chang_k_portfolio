@@ -4,6 +4,10 @@
 # # Enable gzip for compression
 # <ifmodule mod_deflate.c>
 
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 # Hide PHP file extension
 Options +Multiviews
 

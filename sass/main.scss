@@ -156,13 +156,18 @@ a, input, textarea, button {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
     background: $salmon;
-    align-items: center;
+    // adding this makes btn text uncentered in firefox
+    // align-items: center;
     justify-content: center;
+    transition: .15s ease-out;
+    &:focus, &:hover {
+        transform: scale(0.97);
+    }
 }
 
 @media screen and (min-width: $tablet-size) {
     .main-con-nav-po {
-        padding: 180px 130 0px 130px;
+        padding: 180px 130px 0px 130px;
         // same width as portfolio info, welcome desc
         max-width: 550px;
     }

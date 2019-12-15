@@ -6,9 +6,9 @@
             <nav class="main-nav">
                 <h2 class="hidden">Main Navigation</h2>
                 <ul>
-                    <a href="index.php#portfolio-lightbox-con"><li>Portfolio</li></a>
-                    <a href="about.php"><li>About</li></a>
-                    <a href="contact.php"><li>Contact</li></a>
+                    <li><a href="index.php#portfolio-lightbox-con">Portfolio</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
         </div>

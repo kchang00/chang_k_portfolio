@@ -110,7 +110,7 @@
             margin-bottom: 60px;
         }
         h3 {
-            line-height: auto;
+            line-height: normal;
             font-size: 1.15em;
         }
         .steps-con {
@@ -170,7 +170,7 @@
         }
     }
     .about-desc {
-        padding: 180px 130 0px 130px;
+        padding: 180px 130px 0px 130px;
         // same width as portfolio info, welcome desc
         max-width: 550px;
     }

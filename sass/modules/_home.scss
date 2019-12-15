@@ -14,18 +14,18 @@
     outline-offset: -13px;
 
 
-    h1 {
+    h2 {
         @include title-font;
-        font-size: 2.5em;
+        font-size: 2.5em !important;
         text-align: center;
         color: $white;
         margin-bottom: $mobile-margin;
         margin-top: 30%;
     }
-    h2 {
+    h3 {
         font-family: 'Crimson Text', serif;
         color: $white;
-        font-size: 1.4em;
+        font-size: 1.9em !important;
         letter-spacing: .13rem;
         //assigned by main h2 class mixin, resets it to regular
         font-weight: 400;
@@ -44,7 +44,7 @@
         align-self: flex-start;
         justify-self: flex-end;
         justify-content: center;
-        transform: translate(0px, 23vh);
+        transform: translate(0px, 14vh);
         p {
             transform: rotate(90deg) translate(-80px, -5px);
             transform-origin: left;
@@ -164,6 +164,13 @@
     @include p-class;
 }
 
+@media screen and (min-width: 375px) {
+    .hero {
+        .scroll-down {
+            transform: translate(0px, 22.5vh);
+        }
+    }
+}
 
 @media screen and (min-width: 500px) {
     .hero {

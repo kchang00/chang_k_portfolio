@@ -5,6 +5,7 @@
     <title>Kayla Chang | Portfolio</title>
 </head>
 <body>
+    <h1 class="hidden">Kayla Chang | Portfolio</h1>
     <!-- different nav from other pages -->
     <div class="nav-positioning">
         <div class="main-nav-con">
@@ -14,9 +15,9 @@
                 <nav class="main-nav">
                     <h2 class="hidden">Main Navigation</h2>
                     <ul>
-                        <a href="#portfolio-lightbox-con"><li>Portfolio</li></a>
-                        <a href="about.php"><li>About</li></a>
-                        <a href="contact.php"><li>Contact</li></a>
+                        <li><a href="#portfolio-lightbox-con">Portfolio</a></li>
+                        <li><a href="about.php">About</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -25,8 +26,8 @@
     <div class="main-con">
         <section class="hero">
             <div class="hero-title">
-                <h1>Kayla Chang</h1>
-                <h2>Interactive Media Designer</h2>
+                <h2>Kayla Chang</h2>
+                <h3>Interactive Media Designer</h3>
                 <p>Creating digital experiences that engage and empower users.</p>
             </div>
             <div class="scroll-down">
@@ -47,10 +48,10 @@
                         Most of my work involves making websites, games, graphics, and animations. I think a lot about how to enhance the user experience with functional, accessible, and striking design. Feel free to take a look around, or <a href="contact.php">say hi</a>.
                     </p>
                 </div>
-            <div>
+            </div>
         </section>
 
-        <section id="portfolio-lightbox-con">
+        <div id="portfolio-lightbox-con">
             <section class="portfolio-works">
                 <h2 class="hidden">Portfolio Work</h2>
                 <?php
@@ -97,10 +98,10 @@
             $row_index++;    
             endwhile;
 
-                else:?>
-                <h3>Coming Soon</h3>
-                <?php endif; ?>
-                </section>
+            else:?>
+            <h3>Coming Soon</h3>
+            <?php endif; ?>
+            </section>
 
             <article class="lightbox">
                 <div class="lightbox-scroll-con">
@@ -153,11 +154,9 @@
 
                             <section class="pwork-visuals">
                                 <h2 class="hidden">Project Visuals</h2>
-                                <div class="video-con project-videos">
-                                </div>
+                                <div class="video-con project-videos"></div>
 
-                                <div class="project-images">
-                                </div>
+                                <div class="project-images"></div>
                             </section>
 
                             <section class="pwork-contact">
@@ -166,19 +165,20 @@
                             </section>
                         </div> <!-- end of lb-desc-con - white background-->
                         <section class="pwork-more">
+                            <h2 class=hidden>More Works</h2>
                             <button class="project-nav-button project-previous-url" data-nav="previous">
                                 <img src="public/images/arrow_left_long.svg" alt="Previous">
-                                <p class="project-previous-title">Previous Project</p>
+                                <span class="project-previous-title">Previous Project</span>
                             </button>
                             <button class="project-nav-button project-next-url" data-nav="next">
                                 <img src="public/images/arrow_left_long.svg" alt="Next">
-                                <p class="project-next-title">Next Project</p>
+                                <span class="project-next-title">Next Project</span>
                             </button>
                         </section>
                     </div> <!-- end of lightbox database content -->
                 </div>
             </article>
-        </section>
+        </div>
 
         <section class="thanks-footer">
             <h2>Thanks for visiting!</h2>
@@ -188,7 +188,7 @@
 
     <?php include 'footer.php';?>
     <script src="public/js/main.js"></script>
-    <script src="public/js/main_nav_home.js" type="text/javascript"></script>
-    <script src="public/js/time_home.js" type="text/javascript"></script>	
+    <script src="public/js/main_nav_home.js"></script>
+    <script src="public/js/time_home.js"></script>	
 </body>
 </html>

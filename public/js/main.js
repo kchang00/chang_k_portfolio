@@ -19,6 +19,47 @@
         videosSection.innerHTML = '';
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        // code by Maximillian Laumeister: https://www.maxlaumeister.com/articles/hide-related-videos-in-youtube-embeds/
+        if (window.hideYTActivated) return;
+        let onYouTubeIframeAPIReadyCallbacks=[];
+        for (let playerWrap of document.querySelectorAll(".hytPlayerWrap")) {
+            let playerFrame=playerWrap.querySelector("iframe");
+            let tag=document.createElement('script');
+            tag.src="https://www.youtube.com/iframe_api";
+            let firstScriptTag=document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            let onPlayerStateChange=function(event) {
+                if (event.data==YT.PlayerState.ENDED){playerWrap.classList.add("ended");
+            }else if (event.data==YT.PlayerState.PAUSED){
+                playerWrap.classList.add("paused");
+            }else if (event.data==YT.PlayerState.PLAYING){
+                playerWrap.classList.remove("ended"); 
+                playerWrap.classList.remove("paused");}
+            };
+            
+            let player;
+            onYouTubeIframeAPIReadyCallbacks.push(function() { 
+                player=new YT.Player(playerFrame,{events:{'onStateChange': onPlayerStateChange}});
+            }); 
+            
+            playerWrap.addEventListener("click", function(){
+                let playerState=player.getPlayerState();
+                if (playerState==YT.PlayerState.ENDED){
+                    player.seekTo(0);
+                }else if (playerState==YT.PlayerState.PAUSED){
+                    player.playVideo();}
+            });
+        }
+        
+        window.onYouTubeIframeAPIReady=function(){
+            for (let callback of onYouTubeIframeAPIReadyCallbacks){callback();}
+        }; 
+
+        window.hideYTActivated=true;
+    });
+
     function scrollTopLightbox() {
         TweenMax.to(lightBoxScroll, 1, { scrollTo: 0 });
         lightBoxDesc.style.opacity = '0';
@@ -122,6 +163,7 @@
                         var div = document.createElement('div');
                         var iframe = document.createElement('iframe');
                         div.classList.add('embed-container');
+                        div.classList.add('hytPlayerWrap');
                         iframe.innerHTML = '';
                         iframe.src = video;
                         videosSection.appendChild(div);

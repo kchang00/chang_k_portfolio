@@ -22,7 +22,7 @@
         input, textarea {
             background: $pearl;
             border: none;
-            padding: 20px;
+            padding: 21.5px;
             font-size: 0.8em;
             transition: 0.3s;
             color: $salmon;
@@ -32,7 +32,7 @@
             &::placeholder {
                 color: #FABCA9;
                 font-family: 'Josefin Sans', sans-serif;
-                line-height: 1em;
+                // line-height: 1em;
                 font-weight: 400;
                 margin-bottom: 20px;
                 margin-top: 20px;
@@ -47,8 +47,6 @@
             height: 40vh;
         }
         button {
-            max-width: auto;
-            max-height: auto;
             padding: 20px 50px 30px 50px;
             margin: 60px 0px 100px 0px;
             cursor: pointer;
@@ -69,12 +67,19 @@
         outline: 3px solid #fff;
         outline-offset: -13px;
         background: $pearl;
+        text-align: center;
+
+        .hamburger-nav-con {
+            flex: 1;
+        }
+
         .logo {
             display: none;
         }
         img {
-            max-width: 300px;
+            max-width: 250px;
             margin-bottom: 40px;
+            margin-top: 63px;
         }
         .thank-you-con {
             display: flex;
@@ -83,7 +88,18 @@
             flex: 1;
             justify-content: center;
             align-items:center;
-            padding: $mobile-margin;
+            padding: 40px;
+        }
+    }
+}
+
+@media screen and (min-width: $tablet-size) {
+    .contact-con{
+        .lightbox {
+            img {
+                max-width: 300px;
+                margin-top: 0;
+            }
         }
     }
 }

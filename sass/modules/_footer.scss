@@ -5,7 +5,7 @@
     justify-content: center;
     text-align: center;
     color: $white;
-    height: 72vh;
+    padding: 25vh 0;
 
     h2 {
         color: $salmon;
@@ -50,11 +50,13 @@ footer {
         flex-direction: row;
         flex: 1;
         //centers icon imgs in anchor tag
-        a {
-            li {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .15s ease-out;
+            &:hover {
+                transform: scale(0.96);
             }
         }
         img {

@@ -71,13 +71,14 @@ if(mail($recipient, $subject, $message, $headers)){
     <title>Kayla Chang | Contact</title>
 </head>
 <body>
+    <h1 class="hidden">Kayla Chang | Contact</h1>
     <?php include 'main_nav.php';?>
     <div class="contact-con">
         <div class="main-con-nav-po">
             <h2>Let's Connect.</h2>
             <h3>Ready to start a project? I’ll do my best to get in touch within the week.</h3>
             <!-- <form action="contact/data_contact.php" method="post"> -->
-            <form id="contact-form" action="" method="post">
+            <form id="contact-form" action="contact.php" method="post">
                 <!-- method="get" makes data in contact form visible in url. use method="post" for sensitive data like password -->
                 <!-- action is the reciever -->
                 <!-- for attribute must be same as id of input to link them together -->

@@ -26,6 +26,7 @@ $hamburger-border-radius: 20px;
     z-index: 2;
     // prevents nav from changing sizes once hamburger is expanded
     min-height: 60px;
+    box-sizing: border-box;
 }
 
 .main-nav {
@@ -184,6 +185,9 @@ $hamburger-border-radius: 20px;
         margin-top: 60px;
         li {
             margin-bottom: 55px;
+            &:hover, &:focus {
+                transform: scale(0.97);
+            }
         }
     }
     a {
@@ -207,7 +211,7 @@ $hamburger-border-radius: 20px;
     display:flex;
     justify-content: center;
     align-items: center;
-    max-width: 50px;
+    width: 50px;
     transition: all $button-transistion-duration ease;
 }
 
@@ -253,9 +257,22 @@ $hamburger-border-radius: 20px;
     .main-nav-con {
         padding: 40px 80px;
         a {
-            transition: all .3s ease-out;
+            transition: color .3s ease-out;
+            transition: .15s ease-out;
             &:hover {
                 color: $salmon;
+                transform: scale(0.97);
+            }
+        }
+        li {
+            transition: .15s ease-out;
+            &:hover {
+                transform: scale(0.97);
+            }
+        }
+        .logo, .close {
+            &:hover {
+                transform: scale(0.95);
             }
         }
     }

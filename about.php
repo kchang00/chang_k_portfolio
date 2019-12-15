@@ -5,6 +5,7 @@
     <title>Kayla Chang | About</title>
 </head>
 <body>
+    <h1 class="hidden">Kayla Chang | About</h1>
     <?php include 'main_nav.php';?>
     <div class="about-con">
         <section class="about-desc">
@@ -137,7 +138,7 @@
                                 <h3>Finish</h3>
                                 <p>That’s a wrap! After any final revisions, we’ll get the project into the world.</p>
                             </div>
-                        </div
+                        </div>
                     </div>
                 </div>
             </section>

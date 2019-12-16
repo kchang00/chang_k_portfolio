@@ -164,18 +164,13 @@
     @include p-class;
 }
 
-@media screen and (min-width: 375px) {
-    .hero {
-        .scroll-down {
-            transform: translate(0px, 22.5vh);
-        }
-    }
-}
-
 @media screen and (min-width: 500px) {
     .hero {
         background: url("../../public/images/hero_tablet.svg") no-repeat center;
         background-size: cover;
+        .scroll-down {
+            transform: translate(0px, 22.5vh);
+        }
     }
 }
 

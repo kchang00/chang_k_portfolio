@@ -139,7 +139,7 @@
     height: 100%; 
 }
 
-// TESTING AREA BEGIN
+// YOUTUBE PLAYER
 
 .hytPlayerWrap.ended::after{
 	content:"";
@@ -171,8 +171,6 @@
 	background-image: url(data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNzA2LjY2NyIgaGVpZ2h0PSIxNzA2LjY2NyIgdmlld0JveD0iMCAwIDEyODAgMTI4MCI+PHBhdGggZD0iTTE1Ny42MzUgMi45ODRMMTI2MC45NzkgNjQwIDE1Ny42MzUgMTI3Ny4wMTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);
 }
 
-// TESTING AREA END
-
 .pwork-con {
     display: flex;
     flex-direction: column;
@@ -188,6 +186,35 @@
     }
     .btn-small {
         margin-bottom: 65px;
+    }
+}
+
+.pwork-process-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // visually based on sidebar
+    max-width: 870px;
+    padding: $mobile-gutter*2 $mobile-gutter;
+    margin: 0 auto;
+    h2 {
+        margin-bottom: $mobile-margin;
+    }
+    h3 {
+        margin-bottom: $mobile-margin * 2;
+    }
+}
+
+.pwork-process-visuals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        width: 90%;
+        margin: 15px 0px;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -213,13 +240,12 @@
 
     h5 {
         @include h5-class;
-        line-height: 0;
-        margin-bottom: 1em;
+        line-height: 2em;
     }
     ul {
         margin-bottom: $mobile-margin * 2;
         li {
-            font-size: 0.9em;
+            font-size: 1em;
             color: $teal;
             font-family: 'Crimson Text', serif;
             line-height: 1.7em;
@@ -227,8 +253,6 @@
         }
     }
 }
-
-
 
 .pwork-img {
     // min-height: 340px;
@@ -303,7 +327,7 @@
     }
 
     span{
-        font-size: 1em;
+        font-size: 1.5em;
         color: $white;
         font-family: 'Josefin Sans', sans-serif;
         font-weight: 400;
@@ -326,11 +350,22 @@
         padding: 180px 130px 0px 130px;
         align-items: center;
     }
+
+    .pwork-process-con {
+        padding: 130px;
+        align-items: center;
+        div{
+            text-align: center;
+        }
+        p {
+            max-width: 550px;
+        }
+    }
+
     .pwork-sidebar {
         display: flex;
         justify-content: space-between;
-        // same as pwork-desc
-        min-width: 550px;
+        width: 100%;
         div {
             display: flex;
             flex-direction: column;
@@ -379,6 +414,18 @@
         border-radius: 0;
         margin: 15px 0;
     }
+
+    .pwork-sidebar {
+        // same as pwork-desc
+        max-width: 550px;
+    }
+
+    .pwork-process-visuals {
+        img {
+            width: 70%;
+            margin: 15px;
+        }
+    }
 }
 
 @media screen and (min-width: $desktop-size) {
@@ -397,22 +444,40 @@
             margin-bottom: 0;
         }
     }
+
+    .pwork-process-con {
+        flex-direction: row;
+        padding: $desktop-gutter;
+        div{
+            margin-right: $desktop-gutter;
+            width: 100%;
+            text-align: left;
+        }
+        h3 {
+            margin: 0;
+        }
+        p {
+            max-width: none;
+        }
+    }
     
     .pwork-sidebar {
         order: -1;
         flex-wrap: wrap;
         flex: 1;
-        max-width: 200px;
+        max-width: 215px;
         // justify-content: flex-end;
         margin-right: $desktop-gutter;
         // reset tablet min-width for sidebar
         min-width: 0;
+        // for visual balance
+        margin-left: 25px;
 
         .pwork-sidebar-con {
             // alignment fix - align with deliverables
             order: 1;
             flex-direction: column;
-            margin-left: 40px;
+            margin-left: 50px;
             div:nth-child(2){
                 margin: 0;
             }

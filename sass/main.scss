@@ -1,6 +1,6 @@
-// sass --watch sass/main.scss:public/css/main.css --style compressed
+// sass --watch sass:public/css --style compressed
 
-@import '_vars';
+@import 'modules/_vars';
 @import 'modules/_main_nav';
 @import 'modules/_home';
 @import 'modules/_lightbox';
@@ -62,7 +62,7 @@ button {
 	outline: inherit;
 }
 
-a, input, textarea, button {
+a, input, textarea, button, div {
     &:focus {
         outline: 3px double $salmon;
      }
@@ -105,7 +105,7 @@ a, input, textarea, button {
     display: flex;
     max-width: 185px;
     height: 45px;
-    font-size: 0.9em;
+    font-size: 1em;
     color: $white;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
@@ -151,7 +151,7 @@ a, input, textarea, button {
     max-width: 180px;
     max-height: 45px;
     padding: 20px 50px;
-    font-size: 0.9em;
+    font-size: 1.2em;
     color: $white;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;

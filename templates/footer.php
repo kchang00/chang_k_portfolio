@@ -1,5 +1,5 @@
 <footer>
-    <p>© Kayla Chang 2019. All Rights Reserved.</p>
+    <p>© <?php echo date("Y"); ?> Kayla Chang. All Rights Reserved.</p>
     <nav class="social-nav">
         <h2 class="hidden">Social Navigation</h2>
         <ul>

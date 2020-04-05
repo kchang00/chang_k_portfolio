@@ -3,15 +3,15 @@
         margin-bottom: $mobile-margin * 2;
     }
     h3 {
-        line-height: 1.6em;
-        font-size: 1.15em;
+        line-height: 1.7em;
+        font-size: 1.2em;
     }
 
     form {
         display: flex;
         flex-direction: column;
         label {
-            font-size: 0.9em;
+            font-size: 1em;
             color: $salmon;
             font-family: 'Josefin Sans', sans-serif;
             line-height: 1em;
@@ -23,11 +23,11 @@
             background: $pearl;
             border: none;
             padding: 21.5px;
-            font-size: 0.8em;
+            font-size: 0.9em;
             transition: 0.3s;
             color: $salmon;
             font-family: 'Josefin Sans', sans-serif;
-            line-height: 1.5em;
+            line-height: 1.6em;
             font-weight: 400;
             &::placeholder {
                 color: #FABCA9;

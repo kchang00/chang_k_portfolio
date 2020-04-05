@@ -16,7 +16,7 @@ $pearl: #F9F4ED;
 $white: #FFFDFD;
 
 @mixin title-font {
-    font-size: 1.95em;
+    font-size: 2em;
     color: $teal;
     font-family: 'Josefin Sans', sans-serif;
     line-height: 1em;
@@ -26,15 +26,15 @@ $white: #FFFDFD;
 }
 
 @mixin subtitle-font {
-    font-size: 1.25em;
+    font-size: 1.3em;
     color: $salmon;
     font-family: 'Josefin Sans', sans-serif;
-    line-height: 1.2em;
+    line-height: 1.5em;
     font-weight: 400;
 }
 
 @mixin h4-class {
-    font-size: 1em;
+    font-size: 1.1em;
     color: $salmon;
     font-family: 'Josefin Sans', sans-serif;
     line-height: 3em;
@@ -42,7 +42,7 @@ $white: #FFFDFD;
 }
 
 @mixin h5-class {
-    font-size: 0.7em;
+    font-size: 0.83em;
     color: $teal;
     text-transform: uppercase;
     font-family: 'Josefin Sans', sans-serif;
@@ -52,7 +52,7 @@ $white: #FFFDFD;
 }
 
 @mixin p-class {
-    font-size: 0.9em;
+    font-size: 1.05em;
     color: $navy;
     font-family: 'Crimson Text', serif;
     line-height: 1.7em;

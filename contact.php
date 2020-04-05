@@ -67,12 +67,12 @@ if(mail($recipient, $subject, $message, $headers)){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'header.php';?>
+    <?php include 'templates/header.php';?>
     <title>Kayla Chang | Contact</title>
 </head>
 <body>
     <h1 class="hidden">Kayla Chang | Contact</h1>
-    <?php include 'main_nav.php';?>
+    <?php include 'templates/main_nav.php';?>
     <div class="contact-con">
         <div class="main-con-nav-po">
             <h2>Let's Connect.</h2>
@@ -112,36 +112,11 @@ if(mail($recipient, $subject, $message, $headers)){
             </form>
         </div>
         <?php if(isset($_POST['submit']))
-            echo '<div id="submit-msg">'
-        ?>
-                <div class="lightbox">
-                    <div class="lightbox-scroll-con">
-                        <div class="nav-positioning">
-                            <div class="main-nav-con">
-                                <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
-                                <div class="hamburger-nav-con">
-                                    <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thank-you-con">
-                            <?php if($is_success == True):?>
-                                <img src="public/images/submit_character.svg" alt="Submit Thank You">
-                                <h2>You're awesome, <?php echo $name?>.</h2>
-                                <h3>Thanks for reaching out. I'll get back to you soon!</h3>
-                            <?php else:?>
-                                <h2>Oops! Sorry, <?php echo $name?>.</h2>
-                                <h3>Your message did not go through. Please try again!</h3>
-                            <?php endif;?>
-                        </div>
-                    </div>
-                </div>
-        <?php if(isset($_POST['submit']))
-            echo '</div>'
+            include 'templates/submit_message.php';
         ?>
     </div>
 
-    <?php include 'footer.php';?>
+    <?php include 'templates/footer.php';?>
 
     <script src="public/js/main_nav.js"></script>
     <script src="public/js/main.js"></script>

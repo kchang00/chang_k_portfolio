@@ -291,6 +291,7 @@ $hamburger-border-radius: 20px;
         }
         a {
             @include h5-class;
+            font-size: 0.9em;
             color: $white;
         }
 

@@ -194,5 +194,6 @@
     <script src="public/js/main.js"></script>
     <script src="public/js/main_nav_home.js"></script>
     <script src="public/js/time_home.js"></script>	
+    <script src="public/js/lib/bodyScrollLock.js"></script> 
 </body>
 </html>

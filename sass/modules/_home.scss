@@ -71,6 +71,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        height: 100vh;
         padding-left: 40px;
         @include desktop-size{
             padding-left: 102px;
@@ -89,10 +90,17 @@
             width: 10px;
             margin: 0 auto;
         }
-        @media screen and (max-width: 370px){
+        @media screen and (max-width: 414px){
             display: none;
         }
-        @media screen and (max-height: 370px) and (orientation:landscape){
+        @media screen and (max-height: 375px) and (max-width:700px) and (orientation:landscape){
+            display: none;
+        }
+        // for ipad pro
+        @media screen and (min-height: 1024px) and (max-width:1366px){
+            display: none;
+        }
+        @media screen and (height: 1024px) and (width:1366px) and (orientation:landscape){
             display: none;
         }
     }

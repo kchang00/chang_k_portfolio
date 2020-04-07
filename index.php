@@ -56,9 +56,11 @@
                 <h3>Multimedia Designer</h3>
                 <p>Creating digital experiences that engage and empower users.</p>
             </div>
-            <div class="scroll-down">
-                <p>Scroll down</p>
-                <img src="public/images/scroll_down_dots.svg" alt="Scroll Down">
+            <div class="scroll-down-con">
+                <div class="scroll-down">
+                    <p>Scroll down</p>
+                    <img src="public/images/scroll_down_dots.svg" alt="Scroll Down">
+                </div>
             </div>
         </section>
 

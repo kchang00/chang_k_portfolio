@@ -240,12 +240,12 @@
 
     h5 {
         @include h5-class;
-        line-height: 2em;
+        line-height: 2.35em;
     }
     ul {
         margin-bottom: $mobile-margin * 2;
         li {
-            font-size: 1em;
+            font-size: 1.3em;
             color: $teal;
             font-family: 'Crimson Text', serif;
             line-height: 1.7em;
@@ -366,12 +366,18 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        h5 {
+            line-height: 2em;
+        }
         div {
             display: flex;
             flex-direction: column;
             // align-items: center;
             ul {
                 align-self: flex-start;
+                li {
+                    font-size: 1em;
+                }
             }
         }
         .pwork-sidebar-con {

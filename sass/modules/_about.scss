@@ -8,7 +8,7 @@
     }
     .quote {
         padding: 80px 0px;
-        font-size: 1.1em;
+        font-size: 1.15em;
         color: $teal;
         font-family: 'Josefin Sans', sans-serif;
         line-height: 2.1em;
@@ -36,9 +36,9 @@
             margin-bottom: 45px;
         }
         h3 {
+            @include subtitle-font;
             margin-bottom: $mobile-margin;
             line-height: 1.6em;
-            font-size: 1.2em;
         }
         .skills-lists{
             display: flex;
@@ -54,11 +54,8 @@
         ul {
             margin-bottom: $mobile-margin * 2;
             li {
-                font-size: 1em;
-                color: $navy;
-                font-family: 'Crimson Text', serif;
+                @include p-class(-0.05em);
                 line-height: 1.7em;
-                text-align: justify;
             }
         }
     }
@@ -87,12 +84,15 @@
             // same width as desc-wrap on home.php
             max-width: 770px;
             ul {
-                font-size: 1em;
+                font-size: 1.2em;
                 color: $teal;
                 font-family: 'Josefin Sans', sans-serif;
                 line-height: 2.1em;
                 font-weight: 400;
                 letter-spacing: .025rem;
+                @include tablet-size{
+                    font-size: 1em;
+                }
             }
         }
     }

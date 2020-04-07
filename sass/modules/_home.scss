@@ -13,14 +13,37 @@
     outline: 3px solid $white;
     outline-offset: -13px;
 
+    @media screen and (min-width: 500px) {
+        background: url("../../public/images/hero_tablet.svg") no-repeat center;
+        background-size: cover;
+    }
+
+    @include tablet-size {
+        padding: $tablet-gutter;
+    }
+
+    @include desktop-size{
+        padding: $mobile-gutter 102px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        background: url("../../public/images/hero_desktop.svg") no-repeat center;
+        background-size: cover;
+    }
+
 
     h2 {
         @include title-font;
-        font-size: 2.6em !important;
+        font-size: 2.6em;
         text-align: center;
         color: $white;
         margin-bottom: $mobile-margin;
-        margin-top: 40%;
+        @include tablet-size {
+            font-size: 2.1em;
+        }
+        @include desktop-size{
+            font-size: 3em;
+        }
     }
     h3 {
         font-family: 'Crimson Text', serif;
@@ -34,17 +57,28 @@
     }
     p {
         font-family: 'Josefin Sans', sans-serif;
-        line-height: 2em;
+        line-height: 1.6em;
         font-weight: 400;
         color: $white;
         text-align: center;
     }
+    .scroll-down-con{
+        display: flex;
+        align-items: flex-end;
+        position: absolute;
+        flex:1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-left: 40px;
+        @include desktop-size{
+            padding-left: 102px;
+        }
+    }
+
     .scroll-down {
-        // background: gold;
-        align-self: flex-start;
-        justify-self: flex-end;
         justify-content: center;
-        transform: translate(0px, 14vh);
         p {
             transform: rotate(90deg) translate(-80px, -5px);
             transform-origin: left;
@@ -55,7 +89,14 @@
             width: 10px;
             margin: 0 auto;
         }
+        @media screen and (max-width: 370px){
+            display: none;
+        }
+        @media screen and (max-height: 370px) and (orientation:landscape){
+            display: none;
+        }
     }
+
 }
 
 .welcome-desc {
@@ -69,6 +110,11 @@
     max-width: 1100px;
     margin: 60px $mobile-gutter 100px $mobile-gutter;
     flex-wrap: wrap;
+
+    @include tablet-size{
+        margin: 100px $tablet-gutter;
+    }
+
     h2 {
         margin-bottom: $mobile-margin;
     }
@@ -103,8 +149,6 @@
     flex-direction: column;
     align-items: center;
     flex: 1;
-    // background-color: #75d89d;
-    // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%235c8b5d' fill-opacity='0.4'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     box-sizing: border-box;
     padding: 0px $mobile-margin;
 
@@ -142,16 +186,22 @@
             justify-content: flex-end;
             align-items: flex-start; 
             text-decoration: none;
-            // background-color: rgba(47, 169, 190, 0.8);
             top: 0;
             right: 0;
             bottom: 0;
             left: 0;
-            // background-color: rgba(117, 216, 157, 0.5);
-            // background: rgba(216, 141, 116, 0.8);
+            background: rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease-out;
             padding: $mobile-margin;
             box-sizing: border-box;
+            border-radius: 10px;
+
+            @include tablet-size{
+                padding: $tablet-margin !important;
+                h3 {
+                    font-size: 1.5em;
+                }
+            }
 
             h3, h4 {
                 color: white;
@@ -162,45 +212,7 @@
 }
 
 .u-social {
-    @include p-class;
-}
-
-@media screen and (max-width: 370px){
-    .hero {
-        .scroll-down {
-            display: none;
-        }
-    }
-}
-
-@media screen and (min-width: 500px) {
-    .hero {
-        background: url("../../public/images/hero_tablet.svg") no-repeat center;
-        background-size: cover;
-        .scroll-down {
-            transform: translate(0px, 22.5vh);
-        }
-    }
-}
-
-
-@media screen and (min-width: $tablet-size) {
-    .hero {
-        padding: $tablet-gutter;
-        h2 {
-            font-size: 2.1em;
-        }
-    }
-
-    .desc-wrap {
-        margin: 100px $tablet-gutter;
-    }
-
-    .portfolio-card {
-        .p-link {
-            padding: $tablet-margin !important;
-        }
-    }
+    @include p-class(0);
 }
 
 @media screen and (min-width: 800px) {
@@ -217,12 +229,6 @@
 }
 
 @media screen and (min-width: $desktop-size) {
-    .hero {
-        padding: $mobile-gutter 102px;
-        h2 {
-            margin-top: 30%;
-        }
-    }
     .portfolio-card {
         .p-link {
             padding: $desktop-margin !important;
@@ -246,51 +252,6 @@
                     margin-right: 50px;
                 }
             }
-        }
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .hero {
-        background: url("../../public/images/hero_desktop.svg") no-repeat center;
-        background-size: cover;
-    }
-}
-
-// LANDSCAPE ORIENTATION QUERIES
-
-@media screen and (max-height: 370px) and (orientation:landscape){
-    .hero {
-        h2 {
-            margin-top: 15%;
-        }
-        .scroll-down {
-            display: none;
-        }
-    }
-}
-
-@media screen and (min-height: 375px) and (max-width: 670px) and (orientation:landscape){
-    .hero {
-        .scroll-down {
-            transform: translate(0px, -9vh) !important;
-        }
-    }
-}
-
-
-@media screen and (min-height: 375px) and (max-height: 500px) and (min-width: 700px) and (max-width: 900px) and (orientation:landscape){
-    .hero {
-        .scroll-down {
-            transform: translate(-6vh, -9vh) !important;
-        }
-    }
-}
-
-@media screen and (min-width: $desktop-size) and (orientation:landscape){
-    .hero {
-        .scroll-down {
-            transform: translate(0px, 21vh) !important;
         }
     }
 }

@@ -283,5 +283,25 @@
     enableBodyScroll(targetElement);
   });
 
+
+  // 1. Simple way to allow touch events on screens
+  // disableBodyScroll(container, {
+  //   allowTouchMove: el => el.tagName === 'TEXTAREA',
+  // });
+
+    // 2. More complex way to allow touch events on screens
+    // must put body-scroll-lock-ignore on element in HTML
+  // disableBodyScroll(container, {
+  //   allowTouchMove: el => {
+  //     while (el && el !== document.body) {
+  //       if (el.getAttribute('body-scroll-lock-ignore') !== null) {
+  //         return true;
+  //       }
+   
+  //       el = el.parentNode;
+  //     }
+  //   },
+  // });
+
 });
 

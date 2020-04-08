@@ -91,7 +91,7 @@
                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)):
                     $separate_images = array_map('trim', explode(",", $row["Imgs"]));
                 ?>
-                    <div class="portfolio-card project-index-<?php echo $row_index;?>" style="background-image:url(./public/images/<?php echo $separate_images[0];?>);" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
+                    <div id="project-<?php echo $row_index;?>" class="portfolio-card project-index-<?php echo $row_index;?>" style="background-image:url(./public/images/<?php echo $separate_images[0];?>);" data-project="<?php echo htmlspecialchars(json_encode($row));?>" data-index="<?php echo $row_index;?>">
                         <div role="button" tabindex="0" class="p-link">
                             <h3><?php echo $row['Title'];?></h3>
                             <h4><?php echo $row['Medium'];?></h4>
@@ -171,7 +171,7 @@
                                 <a href="contact.php" class="btn-large">Yeah!</a>
                             </section>
                         </div> <!-- end of lb-desc-con - white background-->
-                        <section class="pwork-more">
+                        <section class="pwork-more" body-scroll-lock-ignore>
                             <h2 class=hidden>More Works</h2>
                             <button class="project-nav-button project-previous-url" data-nav="previous">
                                 <img src="public/images/arrow_left_long.svg" alt="Previous">
@@ -194,6 +194,6 @@
     <script src="public/js/main.js"></script>
     <script src="public/js/main_nav_home.js"></script>
     <script src="public/js/time_home.js"></script>	
-    <script src="public/js/lib/bodyScrollLock.js"></script> 
+    <!-- <script src="public/js/lib/bodyScrollLock.js"></script>  -->
 </body>
 </html>

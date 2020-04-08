@@ -131,6 +131,7 @@
                         clearInfo();
                         updateProjectInfo(projectObj, projectIndex);
                         scrollTopLightbox();
+                        scrollToWork();
                     }else{
                         //TODO: what if we don't find it??
                     }
@@ -145,9 +146,26 @@
                 processSection.innerHTML = '';
             }
 
+            function scrollToWork(){
+                // disable smooth scrolling
+                document.documentElement.style = "scroll-behavior: auto";
+                var portfolioWorkID = document.querySelector('#project-' + currentIndex);
+                portfolioWorkID.scrollIntoView({
+                    behavior: 'auto',
+                    block: 'center',
+                    inline: 'center'
+                });
+                // put smooth scrolling back
+                document.documentElement.style = "scroll-behavior: smooth";
+                // const elementRect = portfolioWorkID.getBoundingClientRect();
+                // const absoluteElementTop = elementRect.top + window.pageYOffset;
+                // const middle = absoluteElementTop - (window.innerHeight / 2);
+                // window.scrollTo(0, middle);
+            }
+
             function updateProjectInfo(currentProjectInfo, projectIndex) {
                 lightBox.dataset.currentIndex = projectIndex;
-
+                currentIndex = lightBox.dataset.currentIndex;
                 // TESTING AREA BEGIN
 
                 // AJAX ATTEMPT 2
@@ -286,8 +304,10 @@
 
                 // window.location.href = "index.php?portfolio=" + projectIndex;
             }
+
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');
+            close.addEventListener('click', scrollToWork);
         })
     });
 

@@ -10,10 +10,12 @@
 @import 'modules/_about';
 
 html, body {
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     // lightbox scrolling
-    // overflow: auto;
     // height: 100%;
+    // allow overflow auto (overrides bodyScrollLock.js)
+    overflow: auto;
 }
 
 body {

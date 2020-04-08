@@ -2,7 +2,7 @@
 
 <img src="/public/images/logo_colour.svg" width="150">
 
-My name is Kayla Chang. I'm an Interactive Media Designer, and this is my portfolio. Visit the live site [here](https://www.kaylachang.ca/).
+My name is Kayla Chang. I'm a Multimedia Designer, and this is my portfolio. Visit the live site [here](https://www.kaylachang.ca/).
 
 ## Built with
 * **HTML5**

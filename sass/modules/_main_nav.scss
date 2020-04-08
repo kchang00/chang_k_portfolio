@@ -234,17 +234,7 @@ $hamburger-border-radius: 20px;
     }
 }
 
-// @media screen and (min-width: $tablet-size) {
-//     .hamburger-nav-con.slide-toggle {
-//         padding: $mobile-gutter !important;
-//     }
-// }
-
 @media screen and (min-width: $desktop-size) {
-    // .nav-positioning {
-    //     // position: static;
-    //     border-bottom: 1px solid rgba(53, 193, 208, 0.4);
-    // }
 
     .hamburger {
         display: none;
@@ -291,6 +281,7 @@ $hamburger-border-radius: 20px;
         }
         a {
             @include h5-class;
+            font-size: 0.9em;
             color: $white;
         }
 

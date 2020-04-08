@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'header.php';?>
+    <?php include 'templates/header.php';?>
     <title>Kayla Chang | About</title>
 </head>
 <body>
     <h1 class="hidden">Kayla Chang | About</h1>
-    <?php include 'main_nav.php';?>
+    <?php include 'templates/main_nav.php';?>
     <div class="about-con">
         <section class="about-desc">
             <div class="desc-wrap">
@@ -143,8 +143,9 @@
                 </div>
             </section>
         </div>
+        <?php include 'templates/thanks_footer.php';?>
     </div>
-    <?php include 'footer.php';?>
+    <?php include 'templates/footer.php';?>
 <script src="public/js/main_nav.js"></script>
 </body>
 </html>

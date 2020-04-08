@@ -11,12 +11,28 @@
         teamList = lightBox.querySelector('.project-team'),
         imagesSection = lightBox.querySelector('.project-images'),
         lightBoxDesc = lightBox.querySelector('.lb-desc'),
-        videosSection = lightBox.querySelector('.project-videos');
+        videosSection = lightBox.querySelector('.project-videos'),
+        processSection = lightBox.querySelector('.project-process');
 
 
     function closeStop() {
         lightBox.classList.remove('show-lb');
         videosSection.innerHTML = '';
+    }
+
+    function accessibleClick(event){
+        if(event.type === 'click'){
+            return true;
+        }
+        else if(event.type === 'keypress'){
+            var code = event.charCode || event.keyCode;
+            if((code === 32)|| (code === 13)){
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -115,6 +131,7 @@
                         clearInfo();
                         updateProjectInfo(projectObj, projectIndex);
                         scrollTopLightbox();
+                        scrollToWork();
                     }else{
                         //TODO: what if we don't find it??
                     }
@@ -126,17 +143,82 @@
                 teamList.innerHTML = '';
                 imagesSection.innerHTML = '';
                 videosSection.innerHTML = '';
+                processSection.innerHTML = '';
+            }
+
+            function scrollToWork(){
+                // disable smooth scrolling
+                document.documentElement.style = "scroll-behavior: auto";
+                var portfolioWorkID = document.querySelector('#project-' + currentIndex);
+                portfolioWorkID.scrollIntoView({
+                    behavior: 'auto',
+                    block: 'center',
+                    inline: 'center'
+                });
+                // put smooth scrolling back
+                document.documentElement.style = "scroll-behavior: smooth";
+                // const elementRect = portfolioWorkID.getBoundingClientRect();
+                // const absoluteElementTop = elementRect.top + window.pageYOffset;
+                // const middle = absoluteElementTop - (window.innerHeight / 2);
+                // window.scrollTo(0, middle);
             }
 
             function updateProjectInfo(currentProjectInfo, projectIndex) {
                 lightBox.dataset.currentIndex = projectIndex;
+                currentIndex = lightBox.dataset.currentIndex;
+                // TESTING AREA BEGIN
+
+                // AJAX ATTEMPT 2
+
+                // request = new XMLHttpRequest();
+                // request.open('POST', 'index.php', true);
+                // request.setRequestHeader('Content-type', 'application/json');
+                // request.send(projectIndex);
+                // console.log(projectIndex);
+
+                // AJAX ATTEMPT 1
+                // function ajax(file, params, callback) {
+
+                //     // creating index.php url
+                //     var url = file + '?' + params;
+                    
+                //     // loop through object and assemble the url
+                //     // var notFirst = false;
+                //     // for (var key in params) {
+                //     //     if (params.hasOwnProperty(key)) {
+                //     //     url += (notFirst ? '&' : '') + key + "=" + params[key];
+                //     //     }
+                //     //     notFirst = true;
+                //     // }
+                    
+                //     // create a AJAX call with url as parameter
+                //     var xmlhttp = new XMLHttpRequest();
+                //     xmlhttp.onreadystatechange = function() {
+                //         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //         callback(xmlhttp.responseText);
+                //         }
+                //     };
+                //     xmlhttp.open('GET', url, true);
+                //     xmlhttp.send();
+                // }
+                
+                // ajax('index.php', projectIndexObj, function(response) {
+                //     // add here the code to be executed when data comes back to this page      
+                //     // for example console.log(response) will show the AJAX response in console
+                //     console.log(response);
+                // });
+
+                // TESTING AREA END
+
                 // separate columns with multiple comma separated values
                 var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
                     separateTeam = currentProjectInfo['Team'].split(','),
                     separateImages = currentProjectInfo['Imgs'].split(','),
                     separateVideos = currentProjectInfo['Video'].split(','),
+                    separateImagesProcess = currentProjectInfo['ProcessImgs'].split(','),
                     separateStripImages = separateImages.map(str => str.replace(/\s/g, '')),
-                    separateStripVideos = separateVideos.map(str => str.replace(/\s/g, ''));
+                    separateStripVideos = separateVideos.map(str => str.replace(/\s/g, '')),
+                    separateStripImagesProcess = separateImagesProcess.map(str => str.replace(/\s/g, ''));
 
                 separateDeliverables.forEach(deliverable => {
                     var li = document.createElement('li');
@@ -158,7 +240,6 @@
                 })
 
                 separateStripVideos.forEach(video => {
-
                     if (video) {
                         var div = document.createElement('div');
                         var iframe = document.createElement('iframe');
@@ -178,20 +259,65 @@
                 lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
                 lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
                 lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
-                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
-                // set up next image
+
+                if (currentProjectInfo['ProcessTitle']) {
+                    var section = document.createElement('section');
+                    var section2 = document.createElement('section');
+                    var div = document.createElement('div');
+                    var div2 = document.createElement('div');
+                    var h2 = document.createElement('h2');
+                    var h22 = document.createElement('h2');
+                    var h3 = document.createElement('h3');
+                    var p = document.createElement('p');
+
+                    section.classList.add('pwork-process-con');
+                    section2.classList.add('pwork-process-visuals');
+                    processSection.appendChild(section);
+                    processSection.appendChild(section2);
+                    section.appendChild(div);
+                        div.appendChild(h2);
+                            h2.innerHTML = currentProjectInfo['ProcessTitle'];
+                        div.appendChild(h3);
+                            h3.innerHTML = currentProjectInfo['ProcessSubtitle'];
+                    section.appendChild(p);
+                            p.innerHTML = currentProjectInfo['ProcessDescription'];
+                    section2.appendChild(h22);
+                        h22.classList.add('hidden');
+                        h22.innerHTML = 'Process Visuals';
+
+                    separateStripImagesProcess.forEach(img => {
+                        var created_img = document.createElement('img');
+                        created_img.src="/public/images/" + img;
+                        created_img.alt="Process Image";
+                        section2.appendChild(created_img);
+                    })
+
+                }else{
+                    processSection.innerHTML = '';
+                }
+
+                // // set up next image
                 // lightBox.querySelector('.project-next-url').style.backgroundImage = "url('./public/images/" + separateStripImages[0] + "')";
 
                 // resetting lightbox info value
                 projectObj = currentProjectInfo;
+
+                // window.location.href = "index.php?portfolio=" + projectIndex;
             }
 
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');
+            close.addEventListener('click', scrollToWork);
         })
     });
 
     // portfolioLinks.forEach(link => link.addEventListener('click', showLb));
+    portfolioLinks.forEach(link => link.addEventListener('keypress', function(e) {
+        if(accessibleClick(event) === true){
+            link.click();
+        }
+      }));
+
     close.addEventListener('click', closeStop);
 
 })();

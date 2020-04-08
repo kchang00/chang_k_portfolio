@@ -28,8 +28,10 @@
         align-self: flex-start;
     }
     .btn-small {
+        max-width: max-content;
         div:first-child {
         max-width: 140px;
+        padding: 0px 10px;
         }
     }
 }

@@ -16,6 +16,13 @@
         max-width: 150px;
         margin-top: 60px;
     }
+
+    .btn-large {
+        max-width: max-content;
+        max-height: max-content;
+        padding: 20px 30px;
+        margin-top: $mobile-margin*3;
+    }
 }
 
 footer {
@@ -26,7 +33,7 @@ footer {
     background:  $pearl;
     padding: 30px;
     p {
-        font-size: 0.9em;
+        font-size: 1em;
         color: $salmon;
         font-family: 'Josefin Sans', sans-serif;
         line-height: 1em;

@@ -223,6 +223,36 @@
     @include p-class(0);
 }
 
+@media screen and (min-width: 500px) {
+    .hero {
+        background: url("../../public/images/hero_tablet.svg") no-repeat center;
+        background-size: cover;
+        .scroll-down {
+            transform: translate(0px, 22.5vh);
+        }
+    }
+}
+
+
+@media screen and (min-width: $tablet-size) {
+    .hero {
+        padding: $tablet-gutter;
+        h2 {
+            font-size: 2.1em;
+        }
+    }
+
+    .desc-wrap {
+        margin: 100px $tablet-gutter;
+    }
+
+    .portfolio-card {
+        .p-link {
+            padding: $tablet-margin !important;
+        }
+    }
+}
+
 @media screen and (min-width: 800px) {
     .portfolio-works {
         flex-direction: row;

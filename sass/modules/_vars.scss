@@ -1,11 +1,11 @@
 // main breakpoints
 
 @mixin tablet-size {
-    @media (min-width: 670px) { @content; }
+    @media screen and (min-width: 670px) { @content; }
 }
 
 @mixin desktop-size {
-    @media (min-width: 1024px) { @content; }
+    @media screen and (min-width: 1024px) { @content; }
 }
 
 $desktop-size: 1024px;

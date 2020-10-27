@@ -297,7 +297,7 @@
                 }
 
                 // // set up next image
-                // lightBox.querySelector('.project-next-url').style.backgroundImage = "url('./public/images/" + separateStripImages[0] + "')";
+                lightBox.querySelector('.project-next-url').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('./public/images/" + separateStripImages[0] + "')";
 
                 // resetting lightbox info value
                 projectObj = currentProjectInfo;

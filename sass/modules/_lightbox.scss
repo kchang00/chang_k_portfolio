@@ -312,18 +312,21 @@
 
     button {
         z-index: -1;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     button:last-child{
         align-items: flex-end;
-        background: $teal;
+        background-color: $teal;
         img {
             transform: rotate(180deg);
         }
     }
     
     .project-previous-url {
-        background: $salmon;
+        background-color: $salmon;
     }
 
     span{

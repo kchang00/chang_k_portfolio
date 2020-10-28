@@ -25,7 +25,5 @@
     </main>
 
     <?php include 'templates/footer.php';?>
-
-    <script src="public/js/main_nav.js"></script>
 </body>
 </html>

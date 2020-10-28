@@ -23,6 +23,7 @@
     z-index: 3;
     animation: fade-in 0.3s 1 ease-out;
     // background-color: rgba(250, 250, 250, 0.95);
+    // hides layers under lightbox when animation fade plays on lightbox nav clicks
     background: $white;
 
     .lightbox-scroll-con {

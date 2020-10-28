@@ -1,21 +1,31 @@
 (() => {
 
     //getting portfolio links to open the lightbox, close icon to close lb
-    let portfolioLinks = document.querySelectorAll('.p-link'),
-        lightBox = document.querySelector('.lightbox'),
-        lightBoxScroll = document.querySelector('.lightbox-scroll-con'),
-        indexClass = document.querySelectorAll('[class*="project-index"]'),
-        close = lightBox.querySelector('.close'),
-        projectNavBtns = lightBox.querySelectorAll('.project-nav-button'), 
+    let portfolioLinks   = document.querySelectorAll('.p-link'),
+        lightBox         = document.querySelector('.lightbox'),
+        lightBoxScroll   = document.querySelector('.lightbox-scroll-con'),
+        indexClass       = document.querySelectorAll('[class*="project-index"]'),
+        close            = lightBox.querySelector('.close'),
+        projectNavBtns   = lightBox.querySelectorAll('.project-nav-button'), 
         deliverablesList = lightBox.querySelector('.project-deliverables'),
-        teamList = lightBox.querySelector('.project-team'),
-        imagesSection = lightBox.querySelector('.project-images'),
-        lightBoxDesc = lightBox.querySelector('.lb-desc'),
-        videosSection = lightBox.querySelector('.project-videos'),
-        processSection = lightBox.querySelector('.project-process');
-
+        teamList         = lightBox.querySelector('.project-team'),
+        imagesSection    = lightBox.querySelector('.project-images'),
+        lightBoxDesc     = lightBox.querySelector('.lb-desc'),
+        videosSection    = lightBox.querySelector('.project-videos'),
+        processSection   = lightBox.querySelector('.project-process'),
+        // removing elements underneath so they don't scroll
+        hero             = document.querySelector('.hero'),
+        welcomeDesc      = document.querySelector('.welcome-desc'),
+        thanksFooter     = document.querySelector('.thanks-footer'),
+        footer           = document.querySelector('footer'),
+        portfolioWorks   = document.querySelector('.portfolio-works');
 
     function closeStop() {
+        hero.classList.remove('hidden');
+        welcomeDesc.classList.remove('hidden');
+        thanksFooter.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        portfolioWorks.classList.remove('hidden');
         lightBox.classList.remove('show-lb');
         videosSection.innerHTML = '';
     }
@@ -307,6 +317,14 @@
 
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');
+
+            // hiding layers underneath to improve scroll
+            hero.classList.add('hidden');
+            welcomeDesc.classList.add('hidden');
+            thanksFooter.classList.add('hidden');
+            footer.classList.add('hidden');
+            portfolioWorks.classList.add('hidden');
+
             close.addEventListener('click', scrollToWork);
         })
     });

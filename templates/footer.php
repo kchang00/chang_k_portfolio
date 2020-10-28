@@ -10,3 +10,6 @@
         </ul>
     </nav>
 </footer>
+
+<script src="public/js/main_nav.js"></script>
+

@@ -117,8 +117,6 @@ if(mail($recipient, $subject, $message, $headers)){
     </div>
 
     <?php include 'templates/footer.php';?>
-
-    <script src="public/js/main_nav.js"></script>
     <script src="public/js/main.js"></script>
     <script src="public/js/contact.js"></script>
 </body>

@@ -32,23 +32,7 @@
 </head>
 <body>
     <h1 class="hidden">Kayla Chang | Portfolio</h1>
-    <!-- different nav from other pages -->
-    <div class="nav-positioning">
-        <div class="main-nav-con">
-            <a class="logo" href="index.php"><img src="public/images/logo.svg" alt="logo"/></a>
-            <div class="hamburger-nav-con">
-                <a class="c-hamburger c-hamburger--htx hamburger"><span>Menu</span></a>
-                <nav class="main-nav">
-                    <h2 class="hidden">Main Navigation</h2>
-                    <ul>
-                        <li><a href="#portfolio-lightbox-con">Portfolio</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <?php include 'templates/main_nav.php';?>
     <div class="main-con">
         <section class="hero">
             <div class="hero-title">
@@ -192,7 +176,6 @@
 
     <?php include 'templates/footer.php';?>
     <script src="public/js/main.js"></script>
-    <script src="public/js/main_nav_home.js"></script>
     <script src="public/js/time_home.js"></script>	
     <!-- <script src="public/js/lib/bodyScrollLock.js"></script>  -->
 </body>

@@ -29,32 +29,34 @@
     }
   }
 
+  function hamburgerAnimation(){
+    if (hamburger.classList.contains('is-active') === true){
+      hamburger.classList.remove("is-active");
+    }else{
+      hamburger.classList.add("is-active");
+    }
+  }
+
+  function hamburgerMenuToggle() {
+    hamburgerAnimation();
+    // shows hamburger menu
+    mainNav.classList.toggle('slide-toggle');
+    hamNavCon.classList.toggle('slide-toggle');
+    // changes colours
+    logoHamColour();
+  }
+
   function hamburgerMenuClose(){
+    hamburger.classList.remove("is-active");
     mainNav.classList.remove('slide-toggle');
     hamNavCon.classList.remove('slide-toggle');
+    logoHamColour();
   }
 
-  function hamburgerMenu() {
-      // controls hamburger animation
-      if (hamburger.classList.contains('is-active') === true){
-          hamburger.classList.remove("is-active");
-      }else{
-          hamburger.classList.add("is-active");
-      }
-      // shows hamburger menu
-      mainNav.classList.toggle('slide-toggle');
-      hamNavCon.classList.toggle('slide-toggle');
-      // changes colours
-      logoHamColour();
-  }
-
-  // closes menu at desktop at other sizes
-  // but not at homepage, v strange
+  // closes menu if user resizes browser window (changes to desktop)
   desktopQuery.onchange = function(e) {
     if (e.matches) {
-      hamburger.classList.remove("is-active");
       hamburgerMenuClose();
-      logoHamColour();
     }
   };
 
@@ -62,30 +64,13 @@
   // if portfolio link is clicked on homepage, closes hamburger menu
   if (heroExists){
     mainNavA.href = '#portfolio-lightbox-con';
-    desktopQuery.onchange = function(e) {
-      console.log('changed');
-      if (!e.matches) {
-        // as soon as the page is smaller than 1024, desktop nav breaks
-        console.log('smaller');
-        mainNavA.addEventListener('click', hamburgerMenu);
-      }else{
-        console.log('bigger');
-      }
-    };
-    if (desktopQuery.matches){
-      console.log('start big');
-    }else{
-      // smaller than 1024
-      // no matter what, if the page is smaller than 1024 the first time, gonna trigger 
-      console.log('start small');
-      mainNavA.addEventListener('click', hamburgerMenu);
-    }
+    mainNavA.addEventListener('click', hamburgerMenuClose);
   }else{
     mainNavA.href = 'index.php#portfolio-lightbox-con';
   }
   
   window.addEventListener('DOMContentLoaded', logoHamColour);
   window.addEventListener('scroll', logoHamColour);
-  hamburger.addEventListener('click', hamburgerMenu);
+  hamburger.addEventListener('click', hamburgerMenuToggle);
 
 })();

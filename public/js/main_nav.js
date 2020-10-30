@@ -16,13 +16,13 @@
     if (hamNavCon.classList.contains('slide-toggle') || pageScroll > pageHeight || !heroExists){
       // controls nav links on desktop
       mainNav.classList.add('scroll-menu');
-      logo.src = "public/images/logo_colour.svg";
+      logo.src = "/public/images/logo_colour.svg";
       logo.classList.add('logo-bg');
       hamburger.classList.add('hamburger-bg');
       hamburger.classList.add('hamburger-scroll-menu');
     }else{
       mainNav.classList.remove("scroll-menu");
-      logo.src = "public/images/logo.svg";
+      logo.src = "/public/images/logo.svg";
       logo.classList.remove('logo-bg');
       hamburger.classList.remove('hamburger-bg');
       hamburger.classList.remove('hamburger-scroll-menu');
@@ -66,7 +66,7 @@
     mainNavA.href = '#portfolio-lightbox-con';
     mainNavA.addEventListener('click', hamburgerMenuClose);
   }else{
-    mainNavA.href = 'index.php#portfolio-lightbox-con';
+    mainNavA.href = '/index.php#portfolio-lightbox-con';
   }
   
   window.addEventListener('DOMContentLoaded', logoHamColour);

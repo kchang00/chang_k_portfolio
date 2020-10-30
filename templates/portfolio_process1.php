@@ -9,6 +9,5 @@
 </section>
 <section class="pwork-process-visuals">
     <h2 class="hidden">Process Visuals</h2>
-    <img src="public/images/organs_remade_logo.svg" alt="Process Image">
-    <img src="public/images/morphing_frame4.jpg" alt="Process Image">
+    <img src="" alt="Process Image">
 </section>

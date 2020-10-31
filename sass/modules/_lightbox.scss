@@ -15,7 +15,7 @@
 .lightbox { 
     display: none;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -90,6 +90,7 @@
 #submit-msg {
     .lightbox {
         display: flex !important; 
+        position: fixed !important;
     }
 }
 

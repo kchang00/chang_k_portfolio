@@ -14,15 +14,13 @@
         videosSection    = lightBox.querySelector('.project-videos'),
         processSection   = lightBox.querySelector('.project-process'),
         // removing elements underneath so they don't scroll
-        hero             = document.querySelector('.hero'),
+        // should keep hero for webpage to display full 100vh and not collapse
         welcomeDesc      = document.querySelector('.welcome-desc'),
         thanksFooter     = document.querySelector('.thanks-footer'),
         footer           = document.querySelector('footer'),
         portfolioWorks   = document.querySelector('.portfolio-works');
 
     function closeStop() {
-        console.log('closed');
-        hero.classList.remove('hidden');
         welcomeDesc.classList.remove('hidden');
         thanksFooter.classList.remove('hidden');
         footer.classList.remove('hidden');
@@ -311,7 +309,6 @@
             lightBox.classList.add('show-lb');
 
             // hiding layers underneath to improve scroll
-            hero.classList.add('hidden');
             welcomeDesc.classList.add('hidden');
             thanksFooter.classList.add('hidden');
             footer.classList.add('hidden');

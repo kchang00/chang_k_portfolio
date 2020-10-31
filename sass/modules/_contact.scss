@@ -1,6 +1,7 @@
 .contact-con {
     h2, h3 {
         margin-bottom: $mobile-margin * 2;
+        line-height: 1.4em;
     }
     h3 {
         line-height: 1.7em;
@@ -47,9 +48,9 @@
             height: 40vh;
         }
         button {
-            padding: 20px 50px 30px 50px;
             margin: 60px 0px 100px 0px;
             cursor: pointer;
+            max-height: none;
         }
     }
 

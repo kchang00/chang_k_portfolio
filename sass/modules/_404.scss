@@ -8,11 +8,10 @@
 .error-message-con {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     background: white;
     flex: 1;
     justify-content: center;
-    padding: 40px $mobile-gutter $mobile-gutter $mobile-gutter ;
+    padding: 65px $mobile-gutter $mobile-gutter $mobile-gutter ;
 
 
     h2 {
@@ -61,6 +60,7 @@
     .error-message-con {
         padding: 0px $tablet-gutter;
         align-self: center;
+        height: 100vh;
         .error-message-po-con{
             // needsmore visual sp
             margin-top: 100px;

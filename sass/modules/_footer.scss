@@ -36,7 +36,7 @@ footer {
         font-size: 1em;
         color: $salmon;
         font-family: 'Josefin Sans', sans-serif;
-        line-height: 1em;
+        line-height: 1.7em;
         font-weight: 400;
         text-align: center;
         margin-bottom: 20px;
@@ -62,13 +62,13 @@ footer {
             align-items: center;
             justify-content: center;
             transition: .15s ease-out;
+            margin: 10px;
             &:hover {
                 transform: scale(0.96);
             }
         }
         img {
             box-sizing: border-box;
-            margin: 10px;
             height: 40px;
         }
     }

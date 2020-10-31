@@ -13,15 +13,6 @@
     $stmt = $pitem->getWorks();
 
     $num = $stmt->rowCount();
-
-    // $str_json = file_get_contents('php://input');
-    // $returned_str = json_decode($str_json, true);
-
-    // if(isset($_REQUEST)) {
-    //     // they are set, we can use them !
-    //     // $response = 'The response is' . $_REQUEST;
-    //     // echo $response;
-    // }
 ?>
 
 <!DOCTYPE html>

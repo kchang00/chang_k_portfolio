@@ -34,8 +34,8 @@ This is the Docker environment set up for my Portfolio.
    ```
 
 #### URLs
-1. The project is up on `http://localhost:8010`
-2. The phpMyAdmin is in `http://localhost:8011` with the credential of 
+1. The project is up on `http://localhost:7010`
+2. The phpMyAdmin is in `http://localhost:7011` with the credential of 
 ```
 Username: portfolio_u
 Password: p0rtf0li0_p!!

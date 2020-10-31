@@ -165,31 +165,43 @@ $hamburger-border-radius: 20px;
     }
 }
 
-// .hamburger.expanded {
-// 	-webkit-transform: rotate(90deg);
-// 	-ms-transform: rotate(90deg);
-//     transform: rotate(90deg);
-//     transform-origin: center center;
-//     opacity: 0.8;
-// }
-
 .main-nav.slide-toggle {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	// position: absolute;
     height: 100vh;
-	padding: 50px;
-	right: 0;
+    padding: 0;
+    right: 0;
+
     ul {
-        margin-top: 60px;
+        margin-top: 0;
         li {
-            margin-bottom: 55px;
+            margin-bottom: 00px;
             &:hover, &:focus {
                 transform: scale(0.97);
             }
         }
     }
+
+    @media screen and (min-height: 321px) {
+        ul {
+            li {
+                margin-bottom: 20px !important;
+            }
+        }
+    }
+
+    @media screen and (min-height: 636px) {
+        padding: 50px !important;
+        ul {
+            margin-top: 60px !important;
+            li {
+                margin-bottom: 55px !important;
+            }
+        }
+    }
+
     a {
         @include title-font;
         font-weight: 400;

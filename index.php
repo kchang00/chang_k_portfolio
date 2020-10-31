@@ -32,23 +32,7 @@
 </head>
 <body>
     <h1 class="hidden">Kayla Chang | Portfolio</h1>
-    <!-- different nav from other pages -->
-    <div class="nav-positioning">
-        <div class="main-nav-con">
-            <a class="logo" href="index.php"><img src="public/images/logo.svg" alt="logo"/></a>
-            <div class="hamburger-nav-con">
-                <a class="c-hamburger c-hamburger--htx hamburger"><span>Menu</span></a>
-                <nav class="main-nav">
-                    <h2 class="hidden">Main Navigation</h2>
-                    <ul>
-                        <li><a href="#portfolio-lightbox-con">Portfolio</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <?php include 'templates/main_nav.php';?>
     <div class="main-con">
         <section class="hero">
             <div class="hero-title">
@@ -59,7 +43,7 @@
             <div class="scroll-down-con">
                 <div class="scroll-down">
                     <p>Scroll down</p>
-                    <img src="public/images/scroll_down_dots.svg" alt="Scroll Down">
+                    <img src="/public/images/scroll_down_dots.svg" alt="Scroll Down">
                 </div>
             </div>
         </section>
@@ -111,9 +95,9 @@
                 <div class="lightbox-scroll-con">
                     <div class="nav-positioning">
                         <div class="main-nav-con">
-                            <a class="logo logo-bg" href="/"><img src="public/images/logo_colour.svg" alt="logo"/></a>
+                            <a class="logo logo-bg" href="index.php"><img src="/public/images/logo_colour.svg" alt="logo"/></a>
                             <div class="hamburger-nav-con">
-                                <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
+                                <button class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></button>
                             </div>
                         </div>
                     </div>
@@ -129,7 +113,7 @@
                                     <p class="project-desc"></p>
                                     <a href="" target="_blank" class="project-url btn-small">
                                         <div>See project</div>
-                                        <div><img src="public/images/arrow_right_small.svg" alt="Right Arrow"></div>
+                                        <div><img src="/public/images/arrow_right_small.svg" alt="Right Arrow"></div>
                                     </a>
                                 </div>
                                 <div class="pwork-sidebar">
@@ -174,11 +158,11 @@
                         <section class="pwork-more" body-scroll-lock-ignore>
                             <h2 class=hidden>More Works</h2>
                             <button class="project-nav-button project-previous-url" data-nav="previous">
-                                <img src="public/images/arrow_left_long.svg" alt="Previous">
+                                <img src="/public/images/arrow_left_long.svg" alt="Previous">
                                 <span class="project-previous-title">Previous Project</span>
                             </button>
                             <button class="project-nav-button project-next-url" data-nav="next">
-                                <img src="public/images/arrow_left_long.svg" alt="Next">
+                                <img src="/public/images/arrow_left_long.svg" alt="Next">
                                 <span class="project-next-title">Next Project</span>
                             </button>
                         </section>
@@ -191,9 +175,8 @@
     </div>
 
     <?php include 'templates/footer.php';?>
-    <script src="public/js/main.js"></script>
-    <script src="public/js/main_nav_home.js"></script>
-    <script src="public/js/time_home.js"></script>	
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/time_home.js"></script>	
     <!-- <script src="public/js/lib/bodyScrollLock.js"></script>  -->
 </body>
 </html>

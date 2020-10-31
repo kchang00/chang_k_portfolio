@@ -122,6 +122,11 @@
     @include tablet-size{
         margin: 100px $tablet-gutter;
     }
+    
+    @include desktop-size{
+        max-width: 770px;
+        margin: 110px 0px;
+    }
 
     h2 {
         margin-bottom: $mobile-margin;
@@ -133,11 +138,20 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        @include desktop-size{
+            flex-direction: row;
+        }
         p {
             // same as portfolio page information width
             max-width: 550px;
             &:first-child {
                 margin-bottom:20px;
+            }
+            @include desktop-size{
+                &:first-child {
+                    margin-bottom:0px;
+                    margin-right: 50px;
+                }
             }
         }
         a {
@@ -159,6 +173,12 @@
     flex: 1;
     box-sizing: border-box;
     padding: 0px $mobile-margin;
+
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0px 15px;
+    }
 
     .portfolio-card {
 
@@ -183,6 +203,12 @@
         background-position: center;
         transition: all .2s ease;
 
+        @media screen and (min-width: 800px) {
+            //reset padding hack
+            padding-bottom: calc(40% - 25px);
+            padding-right: calc(49% - 25px);
+        }
+
         &:focus, &:hover {
             transform: scale(0.98);
         }
@@ -204,6 +230,10 @@
             box-sizing: border-box;
             border-radius: 10px;
 
+            h3, h4 {
+                color: white;
+            }
+
             @include tablet-size{
                 padding: $tablet-margin !important;
                 h3 {
@@ -211,8 +241,14 @@
                 }
             }
 
-            h3, h4 {
-                color: white;
+            @include desktop-size{
+                padding: $desktop-margin !important;
+                opacity: 0;
+
+                &:focus, &:hover {
+                    // background: linear-gradient(rgba(61,173,189,0.5) 0%, rgba(61,173,189,0.5) 100%);
+                    opacity: 1;
+                }
             }
 
         }
@@ -221,75 +257,4 @@
 
 .u-social {
     @include p-class(0);
-}
-
-@media screen and (min-width: 500px) {
-    .hero {
-        background: url("../../public/images/hero_tablet.svg") no-repeat center;
-        background-size: cover;
-        .scroll-down {
-            transform: translate(0px, 22.5vh);
-        }
-    }
-}
-
-
-@media screen and (min-width: $tablet-size) {
-    .hero {
-        padding: $tablet-gutter;
-        h2 {
-            font-size: 2.1em;
-        }
-    }
-
-    .desc-wrap {
-        margin: 100px $tablet-gutter;
-    }
-
-    .portfolio-card {
-        .p-link {
-            padding: $tablet-margin !important;
-        }
-    }
-}
-
-@media screen and (min-width: 800px) {
-    .portfolio-works {
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 0px 15px;
-        .portfolio-card {
-            //reset padding hack
-            padding-bottom: calc(40% - 25px);
-            padding-right: calc(49% - 25px);
-        }
-    }
-}
-
-@media screen and (min-width: $desktop-size) {
-    .portfolio-card {
-        .p-link {
-            padding: $desktop-margin !important;
-            opacity: 0;
-
-            &:focus, &:hover {
-                // background: linear-gradient(rgba(61,173,189,0.5) 0%, rgba(61,173,189,0.5) 100%);
-                opacity: 1;
-            }
-        }
-    }
-
-    .desc-wrap {
-        max-width: 770px;
-        margin: 110px 0px;
-        .desc-columns {
-            flex-direction: row;
-            p {
-                &:first-child {
-                    margin-bottom:0px;
-                    margin-right: 50px;
-                }
-            }
-        }
-    }
 }

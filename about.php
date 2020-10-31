@@ -24,7 +24,7 @@
         </section>
         <div class="main-con-nav-po">
             <div class="quote">
-                <img src="public/images/quotation.svg" alt="Quote">
+                <img src="/public/images/quotation.svg" alt="Quote">
                 Good design is invisible, but great design evokes <span class="quote-highlight">emotion</span>. I want to <span class="quote-highlight">collaborate</span> with great people to create digital experiences that <span class="quote-highlight">engage</span> and <span class="quote-highlight">empower</span> users.
             </div>
             <section class="skills">
@@ -74,7 +74,7 @@
                 <h2>Services</h2>
                 <div class="img-list-wrap">
                     <div class="services-img">
-                        <img src="public/images/about_girl.svg" alt="Services">
+                        <img src="/public/images/about_girl.svg" alt="Services">
                     </div>
                     <ul>
                         <li>Animation</li>
@@ -88,7 +88,7 @@
             </div>
         </section>
         <div class="services-img">
-            <img src="public/images/about_girl.svg" alt="Services">
+            <img src="/public/images/about_girl.svg" alt="Services">
         </div>
         <div class="main-con-nav-po">
             <section class="process">
@@ -146,6 +146,5 @@
         <?php include 'templates/thanks_footer.php';?>
     </div>
     <?php include 'templates/footer.php';?>
-<script src="public/js/main_nav.js"></script>
 </body>
 </html>

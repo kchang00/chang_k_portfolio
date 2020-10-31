@@ -25,6 +25,8 @@
     // background-color: rgba(250, 250, 250, 0.95);
     // hides layers under lightbox when animation fade plays on lightbox nav clicks
     background: $white;
+    // define height for absolute positioning and scrolling behaviour
+    height: 100vh;
 
     .lightbox-scroll-con {
         display: flex;

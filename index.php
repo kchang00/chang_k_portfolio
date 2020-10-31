@@ -97,7 +97,7 @@
                         <div class="main-nav-con">
                             <a class="logo logo-bg" href="index.php"><img src="/public/images/logo_colour.svg" alt="logo"/></a>
                             <div class="hamburger-nav-con">
-                                <a class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></a>
+                                <button class="c-close c-close--htx close is-active hamburger-bg"><span>Close</span></button>
                             </div>
                         </div>
                     </div>

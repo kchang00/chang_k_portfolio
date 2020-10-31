@@ -21,6 +21,7 @@
         portfolioWorks   = document.querySelector('.portfolio-works');
 
     function closeStop() {
+        console.log('closed');
         hero.classList.remove('hidden');
         welcomeDesc.classList.remove('hidden');
         thanksFooter.classList.remove('hidden');
@@ -44,6 +45,36 @@
             return false;
         }
     }
+
+    // code from: https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
+    // add all the elements inside modal which you want to make focusable
+    const   focusableElements     = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+            modal                 = lightBox,
+            firstFocusableElement = modal.querySelectorAll(focusableElements)[0], // get first element to be focused inside modal
+            focusableContent      = modal.querySelectorAll(focusableElements),
+            lastFocusableElement  = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+    document.addEventListener('keydown', function(e) {
+        let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (e.shiftKey) { // if shift key pressed for shift + tab combination
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus(); // add focus for the last focusable element
+                e.preventDefault();
+            }
+        } else { // if tab key is pressed
+            if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+                firstFocusableElement.focus(); // add focus for the first focusable element
+                e.preventDefault();
+            }
+        }
+    });
+
+    firstFocusableElement.focus();  
 
     document.addEventListener('DOMContentLoaded', function() {
         // code by Maximillian Laumeister: https://www.maxlaumeister.com/articles/hide-related-videos-in-youtube-embeds/
@@ -121,23 +152,27 @@
 
             projectNavBtns.forEach(ele => {
                 ele.addEventListener('click', function (e) {
+                    // debugger;
+                    // I think event listener fires proportionally to amount of times portfolio link is clicked
                     var currentBtn = e.currentTarget,
-                        currentIndex = lightBox.dataset.currentIndex,
+                        // selecting dataset on btn to check if next or previous 
                         navDirection = currentBtn.dataset.nav,
+                        currentIndex = lightBox.dataset.currentIndex,
                         // setting next and previous btns
                         // shorthand if else statement
+                        // if dataset is next, increase current index : else, decrease current index
                         futureIndex = navDirection === 'next' ? ++currentIndex : --currentIndex,
                         futureIndex = futureIndex > indexClass.length ? 1 : futureIndex,
                         futureIndex = futureIndex < 1 ? indexClass.length : futureIndex,
                         futureProject = document.querySelector('.project-index-' + futureIndex);
-
+    
                     //Verify if the future index exists
                     if (futureProject) {
                         var projectInfo = futureProject.dataset.project,
                             projectObj = JSON.parse(projectInfo),
                             // grabbing data associated with data-index attribute
                             projectIndex = futureProject.dataset.index;
-
+    
                         clearInfo();
                         updateProjectInfo(projectObj, projectIndex);
                         scrollTopLightbox();
@@ -147,6 +182,7 @@
                     }
                 });
             });
+
 
             function clearInfo() {
                 deliverablesList.innerHTML = '';
@@ -176,50 +212,6 @@
             function updateProjectInfo(currentProjectInfo, projectIndex) {
                 lightBox.dataset.currentIndex = projectIndex;
                 currentIndex = lightBox.dataset.currentIndex;
-                // TESTING AREA BEGIN
-
-                // AJAX ATTEMPT 2
-
-                // request = new XMLHttpRequest();
-                // request.open('POST', 'index.php', true);
-                // request.setRequestHeader('Content-type', 'application/json');
-                // request.send(projectIndex);
-                // console.log(projectIndex);
-
-                // AJAX ATTEMPT 1
-                // function ajax(file, params, callback) {
-
-                //     // creating index.php url
-                //     var url = file + '?' + params;
-                    
-                //     // loop through object and assemble the url
-                //     // var notFirst = false;
-                //     // for (var key in params) {
-                //     //     if (params.hasOwnProperty(key)) {
-                //     //     url += (notFirst ? '&' : '') + key + "=" + params[key];
-                //     //     }
-                //     //     notFirst = true;
-                //     // }
-                    
-                //     // create a AJAX call with url as parameter
-                //     var xmlhttp = new XMLHttpRequest();
-                //     xmlhttp.onreadystatechange = function() {
-                //         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                //         callback(xmlhttp.responseText);
-                //         }
-                //     };
-                //     xmlhttp.open('GET', url, true);
-                //     xmlhttp.send();
-                // }
-                
-                // ajax('index.php', projectIndexObj, function(response) {
-                //     // add here the code to be executed when data comes back to this page      
-                //     // for example console.log(response) will show the AJAX response in console
-                //     console.log(response);
-                // });
-
-                // TESTING AREA END
-
                 // separate columns with multiple comma separated values
                 var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
                     separateTeam = currentProjectInfo['Team'].split(','),
@@ -307,7 +299,7 @@
                 }
 
                 // // set up next image
-                lightBox.querySelector('.project-next-url').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('./public/images/" + separateStripImages[0] + "')";
+                // lightBox.querySelector('.project-next-url').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('./public/images/" + separateStripImages[0] + "')";
 
                 // resetting lightbox info value
                 projectObj = currentProjectInfo;

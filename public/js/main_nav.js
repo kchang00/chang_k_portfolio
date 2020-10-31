@@ -6,8 +6,7 @@
         heroExists  = document.getElementsByClassName('hero').length,
         mainNavA    = mainNav.getElementsByTagName('a')[0],
         desktopQuery = window.matchMedia('(min-width: 1024px)');
-        
-  // console.log('nav working');
+
   function logoHamColour(){
       var pageScroll = window.pageYOffset;
           pageHeight = window.screen.height * 0.75;

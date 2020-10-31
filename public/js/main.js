@@ -1,6 +1,4 @@
 (() => {
-
-    //getting portfolio links to open the lightbox, close icon to close lb
     let portfolioLinks   = document.querySelectorAll('.p-link'),
         lightBox         = document.querySelector('.lightbox'),
         lightBoxScroll   = document.querySelector('.lightbox-scroll-con'),

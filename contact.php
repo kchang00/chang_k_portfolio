@@ -1,25 +1,13 @@
 
 <?php
 
-// var_dump($_POST['name']);
-// var_dump($_GET);
-
-//IF THE FORM IS NOT FILLED OUT
-// if(empty($_POST)){
-//     // echo 'Please fill all the required fields!';
-//     exit;
-// }
-
 //VALIDATE ALL DATA
-//necessary to protect your server
+//necessary to protect server
 $name = '';
 $email = '';
 $subject = '';
 $message = '';
 $recipient = 'hello@kaylachang.ca';
-
-// to make a field required, kill the function if the value is "empty"
-//Use GET to pass along message ?=true or ?=false to redirect users after form is sent + make thank you message pop up in JS
 
 //$_POST is an an array which holds information submitted through HTML forms via POST method
 // holds keys and values. keys = name of form controls (in HTML), values =  input data from the users.
@@ -77,7 +65,6 @@ if(mail($recipient, $subject, $message, $headers)){
         <div class="main-con-nav-po">
             <h2>Let's Connect.</h2>
             <h3>Ready to start a project? I’ll do my best to get in touch within the week.</h3>
-            <!-- <form action="contact/data_contact.php" method="post"> -->
             <form id="contact-form" action="contact.php" method="post">
                 <!-- method="get" makes data in contact form visible in url. use method="post" for sensitive data like password -->
                 <!-- action is the reciever -->

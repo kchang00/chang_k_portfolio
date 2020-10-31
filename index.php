@@ -146,7 +146,7 @@
                                 <a href="contact.php" class="btn-large">Yeah!</a>
                             </section>
                         </div> <!-- end of lb-desc-con - white background-->
-                        <section class="pwork-more" body-scroll-lock-ignore>
+                        <section class="pwork-more">
                             <h2 class=hidden>More Works</h2>
                             <button class="project-nav-button project-previous-url" data-nav="previous">
                                 <img src="/public/images/arrow_left_long.svg" alt="Previous">
@@ -168,6 +168,5 @@
     <?php include 'templates/footer.php';?>
     <script src="/public/js/main.js"></script>
     <script src="/public/js/time_home.js"></script>	
-    <!-- <script src="public/js/lib/bodyScrollLock.js"></script>  -->
 </body>
 </html>

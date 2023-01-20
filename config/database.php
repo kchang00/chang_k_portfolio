@@ -4,7 +4,7 @@
 class Database{
     private $host = 'localhost';
     private $db_name = 'db_portfolio_u';
-    private $username = 'ybltwvmy_p';
+    private $username = 'u375717261_p';
     private $password = 'Vy(o+9q.TyWg';
 
     //people outside of object have access to public

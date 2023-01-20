@@ -40,3 +40,4 @@ This is the Docker environment set up for my Portfolio.
 Username: portfolio_u
 Password: p0rtf0li0_p!!
 ```
+3. Mailhog (for PHP Mail debugging) `http://localhost:8025`

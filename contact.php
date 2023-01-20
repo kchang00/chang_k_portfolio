@@ -9,9 +9,6 @@ $subject = '';
 $message = '';
 $recipient = 'hello@kaylachang.ca';
 
-//$_POST is an an array which holds information submitted through HTML forms via POST method
-// holds keys and values. keys = name of form controls (in HTML), values =  input data from the users.
-
 if (isset($_POST['name'])) {
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 }
@@ -30,21 +27,30 @@ if (isset($_POST['message'])) {
     $message = $_POST['message']; 
 }
 
-//Internet courrier validates email to protect from spam
-//Ex. The courrier thinks a user is suspicious because their server and domain don't match?
-//This makes sure internet sees that the email is coming from your server, and your domain, and that they match (they are not suspicious)
-
 //SEND OUT EMAIL
-$headers = array(
-    'From'=>'hello@kaylachang.ca',
-    'Reply=To'=>$name.'<'.$email.'>'
-);
+// $headers = array(
+//     'From'=>'hello@kaylachang.ca',
+//     'Reply=To'=>$name.'<'.$email.'>'
+// );
 
-//mail() is a PHP function that sends out an email
-//if mail is sent, $is_success = true. Otherwise, mail did not send, and $is_success = false.
+// FIX FOR BLUEHOST
+// $emailfrom = 'hello@kaylachang.ca';
 
-if(mail($recipient, $subject, $message, $headers)){
-// if(mail($recipient, $subject, $message)){
+$headers = 
+	'Return-Path: ' . $email . "\r\n" . 
+	'From: ' . $name . ' <' . $email . '>' . "\r\n" . 
+	'X-Priority: 3' . "\r\n" . 
+	'X-Mailer: PHP ' . phpversion() .  "\r\n" . 
+	'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n" .
+	'MIME-Version: 1.0' . "\r\n" . 
+	'Content-Transfer-Encoding: 8bit' . "\r\n" . 
+	'Content-Type: text/plain; charset=UTF-8' . "\r\n";
+
+$params = '-f ' . $email;
+
+if(mail($recipient, $subject, $message, $headers, $params)){
+// END OF FIX FOR BLUEHOST
+// if(mail($recipient, $subject, $message, $headers)){
     $is_success = True;
 }else{
     $is_success = False;
@@ -66,10 +72,6 @@ if(mail($recipient, $subject, $message, $headers)){
             <h2>Let's Connect.</h2>
             <h3>Ready to start a project? I’ll do my best to get in touch within the week.</h3>
             <form id="contact-form" action="contact.php" method="post">
-                <!-- method="get" makes data in contact form visible in url. use method="post" for sensitive data like password -->
-                <!-- action is the reciever -->
-                <!-- for attribute must be same as id of input to link them together -->
-                <!-- name attribute can be anything we want to name it. it's for back-end -->
                 <div class="form-con">
                     <div>
                         <label for="u-name">Name</label>
@@ -92,8 +94,6 @@ if(mail($recipient, $subject, $message, $headers)){
                         <textarea id="e-message" name="message" placeholder="How can I help?" required></textarea>
                     </div>
                 </div>
-
-                <!-- name = for PHP _POST method to track if button is clicked - is set to 'submit' -->
                 <button type="submit" class="btn-large" name="submit">Submit</button>
 
             </form>

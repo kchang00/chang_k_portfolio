@@ -16,15 +16,34 @@
         welcomeDesc      = document.querySelector('.welcome-desc'),
         thanksFooter     = document.querySelector('.thanks-footer'),
         footer           = document.querySelector('footer'),
-        portfolioWorks   = document.querySelector('.portfolio-works');
+        portfolioWorks   = document.querySelector('.portfolio-works'),
+        currentIndex = 0;
 
-    function closeStop() {
+    function closeStop(currentIndex) {
         welcomeDesc.classList.remove('hidden');
         thanksFooter.classList.remove('hidden');
         footer.classList.remove('hidden');
         portfolioWorks.classList.remove('hidden');
         lightBox.classList.remove('show-lb');
         videosSection.innerHTML = '';
+        scrollToWork(currentIndex);
+    }
+
+    function scrollToWork(currentIndex){
+        // disable smooth scrolling
+        document.documentElement.style = "scroll-behavior: auto";
+        var portfolioWorkID = document.querySelector('#project-' + currentIndex);
+        portfolioWorkID.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+        // put smooth scrolling back
+        document.documentElement.style = "scroll-behavior: smooth";
+        // const elementRect = portfolioWorkID.getBoundingClientRect();
+        // const absoluteElementTop = elementRect.top + window.pageYOffset;
+        // const middle = absoluteElementTop - (window.innerHeight / 2);
+        // window.scrollTo(0, middle);
     }
 
     function accessibleClick(event){
@@ -130,6 +149,113 @@
         TweenMax.to(lightBoxScroll, 0.01, { scrollTo: 0 });
     }
 
+    function clearInfo() {
+        deliverablesList.innerHTML = '';
+        teamList.innerHTML = '';
+        imagesSection.innerHTML = '';
+        videosSection.innerHTML = '';
+        processSection.innerHTML = '';
+    }
+
+    function updateProjectInfo(currentProjectInfo, projectIndex) {
+        lightBox.dataset.currentIndex = projectIndex;
+        currentIndex = lightBox.dataset.currentIndex;
+
+        // separate columns with multiple comma separated values
+        var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
+            separateTeam = currentProjectInfo['Team'].split(','),
+            separateImages = currentProjectInfo['Imgs'].split(','),
+            separateVideos = currentProjectInfo['Video'].split(','),
+            separateImagesProcess = currentProjectInfo['ProcessImgs'].split(','),
+            separateStripImages = separateImages.map(str => str.replace(/\s/g, '')),
+            separateStripVideos = separateVideos.map(str => str.replace(/\s/g, '')),
+            separateStripImagesProcess = separateImagesProcess.map(str => str.replace(/\s/g, ''));
+
+        separateDeliverables.forEach(deliverable => {
+            var li = document.createElement('li');
+            var deliverableListItem = deliverablesList.appendChild(li);
+            deliverableListItem.innerHTML = deliverable;
+        })
+
+        separateTeam.forEach(team => {
+            var li = document.createElement('li');
+            var teamListItem = teamList.appendChild(li);
+            teamListItem.innerHTML = team;
+        })
+
+        separateStripImages.forEach(img => {
+            var div = document.createElement('div');
+            div.classList.add('pwork-img');
+            div.style.backgroundImage = "url('./public/images/" + img + "')";
+            imagesSection.appendChild(div);
+        })
+
+        separateStripVideos.forEach(video => {
+            if (video) {
+                var div = document.createElement('div');
+                var iframe = document.createElement('iframe');
+                div.classList.add('embed-container');
+                div.classList.add('hytPlayerWrap');
+                iframe.innerHTML = '';
+                iframe.src = video;
+                videosSection.appendChild(div);
+                div.appendChild(iframe);
+            }else {
+                videosSection.innerHTML = '';
+            }
+        })
+
+        lightBox.querySelector('.project-title').innerHTML = currentProjectInfo['Title'];
+        lightBox.querySelector('.project-subtitle').innerHTML = currentProjectInfo['Subtitle'];
+        lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
+        lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
+        lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
+
+        if (currentProjectInfo['ProcessTitle']) {
+            var section = document.createElement('section');
+            var section2 = document.createElement('section');
+            var div = document.createElement('div');
+            var div2 = document.createElement('div');
+            var h2 = document.createElement('h2');
+            var h22 = document.createElement('h2');
+            var h3 = document.createElement('h3');
+            var p = document.createElement('p');
+
+            section.classList.add('pwork-process-con');
+            section2.classList.add('pwork-process-visuals');
+            processSection.appendChild(section);
+            processSection.appendChild(section2);
+            section.appendChild(div);
+                div.appendChild(h2);
+                    h2.innerHTML = currentProjectInfo['ProcessTitle'];
+                div.appendChild(h3);
+                    h3.innerHTML = currentProjectInfo['ProcessSubtitle'];
+            section.appendChild(p);
+                    p.innerHTML = currentProjectInfo['ProcessDescription'];
+            section2.appendChild(h22);
+                h22.classList.add('hidden');
+                h22.innerHTML = 'Process Visuals';
+
+            separateStripImagesProcess.forEach(img => {
+                var created_img = document.createElement('img');
+                created_img.src="/public/images/" + img;
+                created_img.alt="Process Image";
+                section2.appendChild(created_img);
+            })
+
+        }else{
+            processSection.innerHTML = '';
+        }
+
+        // // set up next image
+        // lightBox.querySelector('.project-next-url').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('./public/images/" + separateStripImages[0] + "')";
+
+        // resetting lightbox info value
+        projectObj = currentProjectInfo;
+
+        // window.location.href = "index.php?portfolio=" + projectIndex;
+    }
+
     portfolioLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             // all data for single portfolio page
@@ -141,167 +267,12 @@
                 projectInfo = projectRoot.dataset.project,
                 projectObj = JSON.parse(projectInfo),
                 // grabbing data associated with data-index attribute
-                projectIndex = projectRoot.dataset.index;
+                projectIndex = projectRoot.dataset.index,
+                // Store the current index in the variable declared outside of the loop
+                currentIndex = projectIndex;
 
             clearInfo();
             updateProjectInfo(projectObj, projectIndex);
-
-            projectNavBtns.forEach(ele => {
-                ele.addEventListener('click', function (e) {
-                    // debugger;
-                    // I think event listener fires proportionally to amount of times portfolio link is clicked
-                    var currentBtn = e.currentTarget,
-                        // selecting dataset on btn to check if next or previous 
-                        navDirection = currentBtn.dataset.nav,
-                        currentIndex = lightBox.dataset.currentIndex,
-                        // setting next and previous btns
-                        // shorthand if else statement
-                        // if dataset is next, increase current index : else, decrease current index
-                        futureIndex = navDirection === 'next' ? ++currentIndex : --currentIndex,
-                        futureIndex = futureIndex > indexClass.length ? 1 : futureIndex,
-                        futureIndex = futureIndex < 1 ? indexClass.length : futureIndex,
-                        futureProject = document.querySelector('.project-index-' + futureIndex);
-    
-                    //Verify if the future index exists
-                    if (futureProject) {
-                        var projectInfo = futureProject.dataset.project,
-                            projectObj = JSON.parse(projectInfo),
-                            // grabbing data associated with data-index attribute
-                            projectIndex = futureProject.dataset.index;
-    
-                        clearInfo();
-                        updateProjectInfo(projectObj, projectIndex);
-                        scrollTopLightbox();
-                        scrollToWork();
-                    }else{
-                        //TODO: what if we don't find it??
-                    }
-                });
-            });
-
-
-            function clearInfo() {
-                deliverablesList.innerHTML = '';
-                teamList.innerHTML = '';
-                imagesSection.innerHTML = '';
-                videosSection.innerHTML = '';
-                processSection.innerHTML = '';
-            }
-
-            function scrollToWork(){
-                // disable smooth scrolling
-                document.documentElement.style = "scroll-behavior: auto";
-                var portfolioWorkID = document.querySelector('#project-' + currentIndex);
-                portfolioWorkID.scrollIntoView({
-                    behavior: 'auto',
-                    block: 'center',
-                    inline: 'center'
-                });
-                // put smooth scrolling back
-                document.documentElement.style = "scroll-behavior: smooth";
-                // const elementRect = portfolioWorkID.getBoundingClientRect();
-                // const absoluteElementTop = elementRect.top + window.pageYOffset;
-                // const middle = absoluteElementTop - (window.innerHeight / 2);
-                // window.scrollTo(0, middle);
-            }
-
-            function updateProjectInfo(currentProjectInfo, projectIndex) {
-                lightBox.dataset.currentIndex = projectIndex;
-                currentIndex = lightBox.dataset.currentIndex;
-                // separate columns with multiple comma separated values
-                var separateDeliverables = currentProjectInfo['Deliverables'].split(','),
-                    separateTeam = currentProjectInfo['Team'].split(','),
-                    separateImages = currentProjectInfo['Imgs'].split(','),
-                    separateVideos = currentProjectInfo['Video'].split(','),
-                    separateImagesProcess = currentProjectInfo['ProcessImgs'].split(','),
-                    separateStripImages = separateImages.map(str => str.replace(/\s/g, '')),
-                    separateStripVideos = separateVideos.map(str => str.replace(/\s/g, '')),
-                    separateStripImagesProcess = separateImagesProcess.map(str => str.replace(/\s/g, ''));
-
-                separateDeliverables.forEach(deliverable => {
-                    var li = document.createElement('li');
-                    var deliverableListItem = deliverablesList.appendChild(li);
-                    deliverableListItem.innerHTML = deliverable;
-                })
-
-                separateTeam.forEach(team => {
-                    var li = document.createElement('li');
-                    var teamListItem = teamList.appendChild(li);
-                    teamListItem.innerHTML = team;
-                })
-
-                separateStripImages.forEach(img => {
-                    var div = document.createElement('div');
-                    div.classList.add('pwork-img');
-                    div.style.backgroundImage = "url('./public/images/" + img + "')";
-                    imagesSection.appendChild(div);
-                })
-
-                separateStripVideos.forEach(video => {
-                    if (video) {
-                        var div = document.createElement('div');
-                        var iframe = document.createElement('iframe');
-                        div.classList.add('embed-container');
-                        div.classList.add('hytPlayerWrap');
-                        iframe.innerHTML = '';
-                        iframe.src = video;
-                        videosSection.appendChild(div);
-                        div.appendChild(iframe);
-                    }else {
-                        videosSection.innerHTML = '';
-                    }
-                })
-
-                lightBox.querySelector('.project-title').innerHTML = currentProjectInfo['Title'];
-                lightBox.querySelector('.project-subtitle').innerHTML = currentProjectInfo['Subtitle'];
-                lightBox.querySelector('.project-desc').innerHTML = currentProjectInfo['Description'];
-                lightBox.querySelector('.project-year').innerHTML = currentProjectInfo['Year'];
-                lightBox.querySelector('.project-url').href = currentProjectInfo['ProjectURL'];
-
-                if (currentProjectInfo['ProcessTitle']) {
-                    var section = document.createElement('section');
-                    var section2 = document.createElement('section');
-                    var div = document.createElement('div');
-                    var div2 = document.createElement('div');
-                    var h2 = document.createElement('h2');
-                    var h22 = document.createElement('h2');
-                    var h3 = document.createElement('h3');
-                    var p = document.createElement('p');
-
-                    section.classList.add('pwork-process-con');
-                    section2.classList.add('pwork-process-visuals');
-                    processSection.appendChild(section);
-                    processSection.appendChild(section2);
-                    section.appendChild(div);
-                        div.appendChild(h2);
-                            h2.innerHTML = currentProjectInfo['ProcessTitle'];
-                        div.appendChild(h3);
-                            h3.innerHTML = currentProjectInfo['ProcessSubtitle'];
-                    section.appendChild(p);
-                            p.innerHTML = currentProjectInfo['ProcessDescription'];
-                    section2.appendChild(h22);
-                        h22.classList.add('hidden');
-                        h22.innerHTML = 'Process Visuals';
-
-                    separateStripImagesProcess.forEach(img => {
-                        var created_img = document.createElement('img');
-                        created_img.src="/public/images/" + img;
-                        created_img.alt="Process Image";
-                        section2.appendChild(created_img);
-                    })
-
-                }else{
-                    processSection.innerHTML = '';
-                }
-
-                // // set up next image
-                // lightBox.querySelector('.project-next-url').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('./public/images/" + separateStripImages[0] + "')";
-
-                // resetting lightbox info value
-                projectObj = currentProjectInfo;
-
-                // window.location.href = "index.php?portfolio=" + projectIndex;
-            }
 
             scrollTopLightbox2();
             lightBox.classList.add('show-lb');
@@ -312,17 +283,54 @@
             footer.classList.add('hidden');
             portfolioWorks.classList.add('hidden');
 
-            close.addEventListener('click', scrollToWork);
         })
+        
+    });
+
+
+    // Update the projectNavBtns function to use the currentIndex variable instead of the lightBox data-index attribute. 
+    projectNavBtns.forEach(ele => {
+        ele.addEventListener('click', function (e) {
+            // debugger;
+            // I think event listener fires proportionally to amount of times portfolio link is clicked
+            var currentBtn = e.currentTarget,
+                // selecting dataset on btn to check if next or previous 
+                navDirection = currentBtn.dataset.nav,
+                // Use the currentIndex variable instead of the lightBox data-index attribute. 
+                futureIndex = navDirection === 'next' ? ++currentIndex : --currentIndex,
+                futureIndex = futureIndex > indexClass.length ? 1 : futureIndex,
+                futureIndex = futureIndex < 1 ? indexClass.length : futureIndex,
+                futureProject = document.querySelector('.project-index-' + futureIndex);
+
+            //Verify if the future index exists
+            if (futureProject) {
+                var projectInfo = futureProject.dataset.project,
+                    projectObj = JSON.parse(projectInfo),
+                    // grabbing data associated with data-index attribute
+                    projectIndex = futureProject.dataset.index;
+
+                clearInfo();
+                updateProjectInfo(projectObj, projectIndex);
+
+                // Update and store the current index in the variable declared outside of the loop
+                currentIndex = projectIndex;
+
+                scrollTopLightbox();
+                scrollToWork(currentIndex);
+
+            }else{
+                //TODO: what if we don't find it??
+            }
+
+        }); 
     });
 
     // portfolioLinks.forEach(link => link.addEventListener('click', showLb));
     portfolioLinks.forEach(link => link.addEventListener('keypress', function(e) {
-        if(accessibleClick(event) === true){
+        if(accessibleClick(e) === true){
             link.click();
         }
       }));
 
-    close.addEventListener('click', closeStop);
-
+      close.addEventListener('click', () => closeStop(currentIndex));
 })();

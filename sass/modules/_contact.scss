@@ -94,6 +94,25 @@
     }
 }
 
+// hide recaptcha
+// display:none; will disable recaptcha
+.grecaptcha-badge { 
+    visibility: hidden;
+    height: 0 !important;
+}
+
+// .g-recaptcha-note{
+//     font-size: 1em;
+//     color: $grey;
+//     margin-top: 20px;
+// }
+
+// .g-recaptcha-note, .contact-info, .support-note{
+//     a{
+//         @include a-font;
+//     }
+// }
+
 @media screen and (min-width: $tablet-size) {
     .contact-con{
         .lightbox {
@@ -116,13 +135,13 @@
                 margin-bottom: 15px;
             }
         }
-        .form-con {
+        .form-con{
             flex-direction: row;
             div:first-child {
                 max-width: 320px;
             }
 
-            div:last-child {
+            > div:last-child {
                 margin-left: 45px;
             }
         }

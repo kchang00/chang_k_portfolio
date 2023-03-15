@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <?php include 'templates/header.php';?>
-    <title>Kayla Chang | About</title>
+    <title>About | Kayla Chang</title>
 </head>
 <body>
-    <h1 class="hidden">Kayla Chang | About</h1>
+    <h1 class="hidden">About | Kayla Chang</h1>
     <?php include 'templates/main_nav.php';?>
     <div class="about-con">
         <section class="about-desc">

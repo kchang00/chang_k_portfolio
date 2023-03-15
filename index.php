@@ -19,10 +19,10 @@
 <html lang="en">
 <head>
     <?php include 'templates/header.php';?>
-    <title>Kayla Chang | Portfolio</title>
+    <title>Portfolio | Kayla Chang</title>
 </head>
 <body>
-    <h1 class="hidden">Kayla Chang | Portfolio</h1>
+    <h1 class="hidden">Portfolio | Kayla Chang</h1>
     <?php include 'templates/main_nav.php';?>
     <div class="main-con">
         <section class="hero">
